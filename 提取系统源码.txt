@@ -1,0 +1,2 @@
+1.查看主要代码包位置（）http://androidxref.com/5.1.1_r6/xref/packages/apps/Settings/src/com/android/settings/WirelessSettings.java
+2.下载代码，并查看
