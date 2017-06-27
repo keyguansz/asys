@@ -231,6 +231,7 @@ public class InstallAppProgress extends Activity implements View.OnClickListener
             PackageInfo pi = pm.getPackageInfo(mAppInfo.packageName, 
                     PackageManager.GET_UNINSTALLED_PACKAGES);
             if(pi != null) {
+                //如果应用已安装, 则设置应用的安装模式为更新
                 installFlags |= PackageManager.INSTALL_REPLACE_EXISTING;
             }
         } catch (NameNotFoundException e) {
@@ -240,10 +241,12 @@ public class InstallAppProgress extends Activity implements View.OnClickListener
         }
 
         final PackageUtil.AppSnippet as;
+        //如果scheme为package，则意味着是更新程序
         if ("package".equals(mPackageURI.getScheme())) {
             as = new PackageUtil.AppSnippet(pm.getApplicationLabel(mAppInfo),
                     pm.getApplicationIcon(mAppInfo));
         } else {
+            //否则scheme为file，则通过APK文件的路径获取显示Android应用相关信息的视图
             final File sourceFile = new File(mPackageURI.getPath());
             as = PackageUtil.getAppSnippet(this, mAppInfo, sourceFile);
         }
@@ -260,10 +263,12 @@ public class InstallAppProgress extends Activity implements View.OnClickListener
         mLaunchButton = (Button)findViewById(R.id.launch_button);
         mOkPanel.setVisibility(View.INVISIBLE);
 
+        //获取安装应用包的包名
         String installerPackageName = getIntent().getStringExtra(
                 Intent.EXTRA_INSTALLER_PACKAGE_NAME);
         Uri originatingURI = getIntent().getParcelableExtra(Intent.EXTRA_ORIGINATING_URI);
         Uri referrer = getIntent().getParcelableExtra(Intent.EXTRA_REFERRER);
+        //如上的两个Uri，对于普通的Anroid应用来说为null。
         int originatingUid = getIntent().getIntExtra(Intent.EXTRA_ORIGINATING_UID,
                 VerificationParams.NO_UID);
         ManifestDigest manifestDigest = getIntent().getParcelableExtra(EXTRA_MANIFEST_DIGEST);
@@ -272,6 +277,7 @@ public class InstallAppProgress extends Activity implements View.OnClickListener
         PackageInstallObserver observer = new PackageInstallObserver();
 
         if ("package".equals(mPackageURI.getScheme())) {
+            //scheme为package时，调用更新方法更新程序
             try {
                 pm.installExistingPackage(mAppInfo.packageName);
                 observer.packageInstalled(mAppInfo.packageName,
@@ -281,6 +287,7 @@ public class InstallAppProgress extends Activity implements View.OnClickListener
                         PackageManager.INSTALL_FAILED_INVALID_APK);
             }
         } else {
+            //scheme为file时,调用安装方法
             pm.installPackageWithVerificationAndEncryption(mPackageURI, observer, installFlags,
                     installerPackageName, verificationParams, null);
         }

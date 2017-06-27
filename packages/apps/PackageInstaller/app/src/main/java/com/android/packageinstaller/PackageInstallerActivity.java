@@ -123,21 +123,26 @@ public class PackageInstallerActivity extends Activity implements OnCancelListen
                 }
             }
         });
-
+        //该字段表示否时显示权限列表
         boolean permVisible = false;
         mScrollView = null;
         mOkCanInstall = false;
         int msg = 0;
         if (mPkgInfo != null) {
+            //AppSecurityPermissions 是一个组件 封装了一些列处理权限的功能
             AppSecurityPermissions perms = new AppSecurityPermissions(this, mPkgInfo);
+            //获取与隐私相关的权限数量
             final int NP = perms.getPermissionCount(AppSecurityPermissions.WHICH_PERSONAL);
+            //获取与设备相关的权限数量
             final int ND = perms.getPermissionCount(AppSecurityPermissions.WHICH_DEVICE);
             if (mAppInfo != null) {
                 msg = (mAppInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0
                         ? R.string.install_confirm_question_update_system
                         : R.string.install_confirm_question_update;
+                //显示权限列表的ScrollView控件
                 mScrollView = new CaffeinatedScrollView(this);
                 mScrollView.setFillViewport(true);
+                //当安装的应用已经存在时(更新应用时),获取是否有额外的权限请求 AppSecurityPermissions.WHICH_NEW
                 boolean newPermissionsFound =
                         (perms.getPermissionCount(AppSecurityPermissions.WHICH_NEW) > 0);
                 mInstallFlowAnalytics.setNewPermissionsFound(newPermissionsFound);
@@ -158,6 +163,7 @@ public class PackageInstallerActivity extends Activity implements OnCancelListen
                 findViewById(R.id.tabscontainer).setVisibility(View.GONE);
                 findViewById(R.id.divider).setVisibility(View.VISIBLE);
             }
+            //将要安装的应用设置的权限请求数量大于0时，将设置的权限列表列出来;
             if (NP > 0 || ND > 0) {
                 permVisible = true;
                 LayoutInflater inflater = (LayoutInflater)getSystemService(
@@ -166,10 +172,11 @@ public class PackageInstallerActivity extends Activity implements OnCancelListen
                 if (mScrollView == null) {
                     mScrollView = (CaffeinatedScrollView)root.findViewById(R.id.scrollview);
                 }
+                //向权限列表控件中添加 私有请求权限控件
                 if (NP > 0) {
                     ((ViewGroup)root.findViewById(R.id.privacylist)).addView(
                             perms.getPermissionsView(AppSecurityPermissions.WHICH_PERSONAL));
-                } else {
+                } else {//私有请求权限数量为0时，就将控件进行隐藏
                     root.findViewById(R.id.privacylist).setVisibility(View.GONE);
                 }
                 if (ND > 0) {
@@ -215,6 +222,7 @@ public class PackageInstallerActivity extends Activity implements OnCancelListen
             mOk.setText(R.string.install);
             mOkCanInstall = true;
         } else {
+            //如果设置了权限列表，则当滚动到权限列表末尾时，显示“install”按钮,否则显示“next"下一步
             mScrollView.setFullScrollAction(new Runnable() {
                 @Override
                 public void run() {
@@ -630,7 +638,9 @@ public class PackageInstallerActivity extends Activity implements OnCancelListen
     }
 
     public void onClick(View v) {
+        //单击“next/ok“按钮浏览权限列表
         if(v == mOk) {
+            //已经浏览完所有权限 “next"按钮已经变成了“ok”按钮，已经准备好可以显示安装口
             if (mOkCanInstall || mScrollView == null) {
                 mInstallFlowAnalytics.setInstallButtonClicked();
                 if (mSessionId != -1) {
@@ -642,10 +652,12 @@ public class PackageInstallerActivity extends Activity implements OnCancelListen
                             PackageManager.INSTALL_SUCCEEDED);
                 } else {
                     // Start subactivity to actually install the application
+                    //构造开启安装程序的Intent对象
                     Intent newIntent = new Intent();
                     newIntent.putExtra(PackageUtil.INTENT_ATTR_APPLICATION_INFO,
                             mPkgInfo.applicationInfo);
                     newIntent.setData(mPackageURI);
+                    //将要显示的Activity类界面
                     newIntent.setClass(this, InstallAppProgress.class);
                     newIntent.putExtra(InstallAppProgress.EXTRA_MANIFEST_DIGEST, mPkgDigest);
                     newIntent.putExtra(
