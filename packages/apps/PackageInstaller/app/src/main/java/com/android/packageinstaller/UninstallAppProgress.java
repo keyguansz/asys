@@ -238,7 +238,7 @@ public class UninstallAppProgress extends Activity implements OnClickListener {
         IPackageManager packageManager =
                 IPackageManager.Stub.asInterface(ServiceManager.getService("package"));
         PackageDeleteObserver observer = new PackageDeleteObserver();
-        try {
+        try {// 静默卸载Android应用
             packageManager.deletePackageAsUser(mAppInfo.packageName, observer,
                     mUser.getIdentifier(),
                     mAllUsers ? PackageManager.DELETE_ALL_USERS : 0);

@@ -223,6 +223,7 @@ public class UninstallerActivity extends Activity {
     }
 
     void startUninstallProgress() {
+        //构造要卸载的应用的Intent对象
         Intent newIntent = new Intent(Intent.ACTION_VIEW);
         newIntent.putExtra(Intent.EXTRA_USER, mDialogInfo.user);
         newIntent.putExtra(Intent.EXTRA_UNINSTALL_ALL_USERS, mDialogInfo.allUsers);
