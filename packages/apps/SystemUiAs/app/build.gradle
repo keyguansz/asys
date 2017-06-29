@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion '25.0.0'
+    defaultConfig {
+        applicationId "com.android.systemui"
+        minSdkVersion 21
+        targetSdkVersion 22
+        versionCode 23
+        versionName "0.0.4.5"
+    }
+
+
+    signingConfigs {
+        release {
+            storeFile file("../SystemSign.jks")
+            storePassword "123456"
+            keyAlias "SystemKey"
+            keyPassword "123456"
+            v2SigningEnabled false
+        }
+    }
+
+    buildTypes {
+        release {
+            debuggable true
+            minifyEnabled false
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            debuggable true
+            signingConfig signingConfigs.release
+            jniDebuggable true
+        }
+    }
+
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def fileName = "Launcher-release-${defaultConfig.versionName}-v${defaultConfig.versionCode}-${releaseTime()}.apk"
+                output.outputFile = new File(outputFile.parent, fileName)
+            }
+        }
+    }
+    sourceSets { main { assets.srcDirs = ['src/main/assets'] } }
+}
+
+
+
+
+dependencies {
+    provided files('libs/classes.jar')
+    compile files('libs/dji_eventbus.jar')
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.android.support:recyclerview-v7:24.0.0'
+}

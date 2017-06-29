@@ -1,0 +1,82 @@
+app.iml顺序修改
+<orderEntry type="library" exported="" name="classes" level="project" />
+ui设计:https://app.zeplin.io/project.html#pid=585b5961ccc11fa308e0b0a3&dashboard
+登陆：djisoftware@gmail.com/Dji123456
+文案校准
+多语言，翻译
+code -> sle
+QS:
+------------------------------------------X.XX
+【QA】：
+------------------
+【dev】
+------------------
+【test】
+------------------
+【pass】
+------------------------------------------4.1
+【QA】：
+M应该是黑色图标@rain
+------------------
+【dev】
+其他：亮度调节是反的，颜色调整
+mScanResultCache.snapshot();
+SRE手动调节
+log埋点
+
+------------------
+【test】
+------------------
+【pass】
+
+------------------------------------------3.24
+【QA】：
+F1,F2；点击效果
+seekbar的图标；静音图标，M手动图标，切给我
+通知列表，背景定义
+电池
+WIFIdlg效果
+【poor】
+背景模糊虚化http://www.th7.cn/Program/IOS/201610/978659.shtml
+SeekBar圆角图标
+大屏->QS：application 的图标
+时间字体大小，
+F1F2覆盖效果，上移，亮度上移，按下是蓝色
+capture和recored换图，A换图
+电池点击效果
+小屏
+------------------
+【dev】
+notification：，自定义消息；,; 滑动删除；msg，.图标;时间不对
+   this.tickerText = tickerText;
+        this.when = when;
+        this.creationTime = System.currentTimeMillis();
+------------------
+【test】
+notification：背景，字体大小颜色，
+
+
+------------------
+【pass】
+notification：按下的风格，time.滑动条；
+F1,F2内容
+right对齐seekbar按钮；切断线条；  seekbar之间距离调整
+------------------------------------------3.23
+QA：rain:一哥的更新，zepio的更新
+【dev】
+功耗问题!!!
+wifi位置，代码统一
+去掉链接引号，删除链接item
+wifi-dlg，加锁标志,增加无信号的图标，外面不可关闭
+wifi不能链接成功，利用peacker的代码吧
+记住密码，下次自动连接:wifi open&&wifi没连接=》每隔10s自动扫描,那么怎么忘记密码呢？
+适配大屏幕：小屏768dp*436dp
+------------------
+【test】
+
+------------------
+【pass】
+一键清除bus&ui
+------------------
+确认：HDMI功能，查看代码；
+wifi都没有修改
