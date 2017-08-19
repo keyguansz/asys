@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_horizontal"
+              android:orientation="vertical"
+              tools:context="k.share.ch5Anr.Ch5AnrActivity">
+
+    <TextView
+        android:id="@+id/tv_while"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:background="@android:color/black"
+        android:gravity="center"
+        android:text="while"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/tv_broadcast"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:background="@android:color/black"
+        android:gravity="center"
+        android:text="broadcast"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/tv_ServiceTimeout"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:background="@android:color/black"
+        android:gravity="center"
+        android:text="ServiceTimeout"
+        android:textSize="20dp"/>
+</LinearLayout>
