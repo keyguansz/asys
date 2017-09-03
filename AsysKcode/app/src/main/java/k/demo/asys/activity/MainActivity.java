@@ -9,11 +9,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.View;
 
 import k.demo.asys.R;
 
 
-public class DemoActivity extends Activity {
+public class MainActivity extends Activity {
 
 
     @Override
@@ -21,7 +22,7 @@ public class DemoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo);
         PackageManager pm = getPackageManager();
-        ComponentName cn = new ComponentName(this, DemoActivity.class);
+        ComponentName cn = new ComponentName(this, MainActivity.class);
      //   pm.setComponentEnabledSetting(cn, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
 
         Long time = System.currentTimeMillis()+100*1000;
@@ -33,6 +34,22 @@ public class DemoActivity extends Activity {
                 , SystemClock.elapsedRealtime() + 5 * 1000
                 , PendingIntent.getActivity(getApplicationContext(),0, intent, PendingIntent.FLAG_UPDATE_CURRENT));
         alarmMgr.getNextAlarmClock();
-        AlarmManagerService
+        testStartActivity();
+
+    }
+
+    private void testStartActivity() {
+        findViewById(R.id.new_task_tv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NewTaskActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }});
+        findViewById(R.id.new_process_tv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, NewProcessActivity.class));
+            }});
     }
 }
