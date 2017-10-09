@@ -1,4 +1,3 @@
-批注和审阅功能还在探索中
 # framework debug 技巧
 ## 安装
    拷贝文件到system/framework/;
