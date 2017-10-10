@@ -1,3 +1,4 @@
+// TODO word
 # framework debug 技巧
 ## 安装
    拷贝文件到system/framework/;
@@ -26,10 +27,11 @@
 - [Markdown 编辑器推荐](https://github.com/wizardforcel/markdown-simple-world/blob/master/1.md)
 
 # pms
-不论是cmd安装，还是预装market安装，还是ui安装，最终都会调用到installPackage这个方法入口，下面我们单独探讨一下，系统是如何执行这一个过程的
-## 核心调用
+不论是cmd安装，还是预装market安装，还是ui安装，最终都会调用到installPackage这个方法入口，本节单独讨论系统是如何执行这一个过程的
+## 文件拷贝阶段
 ### installPackage
 installPackage方法只是用当前用户安装应用，最后也会调用installPackageAsUser
+//TODO 用户的概念？一个进程就是一个用户？
 ```java
 @Override
 public void installPackage(String originPath, IPackageInstallObserver2 observer,int installFlags, String installerPackageName, VerificationParams verificationParams,String packageAbiOverride) {
@@ -38,18 +40,21 @@ public void installPackage(String originPath, IPackageInstallObserver2 observer,
 ```
 
 ### installPackageAsUser
-installPackageAsUser先检查调用进程是否有安装应用的权限，[再检查调用进程所属的用户是否有权限安装应用](为何需要检查用户?)，最后检查指定的用户是否被限制安装应用。如果参数installFlags带有INSTALL_ALL_USERS，则该应用将给系统中所有用户安装，否则只给指定用户安装。安装应用实践比较长，因此不可能在一个函数中完成。上面函数把数据保存在installParams然后发送了INIT_COPY消息。通过PackageHandler的实例mHandler.sendMessage（msg）把信息发给继承Handler的类HandleMessage()方法会自动调用Packagemanager的安装方法installPackage（）
+installPackageAsUser先检查调用进程是否有安装应用的权限，[再检查调用进程所属的用户是否有权限安装应用](为何需要检查用户?)，最后检查指定的用户是否被限制安装应用。如果参数installFlags带有INSTALL_ALL_USERS，则该应用将给系统中所有用户安装，否则只给指定用户安装。安装应用实践比较长，因此不可能在一个函数中完成。上面函数把数据保存在installParams然后发送了INIT_COPY消息。通过PackageHandler的实例mHandler.sendMessage（msg）把信息发给继承Handler的类HandleMessage()方法会自动调用Packagemanager的安装方法installPackage（），发送消息时会传递一个InstallParams参数，InstallParams是继承自HandlerParams抽象类的，用来记录安装应用的参数。
+<!-- FIXME 则该应用将给系统中所有用户安装,但是目前的Android一般都是单用户吧？-->
+<!-- TODO 会存在线程堵塞问题么 -->
 ```java
 @Override
     public void installPackageAsUser(String originPath, IPackageInstallObserver2 observer,
             int installFlags, String installerPackageName, VerificationParams verificationParams,
             String packageAbiOverride, int userId) {
-        //检查调用进程的权限
+        //检查调用进程的权限,比如PackageInstaller.apk这个系统应用就必须申请这个权限
         mContext.enforceCallingOrSelfPermission(android.Manifest.permission.INSTALL_PACKAGES, null);
 	     //检查调用进程的用户是否有权限安装应用
         final int callingUid = Binder.getCallingUid();
         enforceCrossUserPermission(callingUid, userId, true, true, "installPackageAsUser");
 	     //检查指定的用户是否被限制安装应用
+       // TODO DISALLOW_INSTALL_APPS 是安装黑名单
         if (isUserRestricted(userId, UserManager.DISALLOW_INSTALL_APPS)) {
             try {
                 if (observer != null) {
@@ -59,7 +64,7 @@ installPackageAsUser先检查调用进程是否有安装应用的权限，[再�
             }
             return;
         }
-
+        //adb INSTALL_FAILED_USER_RESTRICTED
         if ((callingUid == Process.SHELL_UID) || (callingUid == Process.ROOT_UID)) {
             installFlags |= PackageManager.INSTALL_FROM_ADB;
         } else {
@@ -215,7 +220,7 @@ case MCS_UNBIND: {
                     break;
                 }
 ```
-MCS_UNBIND消息的处理，如果处理的时候发现mPendingInstalls又有数据了，还是发送MCS_BOUND消息继续安装，否则断开和DefaultContainerService的连接，安装结束。
+MCS_UNBIND消息的处理，如果处理的时候发现mPendingInstalls又有数据了，还是发送MCS_BOUND消息继续安装，否则断开和DefaultContainerService的连接，安装结束。这个安装会尝试4次，超过4次就GG了
 下面我们看执行安装的函数startCopy：
 ```java
 final boolean startCopy() {
@@ -241,18 +246,516 @@ final boolean startCopy() {
             return res;
         }
 ```
-### handleStartCopy
-handleStartCopy和copyApk代码就不分析了。
+### InstallParams.handleStartCopy
+handleStartCopy()执行的工作如下：
+
+- 判断安装标志位是否合法
+- 判断安装空间是否足够
+- 对安装位置的校验
+- 判断是否需要对应用进行校验工作
+- 如果校验成功，执行InstallArgs.copyApk()
+- 如果无需校验，直接执行InstallArgs.copyApk()
+
 handleStartCopy函数先通过DefaultContainerService调用了getMinimallPackageInfo来确定安装位置是否有足够的空间，并在PackageInfoLite对象的recommendedIntallLocation记录错误原因。发现空间不够，会调用installer的freecache方法来释放一部分空间。
+// 首先对安装的标志位进行判断，如果既有内部安装标志，又有外部安装标志，那么就设置
+   //PackageManager.INSTALL_FAILED_INVALID_INSTALL_LOCATION返回值
 再接下来handleStartCopy有很长一段都在处理apk的校验，这个校验过程是通过发送Intent ACTION_PACKAGE_NEEDS_VERIFICATION给系统中所有接受该Intent的应用来完成。如果无需校验，直接调用InstallArgs对象的copyApk方法。
 
+这个方法比较长，分段来看。
+``` java
+ret = PackageManager.INSTALL_SUCCEEDED
+final StorageManager storage = StorageManager.from(mContext);
+final long lowThreshold = storage.getStorageLowBytes(
+        Environment.getDataDirectory());
+final long sizeBytes = mContainerService.calculateInstalledSize(
+        origin.resolvedPath, isForwardLocked(), packageAbiOverride);
+if (mInstaller.freeCache(null, sizeBytes + lowThreshold) >= 0) {
+    pkgLite = mContainerService.getMinimalPackageInfo(origin.resolvedPath,
+            installFlags, packageAbiOverride);
+}
+```
+首先，如果需要的空间不够大，就调用Install的freeCache去释放一部分缓存。这里的mContainerService对应的binder服务端实现，在DefaultContainerService中。中间经过复杂（安装位置，pkgLite.recommendedIntallLocation，安装位置的校验，installLocationPoliy策略等）的判断处理之后，创建一个InstallArgs对象，如果前面的判断结果是能安装成功的话ret=PackageManager.INSTALL_SUCCEEDED，进入分支。
+//  TODO installLocationPoliy() 是位置的策略PackageINfoLite
+``` java
+if (ret == PackageManager.INSTALL_SUCCEEDED) {
+                 /*
+                 * ADB installs appear as UserHandle.USER_ALL, and can only be performed by
+                 * UserHandle.USER_OWNER, so use the package verifier for UserHandle.USER_OWNER.
+                 */
+                int userIdentifier = getUser().getIdentifier();
+                if (userIdentifier == UserHandle.USER_ALL
+                        && ((installFlags & PackageManager.INSTALL_FROM_ADB) != 0)) {
+                    userIdentifier = UserHandle.USER_OWNER;
+                }
+                /*
+                 * Determine if we have any installed package verifiers. If we
+                 * do, then we'll defer to them to verify the packages.
+                 */
+                final int requiredUid = mRequiredVerifierPackage == null ? -1
+                        : getPackageUid(mRequiredVerifierPackage, userIdentifier);
+                if (!origin.existing && requiredUid != -1
+                        && isVerificationEnabled(userIdentifier, installFlags)) {
+                    final Intent verification = new Intent(
+                            Intent.ACTION_PACKAGE_NEEDS_VERIFICATION);
+                    verification.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+                    verification.setDataAndType(Uri.fromFile(new File(origin.resolvedPath)),
+                            PACKAGE_MIME_TYPE);
+                    verification.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    final List<ResolveInfo> receivers = queryIntentReceivers(verification,
+                            PACKAGE_MIME_TYPE, PackageManager.GET_DISABLED_COMPONENTS,
+                            0 /* TODO: Which userId? */);
+                    if (DEBUG_VERIFY) {
+                        Slog.d(TAG, "Found " + receivers.size() + " verifiers for intent "
+                                + verification.toString() + " with " + pkgLite.verifiers.length
+                                + " optional verifiers");
+                    }
+                    final int verificationId = mPendingVerificationToken++;
+                    verification.putExtra(PackageManager.EXTRA_VERIFICATION_ID, verificationId);
+                    verification.putExtra(PackageManager.EXTRA_VERIFICATION_INSTALLER_PACKAGE,
+                            installerPackageName);
+                    verification.putExtra(PackageManager.EXTRA_VERIFICATION_INSTALL_FLAGS,
+                            installFlags);
+                    verification.putExtra(PackageManager.EXTRA_VERIFICATION_PACKAGE_NAME,
+                            pkgLite.packageName);
+                    verification.putExtra(PackageManager.EXTRA_VERIFICATION_VERSION_CODE,
+                            pkgLite.versionCode);
+                    if (verificationParams != null) {
+                        if (verificationParams.getVerificationURI() != null) {
+                           verification.putExtra(PackageManager.EXTRA_VERIFICATION_URI,
+                                 verificationParams.getVerificationURI());
+                        }
+                        if (verificationParams.getOriginatingURI() != null) {
+                            verification.putExtra(Intent.EXTRA_ORIGINATING_URI,
+                                  verificationParams.getOriginatingURI());
+                        }
+                        if (verificationParams.getReferrer() != null) {
+                            verification.putExtra(Intent.EXTRA_REFERRER,
+                                  verificationParams.getReferrer());
+                        }
+                        if (verificationParams.getOriginatingUid() >= 0) {
+                            verification.putExtra(Intent.EXTRA_ORIGINATING_UID,
+                                  verificationParams.getOriginatingUid());
+                        }
+                        if (verificationParams.getInstallerUid() >= 0) {
+                            verification.putExtra(PackageManager.EXTRA_VERIFICATION_INSTALLER_UID,
+                                  verificationParams.getInstallerUid());
+                        }
+                    }
+                    final PackageVerificationState verificationState = new PackageVerificationState(
+                            requiredUid, args);
+                    mPendingVerification.append(verificationId, verificationState);
+                    final List<ComponentName> sufficientVerifiers = matchVerifiers(pkgLite,
+                            receivers, verificationState);
+                    // Apps installed for "all" users use the device owner to verify the app
+                    UserHandle verifierUser = getUser();
+                    if (verifierUser == UserHandle.ALL) {
+                        verifierUser = UserHandle.OWNER;
+                    }
+                    /*
+                     * If any sufficient verifiers were listed in the package
+                     * manifest, attempt to ask them.
+                     */
+                    if (sufficientVerifiers != null) {
+                        final int N = sufficientVerifiers.size();
+                        if (N == 0) {
+                            Slog.i(TAG, "Additional verifiers required, but none installed.");
+                            ret = PackageManager.INSTALL_FAILED_VERIFICATION_FAILURE;
+                        } else {
+                            for (int i = 0; i < N; i++) {
+                                final ComponentName verifierComponent = sufficientVerifiers.get(i);
+                                final Intent sufficientIntent = new Intent(verification);
+                                sufficientIntent.setComponent(verifierComponent);
+                                mContext.sendBroadcastAsUser(sufficientIntent, verifierUser);
+                            }
+                        }
+                    }
+                    final ComponentName requiredVerifierComponent = matchComponentForVerifier(
+                            mRequiredVerifierPackage, receivers);
+                    if (ret == PackageManager.INSTALL_SUCCEEDED
+                            && mRequiredVerifierPackage != null) {
+                        /*
+                         * Send the intent to the required verification agent,
+                         * but only start the verification timeout after the
+                         * target BroadcastReceivers have run.
+                         */
+                        verification.setComponent(requiredVerifierComponent);
+                        mContext.sendOrderedBroadcastAsUser(verification, verifierUser,
+                                android.Manifest.permission.PACKAGE_VERIFICATION_AGENT,
+                                new BroadcastReceiver() {
+                                    @Override
+                                    public void onReceive(Context context, Intent intent) {
+                                        final Message msg = mHandler
+                                                .obtainMessage(CHECK_PENDING_VERIFICATION);
+                                        msg.arg1 = verificationId;
+                                        mHandler.sendMessageDelayed(msg, getVerificationTimeout());
+                                    }
+                                }, null, 0, null, null);
+                        /*
+                         * We don't want the copy to proceed until verification
+                         * succeeds, so null out this field.
+                         */
+                        mArgs = null;
+                    }
+                } else {
+                    /*
+                     * No package verification is enabled, so immediately start
+                     * the remote call to initiate copy using temporary file.
+                     */
+                    ret = args.copyApk(mContainerService, true);
+                }
+            }
+
+```
+InstallArgs是个抽象类，一共有三个实现类MoveInstallArgs（针对已有文件的Move）、AsecInstallArgs（针对SD卡）和FileInstallArgs（针对内部存储），会在createInstallArgs()方法中根据不同的参数返回不同的实现类。
+接下来分析FileInstallArgs.copyApk()方法：
+###  FileInstallArgs.copyApk()
+``` java
+int copyApk(IMediaContainerService imcs, boolean temp) throws RemoteException {
+    // 已经执行过copy了
+    if (origin.staged) {
+        codeFile = origin.file;
+        resourceFile = origin.file;
+        return PackageManager.INSTALL_SUCCEEDED;
+    }
+    try {
+        // 在/data/app/下面生成一个类似vmdl1354353418.tmp的临时文件
+        final File tempDir = mInstallerService.allocateStageDirLegacy(volumeUuid);
+        codeFile = tempDir;
+        resourceFile = tempDir;
+    } catch (IOException e) {
+        return PackageManager.INSTALL_FAILED_INSUFFICIENT_STORAGE;
+    }
+    // 在imcs.copyPackage()中会调用target.open()，返回一个文件描述符
+    final IParcelFileDescriptorFactory target = new IParcelFileDescriptorFactory.Stub() {
+        @Override
+        public ParcelFileDescriptor open(String name, int mode) throws RemoteException {
+            if (!FileUtils.isValidExtFilename(name)) {
+                throw new IllegalArgumentException("Invalid filename: " + name);
+            }
+            try {
+                final File file = new File(codeFile, name);
+                final FileDescriptor fd = Os.open(file.getAbsolutePath(),
+                        O_RDWR | O_CREAT, 0644);
+                Os.chmod(file.getAbsolutePath(), 0644);
+                return new ParcelFileDescriptor(fd);
+            } catch (ErrnoException e) {
+                throw new RemoteException("Failed to open: " + e.getMessage());
+            }
+        }
+    };
+    int ret = PackageManager.INSTALL_SUCCEEDED;
+    // 调用DefaultContainerService.mBinder.copyPackage()方法复制文件到target.open()方法指定的文件中，也即是上面产生的临时文件
+    ret = imcs.copyPackage(origin.file.getAbsolutePath(), target);
+    if (ret != PackageManager.INSTALL_SUCCEEDED) {
+        return ret;
+    }
+    final File libraryRoot = new File(codeFile, LIB_DIR_NAME);
+    NativeLibraryHelper.Handle handle = null;
+    try {
+        handle = NativeLibraryHelper.Handle.create(codeFile);
+        ret = NativeLibraryHelper.copyNativeBinariesWithOverride(handle, libraryRoot,
+                abiOverride);
+    } catch (IOException e) {
+        ret = PackageManager.INSTALL_FAILED_INTERNAL_ERROR;
+    } finally {
+        IoUtils.closeQuietly(handle);
+    }
+    return ret;
+}
+```
 而copyApk方法同样是调用DefaultContainerService的copyPackage将应用的文件复制到/data/app下，如果还有native动态库，也会把包在apk文件中的动态库提取出来。
 
 执行完copyApk后，应用安装到了data/app目录下了。
 
+### InstallParams.handleReturnCode()
+在handleStartCopy()执行完之后，文件复制工作阶段的工作已经完成了，接下来会在startCopy()中调用handleReturnCode()->processPendingInstall()来进行应用的解析和装载。
+## 解析应用阶段
+这个阶段的工作是对安装包进行扫描优化，把应用转换成oat格式，然后装载到内存中去。
+### processPendingInstall()
+```java
+private void processPendingInstall(final InstallArgs args, final int currentStatus) {
+    // 以异步的方式执行安装，因为安装工作可能持续时间比较长
+    mHandler.post(new Runnable() {
+        public void run() {
+            // 防止重复调用
+            mHandler.removeCallbacks(this);
+            PackageInstalledInfo res = new PackageInstalledInfo();
+            res.returnCode = currentStatus;
+            res.uid = -1;
+            res.pkg = null;
+            res.removedInfo = new PackageRemovedInfo();
+            if (res.returnCode == PackageManager.INSTALL_SUCCEEDED) {
+                // 如果前面返回的是执行成功的返回值
+                args.doPreInstall(res.returnCode);
+                synchronized (mInstallLock) {
+                    // 开始安装应用，带LI后缀的函数执行时要带mInstallLock锁
+                    installPackageLI(args, res);
+                }
+                // 执行doPostInstall()，这里主要分析一下FileInstallArgs.doPostInstall()
+                // 如果没有安装成功，这里会清除前面生成的临时文件
+                args.doPostInstall(res.returnCode, res.uid);
+            }
+            // 执行备份，在下面的情况下会执行备份：1.安装成功，2.是一个新的安装而不是一个升级的操作，3.新的安装包还没有执行过备份操作
+            final boolean update = res.removedInfo.removedPackage != null;
+            final int flags = (res.pkg == null) ? 0 : res.pkg.applicationInfo.flags;
+            boolean doRestore = !update
+                    && ((flags & ApplicationInfo.FLAG_ALLOW_BACKUP) != 0);
+            // Set up the post-install work request bookkeeping.  This will be used
+            // and cleaned up by the post-install event handling regardless of whether
+            // there's a restore pass performed.  Token values are >= 1.
+            int token;
+            if (mNextInstallToken < 0) mNextInstallToken = 1;
+            token = mNextInstallToken++;
+            PostInstallData data = new PostInstallData(args, res);
+            mRunningInstalls.put(token, data);
+            if (res.returnCode == PackageManager.INSTALL_SUCCEEDED && doRestore) {
+                IBackupManager bm = IBackupManager.Stub.asInterface(
+                        ServiceManager.getService(Context.BACKUP_SERVICE));
+                if (bm != null) {
+                    try {
+                        if (bm.isBackupServiceActive(UserHandle.USER_OWNER)) {
+                            bm.restoreAtInstall(res.pkg.applicationInfo.packageName, token);
+                        } else {
+                            doRestore = false;
+                        }
+                    } catch (RemoteException e) {
+                    } catch (Exception e) {
+                        doRestore = false;
+                    }
+                } else {
+                    doRestore = false;
+                }
+            }
+            if (!doRestore) {
+                // 发送POST_INSTALL消息
+                Message msg = mHandler.obtainMessage(POST_INSTALL, token, 0);
+                mHandler.sendMessage(msg);
+            }
+        }
+    });
+}
+```
+processPendingInstall()方法内部是以异步的方式继续执行安装工作的，首先来调用installPackageLI()执行安装工作，然后调用doPostInstall()对前面的工作的返回结果进行处理，如果没有安装成功，执行清除的工作。然后再执行备份操作。
+下面来看一下installPackageLI()方法：
+### installPackageLI()
+installPackageLI()方法首先解析apk安装包，然后判断当前是否有安装该应用，然后根据不同的情况进行不同的处理，然后进行Dex优化操作。如果是升级安装，调用replacePackageLI()。如果是新安装，调用installNewPackageLI()。这两个方法会在下面详细介绍。
+
+processPendingInstall()方法中执行安装的最后是发送POST_INSTALL消息，现在来看一下这个消息需要处理的事情：
+```java
+private void installPackageLI(InstallArgs args, PackageInstalledInfo res) {
+    final int installFlags = args.installFlags;
+    final String installerPackageName = args.installerPackageName;
+    final String volumeUuid = args.volumeUuid;
+    final File tmpPackageFile = new File(args.getCodePath());
+    final boolean forwardLocked = ((installFlags & PackageManager.INSTALL_FORWARD_LOCK) != 0);
+    final boolean onExternal = (((installFlags & PackageManager.INSTALL_EXTERNAL) != 0)
+            || (args.volumeUuid != null));
+    boolean replace = false;
+    int scanFlags = SCAN_NEW_INSTALL | SCAN_UPDATE_SIGNATURE;
+    if (args.move != null) {
+        scanFlags |= SCAN_INITIAL;
+    }
+    res.returnCode = PackageManager.INSTALL_SUCCEEDED;
+    // 创建apk解析器
+    final int parseFlags = mDefParseFlags | PackageParser.PARSE_CHATTY
+            | (forwardLocked ? PackageParser.PARSE_FORWARD_LOCK : 0)
+            | (onExternal ? PackageParser.PARSE_EXTERNAL_STORAGE : 0);
+    PackageParser pp = new PackageParser();
+    pp.setSeparateProcesses(mSeparateProcesses);
+    pp.setDisplayMetrics(mMetrics);
+    final PackageParser.Package pkg;
+    try {
+        // 开始解析文件，解析apk的信息存储在PackageParser.Package中
+        pkg = pp.parsePackage(tmpPackageFile, parseFlags);
+    } catch (PackageParserException e) {
+        res.setError("Failed parse during installPackageLI", e);
+        return;
+    }
+    ......
+    // 获取安装包的签名和AndroidManifest摘要
+    try {
+        pp.collectCertificates(pkg, parseFlags);
+        pp.collectManifestDigest(pkg);
+    } catch (PackageParserException e) {
+        res.setError("Failed collect during installPackageLI", e);
+        return;
+    }
+    if (args.manifestDigest != null) {
+        // 与installPackage()方法传递过来的VerificationParams获取的AndroidManifest摘要进行对比
+        if (!args.manifestDigest.equals(pkg.manifestDigest)) {
+            res.setError(INSTALL_FAILED_PACKAGE_CHANGED, "Manifest digest changed");
+            return;
+        }
+    } else if (DEBUG_INSTALL) {...}
+    // Get rid of all references to package scan path via parser.
+    pp = null;
+    String oldCodePath = null;
+    boolean systemApp = false;
+    synchronized (mPackages) {
+        // 判断是否是升级当前已有应用
+        if ((installFlags & PackageManager.INSTALL_REPLACE_EXISTING) != 0) {
+            String oldName = mSettings.mRenamedPackages.get(pkgName);
+            if (pkg.mOriginalPackages != null
+                    && pkg.mOriginalPackages.contains(oldName)
+                    && mPackages.containsKey(oldName)) {
+                // 如果当前应用已经被升级过
+                pkg.setPackageName(oldName);
+                pkgName = pkg.packageName;
+                replace = true;
+            } else if (mPackages.containsKey(pkgName)) {
+                // 当前应用没有被升级过
+                replace = true;
+            }
+            // 如果已有应用oldTargetSdk大于LOLLIPOP_MR1(22)，新升级应用小于LOLLIPOP_MR1，则不允许降级安装
+            // 因为AndroidM(23)引入了全新的权限管理方式：动态权限管理
+            if (replace) {
+                PackageParser.Package oldPackage = mPackages.get(pkgName);
+                final int oldTargetSdk = oldPackage.applicationInfo.targetSdkVersion;
+                final int newTargetSdk = pkg.applicationInfo.targetSdkVersion;
+                if (oldTargetSdk > Build.VERSION_CODES.LOLLIPOP_MR1
+                        && newTargetSdk <= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                    ...
+                    return;
+                }
+            }
+        }
+        PackageSetting ps = mSettings.mPackages.get(pkgName);
+        if (ps != null) {
+            if (shouldCheckUpgradeKeySetLP(ps, scanFlags)) {
+                // 判断签名是否一致
+                if (!checkUpgradeKeySetLP(ps, pkg)) {
+                    ...
+                    return;
+                }
+            } else {
+                try {
+                    verifySignaturesLP(ps, pkg);
+                } catch (PackageManagerException e) {
+                    ...
+                    return;
+                }
+            }
+            oldCodePath = mSettings.mPackages.get(pkgName).codePathString;
+            if (ps.pkg != null && ps.pkg.applicationInfo != null) {
+                // 判断是否是系统应用
+                systemApp = (ps.pkg.applicationInfo.flags &
+
+            // 给origUsers赋值，此变量代表哪些用户以前已经安装过该应用
+            res.origUsers = ps.queryInstalledUsers(sUserManager.getUserIds(), true);
+        }
+        // Check whether the newly-scanned package wants to define an already-defined perm
+        int N = pkg.permissions.size();
+        for (int i = N-1; i >= 0; i--) {
+            PackageParser.Permission perm = pkg.permissions.get(i);
+            BasePermission bp = mSettings.mPermissions.get(perm.info.name);
+            if (bp != null) {
+                // If the defining package is signed with our cert, it's okay.  This
+                // also includes the "updating the same package" case, of course.
+                // "updating same package" could also involve key-rotation.
+                final boolean sigsOk;
+                if (bp.sourcePackage.equals(pkg.packageName)
+                        && (bp.packageSetting instanceof PackageSetting)
+                        && (shouldCheckUpgradeKeySetLP((PackageSetting) bp.packageSetting,
+                                scanFlags))) {
+                    sigsOk = checkUpgradeKeySetLP((PackageSetting) bp.packageSetting, pkg);
+                } else {
+                    sigsOk = compareSignatures(bp.packageSetting.signatures.mSignatures,
+                            pkg.mSignatures) == PackageManager.SIGNATURE_MATCH;
+                }
+                if (!sigsOk) {
+                    // If the owning package is the system itself, we log but allow
+                    // install to proceed; we fail the install on all other permission
+                    // redefinitions.
+                    if (!bp.sourcePackage.equals("android")) {
+                        res.setError(INSTALL_FAILED_DUPLICATE_PERMISSION, "Package "
+                                + pkg.packageName + " attempting to redeclare permission "
+                                + perm.info.name + " already owned by " + bp.sourcePackage);
+                        res.origPermission = perm.info.name;
+                        res.origPackage = bp.sourcePackage;
+                        return;
+                    } else {
+                        pkg.permissions.remove(i);
+                    }
+                }
+            }
+        }
+    }
+    // 系统应用不允许安装在SDCard上
+    if (systemApp && onExternal) {
+        res.setError(INSTALL_FAILED_INVALID_INSTALL_LOCATION,
+                "Cannot install updates to system apps on sdcard");
+        return;
+    }
+    // 下面将会进行Dex优化操作
+    if (args.move != null) {
+        // 如果是针对已有文件的Move，就不用在进行Dex优化了
+        scanFlags |= SCAN_NO_DEX;
+        scanFlags |= SCAN_MOVE;
+        synchronized (mPackages) {
+            final PackageSetting ps = mSettings.mPackages.get(pkgName);
+            if (ps == null) {
+                res.setError(INSTALL_FAILED_INTERNAL_ERROR,
+                        "Missing settings for moved package " + pkgName);
+            }
+            pkg.applicationInfo.primaryCpuAbi = ps.primaryCpuAbiString;
+            pkg.applicationInfo.secondaryCpuAbi = ps.secondaryCpuAbiString;
+        }
+    } else if (!forwardLocked && !pkg.applicationInfo.isExternalAsec()) {
+        // 没有设置了PRIVATE_FLAG_FORWARD_LOCK标志且不是安装在外部SD卡
+        // 使能 SCAN_NO_DEX 标志位，在后面的操作中会跳过 dexopt
+        scanFlags |= SCAN_NO_DEX;
+        try {
+            derivePackageAbi(pkg, new File(pkg.codePath), args.abiOverride,
+                    true /* extract libs */);
+        } catch (PackageManagerException pme) {
+            res.setError(INSTALL_FAILED_INTERNAL_ERROR, "Error deriving application ABI");
+            return;
+        }
+        // 进行DexOpt操作，会调用install 的dexopt命令，优化后的文件放在 /data/dalvik-cache/ 下面
+        int result = mPackageDexOptimizer
+                .performDexOpt(pkg, null /* instruction sets */, false /* forceDex */,
+                        false /* defer */, false /* inclDependencies */,
+                        true /* boot complete */);
+        if (result == PackageDexOptimizer.DEX_OPT_FAILED) {
+            res.setError(INSTALL_FAILED_DEXOPT, "Dexopt failed for " + pkg.codePath);
+            return;
+        }
+    }
+    // 重命名/data/app/下面应用的目录名字，调用getNextCodePath()来获取目录名称，类似com.android.browser-1
+    if (!args.doRename(res.returnCode, pkg, oldCodePath)) {
+        res.setError(INSTALL_FAILED_INSUFFICIENT_STORAGE, "Failed rename");
+        return;
+    }
+    startIntentFilterVerifications(args.user.getIdentifier(), replace, pkg);
+    if (replace) {
+        // 如果是安装升级包，调用replacePackageLI
+        replacePackageLI(pkg, parseFlags, scanFlags | SCAN_REPLACING, args.user,
+                installerPackageName, volumeUuid, res);
+    } else {
+        // 如果安装的新应用，调用installNewPackageLI
+        installNewPackageLI(pkg, parseFlags, scanFlags | SCAN_DELETE_DATA_ON_FAILURES,
+                args.user, installerPackageName, volumeUuid, res);
+    }
+    synchronized (mPackages) {
+        final PackageSetting ps = mSettings.mPackages.get(pkgName);
+        if (ps != null) {
+            // 安装完成后，给newUsers赋值，此变量代表哪些用户刚刚安装过该应用
+            res.newUsers = ps.queryInstalledUsers(sUserManager.getUserIds(), true);
+        }
+    }
+}
+```
+
+processPendingInstall()来进行应用的解析和装载
+
+## 装载应用
+
 ## ref
+http://www.heqiangfly.com/2016/05/12/android-source-code-analysis-package-manager-installation/
+
+https://guolei1130.github.io/2017/01/04/Android%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E7%9A%84/
+[Android PackageManager相关源码分析之安装应用](http://www.heqiangfly.com/2016/05/12/android-source-code-analysis-package-manager-installation/)
 [PackageManagerService(Android5.1)深入分析（四）安装应用](http://www.aichengxu.com/android/2506357.htm)
-[APK安装过程分析](http://www.jianshu.com/p/6341fab639fc)
 [Android应用程序安装过程解析(源码角度)](http://www.jianshu.com/p/21412a697eb0)
 http://www.jianshu.com/p/21412a697eb0
 http://solart.cc/2016/10/30/install_apk/
