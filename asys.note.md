@@ -790,6 +790,18 @@ ent.extra.UID=10047, android.intent.extra.user_handle=0}]
 10-03 17:39:31.965 I/PackageManager(20739): calling disconnectService()
 ```
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+ ## MyS-自定义服务
+ - http://www.wjdiankong.cn/android%E7%B3%BB%E7%BB%9F%E7%AF%87%E4%B9%8B-%E7%BC%96%E5%86%99%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E5%B9%B6%E4%B8%94%E5%B0%86%E5%85%B6%E7%BC%96%E8%AF%91%E5%88%B0%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81/
+ - https://jaq.alibaba.com/community/art/show?articleid=342
+ - http://blog.csdn.net/codectq/article/details/7345688
+ - http://blog.csdn.net/jinliang_890905/article/details/7320234
+ - http://www.cnblogs.com/welhzh/p/5509125.html
+ - http://blog.sina.com.cn/s/blog_68f928c10101a4ot.html
+ - http://gavincode.com/xiang-android-frameworks-tian-jia-zi-ding-yi-xi-tong-fu-wu.html
+ - http://view.inews.qq.com/a/20160930G078QZ00?refer=share_recomnews
+
+
+
 
 Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered HTML5 Markdown editor.
 
