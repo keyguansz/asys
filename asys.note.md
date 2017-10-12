@@ -28,6 +28,58 @@
 
 # pms
 不论是cmd安装，还是预装market安装，还是ui安装，最终都会调用到installPackage这个方法入口，本节单独讨论系统是如何执行这一个过程的
+## 总流程
+代码调用流程如下：
+``` java
+├── PMS.installPackage()
+    └── PMS.installPackageAsUser()
+         |传递 InstallParams 参数
+        PackageHandler.doHandleMessage().INIT_COPY
+         |
+        PackageHandler.doHandleMessage().MCS_BOUND
+         ├── HandlerParams.startCopy()
+         │    ├── InstallParams.handleStartCopy()
+         │    │    └──InstallArgs.copyApk()
+         │    └── InstallParams.handleReturnCode()
+         │         └── PMS.processPendingInstall()
+         │              ├── InstallArgs.doPreInstall()
+         │              ├── PMS.installPackageLI()
+         │              │    ├── PackageParser.parsePackage()
+         │              │    ├── PackageParser.collectCertificates()
+         │              │    ├── PackageParser.collectManifestDigest()
+         │              │    ├── PackageDexOptimizer.performDexOpt()
+         │              │    ├── InstallArgs.doRename()
+         │              │    │    └── InstallArgs.getNextCodePath()
+         │              │    ├── replacePackageLI()
+         │              │    │    ├── shouldCheckUpgradeKeySetLP()
+         │              │    │    ├── compareSignatures()
+         │              │    │    ├── replaceSystemPackageLI()
+         │              │    │    │    ├── killApplication()
+         │              │    │    │    ├── removePackageLI()
+         │              │    │    │    ├── Settings.disableSystemPackageLPw()
+         │              │    │    │    ├── createInstallArgsForExisting()
+         │              │    │    │    ├── deleteCodeCacheDirsLI()
+         │              │    │    │    ├── scanPackageLI()
+         │              │    │    │    └── updateSettingsLI()
+         │              │    │    └── replaceNonSystemPackageLI()
+         │              │    │         ├── deletePackageLI()
+         │              │    │         ├── deleteCodeCacheDirsLI()
+         │              │    │         ├── scanPackageLI()
+         │              │    │         └── updateSettingsLI()
+         │              │    └── installNewPackageLI()
+         │              │         ├── scanPackageLI()
+         │              │         └── updateSettingsLI()
+         │              ├── InstallArgs.doPostInstall()
+         │              ├── BackupManager.restoreAtInstall()
+         │              └── sendMessage(POST_INSTALL)
+         │                   |
+         │                  PackageHandler.doHandleMessage().POST_INSTALL
+         │                   ├── grantRequestedRuntimePermissions()
+         │                   ├── sendPackageBroadcast()
+         │                   └── IPackageInstallObserver.onPackageInstalled()
+         └── PackageHandler.doHandleMessage().MCS_UNBIND
+              └── PackageHandler.disconnectService()
+```
 ## 文件拷贝阶段
 ### installPackage
 installPackage方法只是用当前用户安装应用，最后也会调用installPackageAsUser
@@ -466,7 +518,12 @@ int copyApk(IMediaContainerService imcs, boolean temp) throws RemoteException {
 而copyApk方法同样是调用DefaultContainerService的copyPackage将应用的文件复制到/data/app下，如果还有native动态库，也会把包在apk文件中的动态库提取出来。
 
 执行完copyApk后，应用安装到了data/app目录下了。
-
+在pms的构造函数中,定义了相关的路径
+```java
+File dataDir = Environment.getDataDirectory();
+            mAppDataDir = new File(dataDir, "data");
+            mAppInstallDir = new File(dataDir, "app");
+```
 ### InstallParams.handleReturnCode()
 在handleStartCopy()执行完之后，文件复制工作阶段的工作已经完成了，接下来会在startCopy()中调用handleReturnCode()->processPendingInstall()来进行应用的解析和装载。
 ## 解析应用阶段
@@ -1229,12 +1286,12 @@ private void installNewPackageLI(PackageParser.Package pkg, int parseFlags, int 
 ## 装载应用
 
 ## ref
-http://www.heqiangfly.com/2016/05/12/android-source-code-analysis-package-manager-installation/
+- http://www.heqiangfly.com/2016/05/12/android-source-code-analysis-package-manager-installation/
 
-https://guolei1130.github.io/2017/01/04/Android%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E7%9A%84/
-[Android PackageManager相关源码分析之安装应用](http://www.heqiangfly.com/2016/05/12/android-source-code-analysis-package-manager-installation/)
-[PackageManagerService(Android5.1)深入分析（四）安装应用](http://www.aichengxu.com/android/2506357.htm)
-[Android应用程序安装过程解析(源码角度)](http://www.jianshu.com/p/21412a697eb0)
+- [Android PackageManager相关源码分析之安装应用](http://www.heqiangfly.com/2016/05/12/android-source-code-analysis-package-manager-installation/)
+- [PackageManagerService(Android5.1)深入分析（四）安装应用](http://www.aichengxu.com/android/2506357.htm)
+- [Android应用程序安装过程解析(源码角度)](http://www.jianshu.com/p/21412a697eb0)
+-
 http://www.jianshu.com/p/21412a697eb0
 http://solart.cc/2016/10/30/install_apk/
 一次测试的信息
