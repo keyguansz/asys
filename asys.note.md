@@ -582,6 +582,7 @@ private void installPackageLI(InstallArgs args, PackageInstalledInfo res) {
     }
     if (args.manifestDigest != null) {
         // 与installPackage()方法传递过来的VerificationParams获取的AndroidManifest摘要进行对比
+        // TODO manifestDigest作用？防止menifest穿该？
         if (!args.manifestDigest.equals(pkg.manifestDigest)) {
             res.setError(INSTALL_FAILED_PACKAGE_CHANGED, "Manifest digest changed");
             return;
@@ -747,6 +748,483 @@ private void installPackageLI(InstallArgs args, PackageInstalledInfo res) {
 ```
 
 processPendingInstall()来进行应用的解析和装载
+
+```java
+case POST_INSTALL: {
+    //从正在安装队列中将当前正在安装的任务删除
+    PostInstallData data = mRunningInstalls.get(msg.arg1);
+    mRunningInstalls.delete(msg.arg1);
+    boolean deleteOld = false;
+    if (data != null) {
+        InstallArgs args = data.args;
+        PackageInstalledInfo res = data.res;
+        if (res.returnCode == PackageManager.INSTALL_SUCCEEDED) {
+            final String packageName = res.pkg.applicationInfo.packageName;
+            res.removedInfo.sendBroadcast(false, true, false);
+            Bundle extras = new Bundle(1);
+            extras.putInt(Intent.EXTRA_UID, res.uid);
+            // 现在已经成功的安装了应用，在发送广播之前先授予一些必要的权限
+            // 这些权限在 installPackageAsUser 中创建 InstallParams 时传递的，为null
+            if ((args.installFlags
+                    & PackageManager.INSTALL_GRANT_RUNTIME_PERMISSIONS) != 0) {
+                grantRequestedRuntimePermissions(res.pkg, args.user.getIdentifier(),
+                        args.installGrantPermissions);
+            }
+            // 看一下当前应用对于哪些用户是第一次安装，哪些用户是升级安装
+            int[] firstUsers;
+            int[] updateUsers = new int[0];
+            if (res.origUsers == null || res.origUsers.length == 0) {
+                // 所有用户都是第一次安装
+                firstUsers = res.newUsers;
+            } else {
+                firstUsers = new int[0];
+                // 这里再从刚刚已经安装该包的用户中选出哪些是以前已经安装过该包的用户
+                for (int i=0; i<res.newUsers.length; i++) {
+                    int user = res.newUsers[i];
+                    boolean isNew = true;
+                    for (int j=0; j<res.origUsers.length; j++) {
+                        if (res.origUsers[j] == user) {
+                            // 找到以前安装过该包的用户
+                            isNew = false;
+                            break;
+                        }
+                    }
+                    if (isNew) {
+                        int[] newFirst = new int[firstUsers.length+1];
+                        System.arraycopy(firstUsers, 0, newFirst, 0,
+                                firstUsers.length);
+                        newFirst[firstUsers.length] = user;
+                        firstUsers = newFirst;
+                    } else {
+                        int[] newUpdate = new int[updateUsers.length+1];
+                        System.arraycopy(updateUsers, 0, newUpdate, 0,
+                                updateUsers.length);
+                        newUpdate[updateUsers.length] = user;
+                        updateUsers = newUpdate;
+                    }
+                }
+            }
+            //为新安装用户发送广播ACTION_PACKAGE_ADDED
+            sendPackageBroadcast(Intent.ACTION_PACKAGE_ADDED,
+                    packageName, extras, null, null, firstUsers);
+            final boolean update = res.removedInfo.removedPackage != null;
+            if (update) {
+                extras.putBoolean(Intent.EXTRA_REPLACING, true);
+            }
+            //为升级安装用户发送广播ACTION_PACKAGE_ADDED
+            sendPackageBroadcast(Intent.ACTION_PACKAGE_ADDED,
+                    packageName, extras, null, null, updateUsers);
+            if (update) {
+                // 如果是升级安装，还会发送ACTION_PACKAGE_REPLACED和ACTION_MY_PACKAGE_REPLACED广播
+                sendPackageBroadcast(Intent.ACTION_PACKAGE_REPLACED,
+                        packageName, extras, null, null, updateUsers);
+                sendPackageBroadcast(Intent.ACTION_MY_PACKAGE_REPLACED,
+                        null, null, packageName, null, updateUsers);
+                // 判断该包是否是设置了PRIVATE_FLAG_FORWARD_LOCK标志或者是安装在外部SD卡
+                if (res.pkg.isForwardLocked() || isExternal(res.pkg)) {
+                    int[] uidArray = new int[] { res.pkg.applicationInfo.uid };
+                    ArrayList<String> pkgList = new ArrayList<String>(1);
+                    pkgList.add(packageName);
+                    sendResourcesChangedBroadcast(true, true,
+                            pkgList,uidArray, null);
+                }
+            }
+            if (res.removedInfo.args != null) {
+                // 删除被替换应用的资源目录标记位
+                deleteOld = true;
+            }
+            // 针对Browser的一些处理
+            if (firstUsers.length > 0) {
+                if (packageIsBrowser(packageName, firstUsers[0])) {
+                    synchronized (mPackages) {
+                        for (int userId : firstUsers) {
+                            mSettings.setDefaultBrowserPackageNameLPw(null, userId);
+                        }
+                    }
+                }
+            }
+            ...
+        }
+        // 执行一次GC操作
+        Runtime.getRuntime().gc();
+        // 执行删除操作
+        if (deleteOld) {
+            synchronized (mInstallLock) {
+                res.removedInfo.args.doPostDeleteLI(true);
+            }
+        }
+        if (args.observer != null) {
+            try {
+                // 调用回调函数通知安装者此次安装的结果
+                Bundle extras = extrasForInstallResult(res);
+                args.observer.onPackageInstalled(res.name, res.returnCode,
+                        res.returnMsg, extras);
+            } catch (RemoteException e) {...}
+        }
+    } else {...}
+} break;
+```
+installPackageLI()方法首先解析apk安装包，然后判断当前是否有安装该应用，然后根据不同的情况进行不同的处理，然后进行Dex优化操作。如果是升级安装，调用replacePackageLI()。如果是新安装，调用installNewPackageLI()。这两个方法会在下面详细介绍。
+processPendingInstall()方法中执行安装的最后是发送POST_INSTALL消息，现在来看一下这个消息需要处理的事情：
+###　doHandleMessage-POST_INSTALL
+
+```java
+case POST_INSTALL: {
+    //从正在安装队列中将当前正在安装的任务删除
+    PostInstallData data = mRunningInstalls.get(msg.arg1);
+    mRunningInstalls.delete(msg.arg1);
+    boolean deleteOld = false;
+    if (data != null) {
+        InstallArgs args = data.args;
+        PackageInstalledInfo res = data.res;
+        if (res.returnCode == PackageManager.INSTALL_SUCCEEDED) {
+            final String packageName = res.pkg.applicationInfo.packageName;
+            res.removedInfo.sendBroadcast(false, true, false);
+            Bundle extras = new Bundle(1);
+            extras.putInt(Intent.EXTRA_UID, res.uid);
+            // 现在已经成功的安装了应用，在发送广播之前先授予一些必要的权限
+            // 这些权限在 installPackageAsUser 中创建 InstallParams 时传递的，为null
+            if ((args.installFlags
+                    & PackageManager.INSTALL_GRANT_RUNTIME_PERMISSIONS) != 0) {
+                grantRequestedRuntimePermissions(res.pkg, args.user.getIdentifier(),
+                        args.installGrantPermissions);
+            }
+            // 看一下当前应用对于哪些用户是第一次安装，哪些用户是升级安装
+            int[] firstUsers;
+            int[] updateUsers = new int[0];
+            if (res.origUsers == null || res.origUsers.length == 0) {
+                // 所有用户都是第一次安装
+                firstUsers = res.newUsers;
+            } else {
+                firstUsers = new int[0];
+                // 这里再从刚刚已经安装该包的用户中选出哪些是以前已经安装过该包的用户
+                for (int i=0; i<res.newUsers.length; i++) {
+                    int user = res.newUsers[i];
+                    boolean isNew = true;
+                    for (int j=0; j<res.origUsers.length; j++) {
+                        if (res.origUsers[j] == user) {
+                            // 找到以前安装过该包的用户
+                            isNew = false;
+                            break;
+                        }
+                    }
+                    if (isNew) {
+                        int[] newFirst = new int[firstUsers.length+1];
+                        System.arraycopy(firstUsers, 0, newFirst, 0,
+                                firstUsers.length);
+                        newFirst[firstUsers.length] = user;
+                        firstUsers = newFirst;
+                    } else {
+                        int[] newUpdate = new int[updateUsers.length+1];
+                        System.arraycopy(updateUsers, 0, newUpdate, 0,
+                                updateUsers.length);
+                        newUpdate[updateUsers.length] = user;
+                        updateUsers = newUpdate;
+                    }
+                }
+            }
+            //为新安装用户发送广播ACTION_PACKAGE_ADDED
+            sendPackageBroadcast(Intent.ACTION_PACKAGE_ADDED,
+                    packageName, extras, null, null, firstUsers);
+            final boolean update = res.removedInfo.removedPackage != null;
+            if (update) {
+                extras.putBoolean(Intent.EXTRA_REPLACING, true);
+            }
+            //为升级安装用户发送广播ACTION_PACKAGE_ADDED
+            sendPackageBroadcast(Intent.ACTION_PACKAGE_ADDED,
+                    packageName, extras, null, null, updateUsers);
+            if (update) {
+                // 如果是升级安装，还会发送ACTION_PACKAGE_REPLACED和ACTION_MY_PACKAGE_REPLACED广播
+                sendPackageBroadcast(Intent.ACTION_PACKAGE_REPLACED,
+                        packageName, extras, null, null, updateUsers);
+                sendPackageBroadcast(Intent.ACTION_MY_PACKAGE_REPLACED,
+                        null, null, packageName, null, updateUsers);
+                // 判断该包是否是设置了PRIVATE_FLAG_FORWARD_LOCK标志或者是安装在外部SD卡
+                if (res.pkg.isForwardLocked() || isExternal(res.pkg)) {
+                    int[] uidArray = new int[] { res.pkg.applicationInfo.uid };
+                    ArrayList<String> pkgList = new ArrayList<String>(1);
+                    pkgList.add(packageName);
+                    sendResourcesChangedBroadcast(true, true,
+                            pkgList,uidArray, null);
+                }
+            }
+            if (res.removedInfo.args != null) {
+                // 删除被替换应用的资源目录标记位
+                deleteOld = true;
+            }
+            // 针对Browser的一些处理
+            if (firstUsers.length > 0) {
+                if (packageIsBrowser(packageName, firstUsers[0])) {
+                    synchronized (mPackages) {
+                        for (int userId : firstUsers) {
+                            mSettings.setDefaultBrowserPackageNameLPw(null, userId);
+                        }
+                    }
+                }
+            }
+            ...
+        }
+        // 执行一次GC操作
+        // TODO 为啥要执行gc
+        Runtime.getRuntime().gc();
+        // 执行删除操作
+        if (deleteOld) {
+            synchronized (mInstallLock) {
+                res.removedInfo.args.doPostDeleteLI(true);
+            }
+        }
+        if (args.observer != null) {
+            try {
+                // 调用回调函数通知安装者此次安装的结果
+                Bundle extras = extrasForInstallResult(res);
+                args.observer.onPackageInstalled(res.name, res.returnCode,
+                        res.returnMsg, extras);
+            } catch (RemoteException e) {...}
+        }
+    } else {...}
+} break;
+
+```
+对POST_INSTALL消息消息的处理主要就是一些权限处理、发送广播、通知相关应用处理安装结果，然后调用回调函数onPackageInstalled()，这个回调函数是调用installPackage()方法时作为参数传递进来的。
+### 总结一下解析应用阶段的工作：
+1.	解析apk信息
+2.	dexopt操作
+3.	更新权限信息
+4.	完成安装,发送Intent.ACTION_PACKAGE_ADDED广播
+
+## 1.1.1 其他相关方法分析
+### 1.1 getNextCodePath
+```java
+private File getNextCodePath(File targetDir, String packageName) {
+    int suffix = 1;
+    File result;
+    do {
+        result = new File(targetDir, packageName + "-" + suffix);
+        suffix++;
+    } while (result.exists());
+    return result;
+}
+```
+#### replaceSystemPackageLI()
+```java
+private void replaceSystemPackageLI(PackageParser.Package deletedPackage,
+        PackageParser.Package pkg, int parseFlags, int scanFlags, UserHandle user,
+        int[] allUsers, boolean[] perUserInstalled, String installerPackageName,
+        String volumeUuid, PackageInstalledInfo res) {
+    boolean disabledSystem = false;
+    boolean updatedSettings = false;
+    parseFlags |= PackageParser.PARSE_IS_SYSTEM;
+    if ((deletedPackage.applicationInfo.privateFlags&ApplicationInfo.PRIVATE_FLAG_PRIVILEGED)
+            != 0) {
+        parseFlags |= PackageParser.PARSE_IS_PRIVILEGED;
+    }
+    String packageName = deletedPackage.packageName;
+    if (packageName == null) {
+        res.setError(INSTALL_FAILED_REPLACE_COULDNT_DELETE,
+                "Attempt to delete null packageName.");
+        return;
+    }
+    PackageParser.Package oldPkg;
+    PackageSetting oldPkgSetting;
+    // 读取原来应用的信息
+    synchronized (mPackages) {
+        oldPkg = mPackages.get(packageName);
+        oldPkgSetting = mSettings.mPackages.get(packageName);
+        if((oldPkg == null) || (oldPkg.applicationInfo == null) ||
+                (oldPkgSetting == null)) {
+            res.setError(INSTALL_FAILED_REPLACE_COULDNT_DELETE,
+                    "Couldn't find package:" + packageName + " information");
+            return;
+        }
+    }
+    // 先杀掉原来应用的进程
+    killApplication(packageName, oldPkg.applicationInfo.uid, "replace sys pkg");
+    res.removedInfo.uid = oldPkg.applicationInfo.uid;
+    res.removedInfo.removedPackage = packageName;
+    // 删除原有应用包，这个方法后面博客会详细介绍
+    removePackageLI(oldPkgSetting, true);
+    // writer
+    synchronized (mPackages) {
+        //把这个结果保存到mSettings中，即在xml文件中用<updated-package>标签标记
+        disabledSystem = mSettings.disableSystemPackageLPw(packageName);
+        if (!disabledSystem && deletedPackage != null) {
+            // 如果包名和资源路径没有变化，分别构造FileInstallArgs和AsecInstallArgs来完成code和resource资源的清除。
+            res.removedInfo.args = createInstallArgsForExisting(0,
+                    deletedPackage.applicationInfo.getCodePath(),
+                    deletedPackage.applicationInfo.getResourcePath(),
+                    getAppDexInstructionSets(deletedPackage.applicationInfo));
+        } else {
+            res.removedInfo.args = null;
+        }
+    }
+    // 调用installd 的 rmcodecache 命令清除代码缓存文件
+    deleteCodeCacheDirsLI(pkg.volumeUuid, packageName);
+    res.returnCode = PackageManager.INSTALL_SUCCEEDED;
+    pkg.applicationInfo.flags |= ApplicationInfo.FLAG_UPDATED_SYSTEM_APP;
+    PackageParser.Package newPackage = null;
+    try {
+        // 开始扫描文件，scanPackageLI在上一篇博客中有详细介绍，这里会解析文件，设置apk路径以及资源路径
+        newPackage = scanPackageLI(pkg, parseFlags, scanFlags, 0, user);
+        if (newPackage.mExtras != null) {
+            // 更新安装时间与升级时间
+            final PackageSetting newPkgSetting = (PackageSetting) newPackage.mExtras;
+            newPkgSetting.firstInstallTime = oldPkgSetting.firstInstallTime;
+            newPkgSetting.lastUpdateTime = System.currentTimeMillis();
+            // is the update attempting to change shared user? that isn't going to work...
+            if (oldPkgSetting.sharedUser != newPkgSetting.sharedUser) {
+                res.setError(INSTALL_FAILED_SHARED_USER_INCOMPATIBLE,
+                        "Forbidding shared user change from " + oldPkgSetting.sharedUser
+                        + " to " + newPkgSetting.sharedUser);
+                updatedSettings = true;
+            }
+        }
+        if (res.returnCode == PackageManager.INSTALL_SUCCEEDED) {
+            // 扫描成功，更新配置文件
+            updateSettingsLI(newPackage, installerPackageName, volumeUuid, allUsers,
+                    perUserInstalled, res, user);
+            updatedSettings = true;
+        }
+    } catch (PackageManagerException e) {
+        res.setError("Package couldn't be installed in " + pkg.codePath, e);
+    }
+    if (res.returnCode != PackageManager.INSTALL_SUCCEEDED) {
+        // 如果安装失败，删除新安装的包，恢复以前的应用包
+        if (newPackage != null) {
+            removeInstalledPackageLI(newPackage, true);
+        }
+        try {
+            scanPackageLI(oldPkg, parseFlags, SCAN_UPDATE_SIGNATURE, 0, user);
+        } catch (PackageManagerException e) {...}
+        synchronized (mPackages) {
+            if (disabledSystem) {
+                mSettings.enableSystemPackageLPw(packageName);
+            }
+            if (updatedSettings) {
+                mSettings.setInstallerPackageName(packageName,
+                        oldPkgSetting.installerPackageName);
+            }
+            mSettings.writeLPr();
+        }
+    }
+}
+```
+### replaceNonSystemPackageLI()
+```java
+private void replaceNonSystemPackageLI(PackageParser.Package deletedPackage,
+        PackageParser.Package pkg, int parseFlags, int scanFlags, UserHandle user,
+        int[] allUsers, boolean[] perUserInstalled, String installerPackageName,
+        String volumeUuid, PackageInstalledInfo res) {
+    String pkgName = deletedPackage.packageName;
+    boolean deletedPkg = true;
+    boolean updatedSettings = false;
+    long origUpdateTime;
+    if (pkg.mExtras != null) {
+        origUpdateTime = ((PackageSetting)pkg.mExtras).lastUpdateTime;
+    } else {
+        origUpdateTime = 0;
+    }
+    // 删除原有的包，这个方法后面博客会详细介绍
+    if (!deletePackageLI(pkgName, null, true, null, null, PackageManager.DELETE_KEEP_DATA,
+            res.removedInfo, true)) {
+        // 删除失败
+        res.setError(INSTALL_FAILED_REPLACE_COULDNT_DELETE, "replaceNonSystemPackageLI");
+        deletedPkg = false;
+    } else {
+        // 删除成功
+        if (deletedPackage.isForwardLocked() || isExternal(deletedPackage)) {
+            // 如果设置PRIVATE_FLAG_FORWARD_LOCK标志或者是安装在外部SD卡，需要发送广播
+            final int[] uidArray = new int[] { deletedPackage.applicationInfo.uid };
+            final ArrayList<String> pkgList = new ArrayList<String>(1);
+            pkgList.add(deletedPackage.applicationInfo.packageName);
+            sendResourcesChangedBroadcast(false, true, pkgList, uidArray, null);
+        }
+        // 调用installd 的 rmcodecache 命令清除代码缓存文件
+        deleteCodeCacheDirsLI(pkg.volumeUuid, pkgName);
+        try {
+            //扫描文件，更新配置文件
+            final PackageParser.Package newPackage = scanPackageLI(pkg, parseFlags,
+                    scanFlags | SCAN_UPDATE_TIME, System.currentTimeMillis(), user);
+            updateSettingsLI(newPackage, installerPackageName, volumeUuid, allUsers,
+                    perUserInstalled, res, user);
+            updatedSettings = true;
+        } catch (PackageManagerException e) {
+            res.setError("Package couldn't be installed in " + pkg.codePath, e);
+        }
+    }
+    if (res.returnCode != PackageManager.INSTALL_SUCCEEDED) {
+        // 如果安装失败，执行恢复原来的应用的工作
+        if(updatedSettings) {
+            deletePackageLI(
+                    pkgName, null, true, allUsers, perUserInstalled,
+                    PackageManager.DELETE_KEEP_DATA,
+                            res.removedInfo, true);
+        }
+        if (deletedPkg) {
+            File restoreFile = new File(deletedPackage.codePath);
+            boolean oldExternal = isExternal(deletedPackage);
+            int oldParseFlags  = mDefParseFlags | PackageParser.PARSE_CHATTY |
+                    (deletedPackage.isForwardLocked() ? PackageParser.PARSE_FORWARD_LOCK : 0) |
+                    (oldExternal ? PackageParser.PARSE_EXTERNAL_STORAGE : 0);
+            int oldScanFlags = SCAN_UPDATE_SIGNATURE | SCAN_UPDATE_TIME;
+            try {
+                scanPackageLI(restoreFile, oldParseFlags, oldScanFlags, origUpdateTime, null);
+            } catch (PackageManagerException e) {
+                return;
+            }
+            synchronized (mPackages) {
+                updatePermissionsLPw(deletedPackage.packageName, deletedPackage,
+                        UPDATE_PERMISSIONS_ALL);
+                mSettings.writeLPr();
+            }
+        }
+    }
+}
+```
+### installNewPackageLI()
+```java
+private void installNewPackageLI(PackageParser.Package pkg, int parseFlags, int scanFlags,
+        UserHandle user, String installerPackageName, String volumeUuid,
+        PackageInstalledInfo res) {
+    String pkgName = pkg.packageName;
+    final boolean dataDirExists = Environment
+            .getDataUserPackageDirectory(volumeUuid, UserHandle.USER_OWNER, pkgName).exists();
+    synchronized(mPackages) {
+        if (mSettings.mRenamedPackages.containsKey(pkgName)) {
+            // 和某个应用更改过包名前的名称相同，安装失败
+            res.setError(INSTALL_FAILED_ALREADY_EXISTS, "Attempt to re-install " + pkgName
+                    + " without first uninstalling package running as "
+                    + mSettings.mRenamedPackages.get(pkgName));
+            return;
+        }
+        if (mPackages.containsKey(pkgName)) {
+            // 已经有同名的应用，安装失败
+            res.setError(INSTALL_FAILED_ALREADY_EXISTS, "Attempt to re-install " + pkgName
+                    + " without first uninstalling.");
+            return;
+        }
+    }
+    try {
+        //扫描文件
+        PackageParser.Package newPackage = scanPackageLI(pkg, parseFlags, scanFlags,
+                System.currentTimeMillis(), user);
+        //更新配置文件
+        updateSettingsLI(newPackage, installerPackageName, volumeUuid, null, null, res, user);
+        if (res.returnCode != PackageManager.INSTALL_SUCCEEDED) {
+            // 如果安装失败，删除已经安装的数据
+            deletePackageLI(pkgName, UserHandle.ALL, false, null, null,
+                    dataDirExists ? PackageManager.DELETE_KEEP_DATA : 0,
+                            res.removedInfo, true);
+        }
+    } catch (PackageManagerException e) {
+        res.setError("Package couldn't be installed in " + pkg.codePath, e);
+    }
+}
+
+```
+
+
+
+
 
 ## 装载应用
 
