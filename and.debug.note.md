@@ -91,17 +91,17 @@ unable to connect to 192.168.1.211:5555: cannot connect to 192.168.1.211:5555:
 该方法优点简单无需过多硬件，缺点就是容易受外界无线干扰，网速慢。下面是23:00 工作环境实测效果
 ```java
 // 无线热点方式 20cm speed = 50kb/s; 1cm 0.2MB/s
-C:\Users\key.guan>adb push C:\Users\key.guan\Desktop\djigo.hprof.tar /sdcard/
-C:\Users\key.guan\Desktop\djigo.hprof.tar: 1 file pushed. 0.0 MB/s (22210059 bytes in 439.870s)
-C:\Users\key.guan>adb push C:\Users\key.guan\Desktop\djigo.hprof.tar /sdcard/tsts3
-C:\Users\key.guan\Desktop\djigo.hprof.tar: 1 file pushed. 0.2 MB/s (22210059 bytes in 120.611s)
+C:\Users\key.guan>adb push C:\Users\key.guan\Desktop\kggo.hprof.tar /sdcard/
+C:\Users\key.guan\Desktop\kggo.hprof.tar: 1 file pushed. 0.0 MB/s (22210059 bytes in 439.870s)
+C:\Users\key.guan>adb push C:\Users\key.guan\Desktop\kggo.hprof.tar /sdcard/tsts3
+C:\Users\key.guan\Desktop\kggo.hprof.tar: 1 file pushed. 0.2 MB/s (22210059 bytes in 120.611s)
 // 无线路由器方式 1.1 MB/s
-C:\Users\key.guan>adb push C:\Users\key.guan\Desktop\djigo.hprof.tar /sdcard/tsts
-C:\Users\key.guan\Desktop\djigo.hprof.tar: 1 file pushed. 1.1 MB/s (22210059 bytes in 19.918s)
+C:\Users\key.guan>adb push C:\Users\key.guan\Desktop\kggo.hprof.tar /sdcard/tsts
+C:\Users\key.guan\Desktop\kggo.hprof.tar: 1 file pushed. 1.1 MB/s (22210059 bytes in 19.918s)
 
 // 有线方式 4.6 MB/s
-C:\Users\key.guan>adb push C:\Users\key.guan\Desktop\djigo.hprof.tar /sdcard/tst
-C:\Users\key.guan\Desktop\djigo.hprof.tar: 1 file pushed. 4.6 MB/s (22210059 bytes in 4.651s)
+C:\Users\key.guan>adb push C:\Users\key.guan\Desktop\kggo.hprof.tar /sdcard/tst
+C:\Users\key.guan\Desktop\kggo.hprof.tar: 1 file pushed. 4.6 MB/s (22210059 bytes in 4.651s)
 ```
 
 下面以PC无无线网卡为例,保证手机和PC在同一网段（推荐手机连接APP-OFFICE，PC是有线连接）
