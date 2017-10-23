@@ -152,3 +152,14 @@ List of devices attached
 日志重定向; adb logcat > bug1121.txt
 CPU架构信息： /proc/cpuinfo
 ## 1.3.	Adb调试方法
+``` java
+static void preload() {
+    Log.d(TAG, "begin preload");
+    preloadClasses();
+    preloadResources();
+    preloadOpenGL();
+    preloadSharedLibraries();
+    WebViewFactory.prepareWebViewInZygote();
+    Log.d(TAG, "end preload");
+}
+```
