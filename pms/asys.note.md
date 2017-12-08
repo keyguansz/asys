@@ -1,31 +1,3 @@
-// TODO word
-# framework debug 技巧
-## 安装
-   拷贝文件到system/framework/;
-   stop;
-   start重启system_server进程
-
-## Java调试
-其实整个调试过程非常简单：
-  - 打断点
-  - 跟踪代码（Step in/out/over等等）
-
-### 打断点
-    在正确的进程的合适位置打断点:区别于普通app的进程，framwork的所在进程需要进行源码分析，比如ams是运行在system_server中的，并且这些进程只能在root的机子调试（模拟器或者root真机）
-### 跟踪代码
-### 打印日志
-    -系统一般都会有debug标志，我们修改源码中的标志，打印就好，比如
-    修改后
-
-    -- Log.e("tag",logStr);
-
-## native调试
-
-## ref
-- [如何调试Android Framework？](http://weishu.me/2016/05/30/how-to-debug-android-framework/)
-- [Android Studio如何调试Framework层的代码？](https://www.zhihu.com/question/37606394)
-- [Markdown 编辑器推荐](https://github.com/wizardforcel/markdown-simple-world/blob/master/1.md)
-
 # pms
 不论是cmd安装，还是预装market安装，还是ui安装，最终都会调用到installPackage这个方法入口，本节单独讨论系统是如何执行这一个过程的
 ## 总流程
