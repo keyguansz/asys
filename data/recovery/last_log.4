@@ -1,0 +1,350 @@
+__bionic_open_tzdata: couldn't find any tzdata when looking for localtime!
+__bionic_open_tzdata: couldn't find any tzdata when looking for GMT!
+__bionic_open_tzdata: couldn't find any tzdata when looking for posixrules!
+Starting recovery (pid 120) on Mon Jan 21 08:53:59 2013
+read cmdline
+cmdline=vmalloc=496M console=ttyFIQ0 androidboot.selinux=disabled androidboot.hardware=rk30board androidboot.console=ttyFIQ0 init=/init  mtdparts=rk29xxnand:0x00002000@0x00000000(parameter),0x00002000@0x00002000(uboot),0x00002000@0x00004000(misc),0x00008000@0x00006000(resource),0x00008000@0x0000e000(kernel),0x00010000@0x00016000(boot),0x00010000@0x00026000(recovery),0x0001a000@0x00036000(backup),0x00080000@0x00050000(cache),0x00002000@0x000D0000(kpanic),0x00300000@0x000D2000(system),0x00008000@0x003D2000(metadata),0x00600000@0x003DA000(userdata),0x00020000@0x009DA000(radical_update),-@0x009FA000(user) storagemedia=emmc loader.timestamp=2017-08-04_12:49:31 androidboot.securemode=1 androidboot.mode=emmc
+
+bootmode = emmc 
+recovery filesystem table
+=========================
+  0 /mnt/internal_sd vfat /dev/block/platform/ff0f0000.rksdmmc/by-name/user 0
+  1 /mnt/external_sd vfat /dev/block/mmcblk1p1 0
+  2 /mnt/external_sd1 vfat /dev/block/mmcblk2p1 0
+  3 /system ext4 /dev/block/platform/ff0f0000.rksdmmc/by-name/system 0
+  4 /cache ext4 /dev/block/platform/ff0f0000.rksdmmc/by-name/cache 0
+  5 /metadata ext4 /dev/block/platform/ff0f0000.rksdmmc/by-name/metadata 0
+  6 /data ext4 /dev/block/platform/ff0f0000.rksdmmc/by-name/userdata 0
+  7 /cust ext4 /dev/block/platform/ff0f0000.rksdmmc/by-name/cust 0
+  8 /custom ext4 /dev/block/platform/ff0f0000.rksdmmc/by-name/custom 0
+  9 /radical_update ext4 /dev/block/platform/ff0f0000.rksdmmc/by-name/radical_update 0
+  10 /misc emmc /dev/block/platform/ff0f0000.rksdmmc/by-name/misc 0
+  11 /uboot emmc /dev/block/platform/ff0f0000.rksdmmc/by-name/uboot 0
+  12 /charge emmc /dev/block/platform/ff0f0000.rksdmmc/by-name/charge 0
+  13 /resource emmc /dev/block/platform/ff0f0000.rksdmmc/by-name/resource 0
+  14 /parameter emmc /dev/block/platform/ff0f0000.rksdmmc/by-name/parameter 0
+  15 /boot emmc /dev/block/platform/ff0f0000.rksdmmc/by-name/boot 0
+  16 /recovery emmc /dev/block/platform/ff0f0000.rksdmmc/by-name/recovery 0
+  17 /backup emmc /dev/block/platform/ff0f0000.rksdmmc/by-name/backup 0
+  18 /tmp ramdisk ramdisk 0
+
+I/ [File] : bootable/recovery/recovery.cpp; [Line] : 1433; [Func] : SetSdcardRootPath; InternalSD_ROOT: /mnt/internal_sd
+I/ [File] : bootable/recovery/recovery.cpp; [Line] : 1435; [Func] : SetSdcardRootPath; ExternalSD0_ROOT: /mnt/external_sd
+I/ [File] : bootable/recovery/recovery.cpp; [Line] : 1439; [Func] : SetSdcardRootPath; ExternalSD1_ROOT: /mnt/external_sd1
+failed to create /cache dir,err=File exists!
+W/ [File] : bootable/recovery/roots.cpp; [Line] : 123; [Func] : ensure_path_mounted; fs_type=ext4
+D/ [File] : bootable/recovery/recovery.cpp; [Line] : 2386; [Func] : main; to dump args befor get_args() : 
+	 1 argument(s) : 
+	 /sbin/recovery 
+D/ [File] : bootable/recovery/recovery.cpp; [Line] : 629; [Func] : get_args; to dump 'boot' : 
+	 command : boot-recovery 
+	 status :  
+	 recovery : recovery
+--wipe_all 
+	 stage :  
+I/ [File] : bootable/recovery/recovery.cpp; [Line] : 635; [Func] : get_args; Boot command: boot-recovery
+I/ [File] : bootable/recovery/recovery.cpp; [Line] : 653; [Func] : get_args; Got arguments from boot message
+D/ [File] : bootable/recovery/recovery.cpp; [Line] : 2403; [Func] : main; to dump args after get_args() : 
+	 2 argument(s) : 
+	 recovery 
+	 --wipe_all 
+locale is [en_US]
+stage is []
+reason is [(null)]
+can't open /dev/tty0: No such file or directory
+fb0 reports (possibly inaccurate):
+  vi.bits_per_pixel = 16
+  vi.red.offset   =  11   .length =   5
+  vi.green.offset =   5   .length =   6
+  vi.blue.offset  =   0   .length =   5
+  fi.line_length = 2160
+framebuffer: 0 (1080 x 1920) double_buffer 1
+load png icon_installing, width 280 height 2975 channels 3
+  found frames = 7
+load png icon_error, width 254 height 257 channels 3
+load png progress_empty, width 252 height 7 channels 3
+load png progress_fill, width 252 height 7 channels 3
+load png stage_empty, width 50 height 50 channels 1
+load png stage_fill, width 50 height 50 channels 1
+       installing_text: en (277 x 33 @ 374)
+          erasing_text: en (95 x 33 @ 374)
+       no_command_text: en (150 x 33 @ 374)
+            error_text: en (57 x 33 @ 374)
+Recovery system v5.0 
+
+I/ [File] : bootable/recovery/recovery.cpp; [Line] : 2532; [Func] : main; Recovery system v5.0, built at '11:30:11', on 'Aug  4 2017'.
+failed to create /mnt/external_sd dir,err=File exists!
+W/ [File] : bootable/recovery/roots.cpp; [Line] : 123; [Func] : ensure_path_mounted; fs_type=vfat
+read cmdline
+Not enter sdboot!
+auto sdcard update path: /mnt/external_sd/FirmwareUpdate/auto_sd_update.tag
+failed to create /metadata dir,err=File exists!
+W/ [File] : bootable/recovery/roots.cpp; [Line] : 123; [Func] : ensure_path_mounted; fs_type=ext4
+failed to create /radical_update dir,err=File exists!
+W/ [File] : bootable/recovery/roots.cpp; [Line] : 123; [Func] : ensure_path_mounted; fs_type=ext4
+bootmode = emmc 
+Command: "recovery" "--wipe_all"
+
+
+ro.rk.cpu=rk3288v2
+ro.rk.soc=rk3288
+ro.rk.bt_enable=false
+ro.rk.systembar.tabletUI=false
+ro.rk.systembar.voiceicon=false
+ro.rk.MassStorage=false
+ro.rk.cpu_min_freq=126000
+
+ro.rk.homepage_base=http://www.google.com/webhp?client={CID}&amp;source=android-home
+ro.rk.def_brightness=255
+ro.rk.screenoff_time=600000
+ro.rk.screenshot_enable=true
+ro.rk.LowBatteryBrightness=false
+ro.rk.install_non_market_apps=false
+ro.sf.hwrotation=90
+ro.sf.lcd_density=400
+ro.sf.fakerotation=false
+ro.acm.support=true
+ro.adb.secure=0
+ro.com.android.dateformat=MM-dd-yyyy
+ro.com.android.dataroaming=true
+ro.dji.systembar.brightness=false
+ro.dji.account_enable=false
+ro.dji.display_enable=true
+ro.dji.advanced_enable=false
+ro.dji.app_install_cnt=0
+ro.dji.launcher_enable=false
+ro.dji.location_enable=false
+ro.dji.printing_enable=false
+ro.dji.security_enable=false
+ro.dji.wireless_enable=true
+ro.dji.bat_saver_enable=false
+ro.dji.credential_enable=false
+ro.dji.data_usage_enable=true
+ro.dji.screenshot_enable=false
+ro.dji.compass_cal_enable=false
+ro.dji.showPassword_enable=false
+ro.dji.accessibility_enable=false
+ro.dji.screen_ori_landscape=true
+ro.ime.ja_jp=jp.co.omronsoft.openwnn/.OpenWnnJAJP
+ro.ime.ko_kr=com.google.android.inputmethod.korean/.KoreanIme
+ro.ime.zh_cn=com.google.android.inputmethod.pinyin/.PinyinIME
+ro.ril.ecclist=112,911
+ro.vpn.enable=false
+ro.boot.mode=emmc
+ro.boot.console=ttyFIQ0
+ro.boot.selinux=disabled
+ro.boot.hardware=rk30board
+ro.boot.securemode=1
+ro.wifi.channels=
+ro.allow.mock.location=0
+ro.audio.monitorOrientation=true
+ro.board.platform=rk3288
+ro.build.id=v0.2.1.0-3f53c3ca
+ro.build.date=Fri Aug  4 12:53:48 CST 2017
+ro.build.date.utc=1501822428
+ro.build.host=djiand02-rd
+ro.build.tags=release-keys
+ro.build.type=user
+ro.build.user=gl300
+ro.build.flavor=gl300e-user
+ro.build.display.id=v0.2.1.0-3f53c3ca release-keys
+ro.build.product=gl300e
+ro.build.version.sdk=22
+ro.build.version.base_os=
+ro.build.version.release=5.1.1
+ro.build.version.codename=REL
+ro.build.version.incremental=eng.gl300.20170804.125103
+ro.build.version.all_codenames=REL
+ro.build.version.security_patch=2015-12-01
+ro.build.description=gl300e-user 5.1.1 v0.2.1.0-3f53c3ca eng.gl300.20170804.125103 release-keys
+ro.build.fingerprint=Android/gl300e/gl300e:5.1.1/v0.2.1.0-3f53c3ca/gl30008041253:user/release-keys
+ro.build.characteristics=tablet
+ro.rksdk.version=RK30_ANDROID5.1.1-SDK-v1.00.00
+ro.config.ota.status=false
+ro.config.enable.remotecontrol=false
+ro.config.ringtone=Ring_Synth_04.ogg
+ro.config.alarm_alert=Alarm_Classic.ogg
+ro.config.notification_sound=pixiedust.ogg
+ro.dalvik.vm.native.bridge=0
+ro.enable.24pref=true
+ro.kernel.android.checkjni=0
+ro.secure=1
+ro.target.product=tablet
+ro.tether.denied=true
+ro.zygote=zygote32
+ro.carrier=unknown
+ro.default.size=100
+ro.factory.tool=0
+ro.factory.hasGPS=true
+ro.factory.hasUMS=true
+ro.factory.without_battery=false
+ro.factory.storage_suppntfs=true
+ro.product.cpu.abi=armeabi-v7a
+ro.product.cpu.abi2=armeabi
+ro.product.cpu.abilist=armeabi-v7a,armeabi
+ro.product.cpu.abilist32=armeabi-v7a,armeabi
+ro.product.cpu.abilist64=
+ro.product.ota.host=10.60.20.153:2300
+ro.product.name=gl300e
+ro.product.board=rk30sdk
+ro.product.brand=Android
+ro.product.model=GL300E
+ro.product.device=gl300e
+ro.product.locale.region=US
+ro.product.locale.language=en
+ro.product.version=v0.2.1.0-3f53c3ca
+ro.product.ethernet=false
+ro.product.usbfactory=rockchip_usb
+ro.product.manufacturer=DJI
+ro.baseband=unknown
+ro.bootmode=emmc
+ro.dji_wifi.mode=usb
+ro.hardware=rk30board
+ro.keyguard.enable=false
+ro.opengles.version=196609
+ro.recovery.mode=1
+ro.revision=0
+ro.bootstart=unknown
+ro.bootloader=unknown
+ro.debuggable=0
+ro.sim_status.enable=false
+ro.factorytest=0
+ro.light_bridge.enable=true
+ro.power_action.enable=false
+ro.enable_boot_charger_mode=0
+sf.power.control=2073600
+net.bt.name=Android
+net.change=net.bt.name
+ril.function.dataonly=1
+sys.hwc.compose_policy=6
+sys.rkadb.root=0
+sys.status.hidebar_enable=true
+sys.status.hidebar_poweron=true
+sys.status.hideStatusbar_enable=true
+sys.wallpaper.rgb565=0
+sys.resolution.changed=false
+init.svc.sdcard=stopped
+init.svc.serial=running
+init.svc.healthd=running
+init.svc.ueventd=running
+init.svc.recovery=running
+rild.libargs=-d /dev/ttyACM0
+rild.libpath=/system/lib/libril-rk29-dataonly.so
+vold.post_fs_data_done=1
+wifi.interface=wlan0
+wifi.supplicant_scan_interval=15
+debug.nfc.se=false
+debug.nfc.fw_download=false
+media.video.high_bitrate=1
+config.disable_vibrator=true
+config.disable_bluetooth=true
+config.disable_mmsService=true
+config.disable_fingerPrint=true
+dalvik.vm.isa.arm.features=div
+dalvik.vm.jniopts=warnonly
+dalvik.vm.heapsize=512m
+dalvik.vm.dex2oat-Xms=64m
+dalvik.vm.dex2oat-Xmx=512m
+dalvik.vm.heapmaxfree=8m
+dalvik.vm.heapminfree=512k
+dalvik.vm.dexopt-flags=m=y
+dalvik.vm.heapstartsize=16m
+dalvik.vm.heapgrowthlimit=192m
+dalvik.vm.stack-trace-file=/data/anr/traces.txt
+dalvik.vm.image-dex2oat-Xms=64m
+dalvik.vm.image-dex2oat-Xmx=64m
+dalvik.vm.heaptargetutilization=0.75
+persist.sys.usb.config=mass_storage,adb,acm
+persist.sys.dalvik.vm.lib.2=libart.so
+persist.sys.timezone=
+persist.sys.strictmode.visual=false
+persist.hdmi.ui=1
+persist.hdmi.enable=1
+persist.tegra.nvmmlite=1
+persist.system.version=1.2.1.0
+testing.mediascanner.skiplist=/mnt/internal_sd/Android/
+keyguard.no_require_sim=true
+InternalSD_ROOT=/mnt/internal_sd
+UserVolumeLabel=DJI
+ExternalSD0_ROOT=/mnt/external_sd
+ExternalSD1_ROOT=/mnt/external_sd1
+
+I/ [File] : bootable/recovery/recovery.cpp; [Line] : 2808; [Func] : main; to wipe /data.
+Formatting /data...
+Creating filesystem with parameters:
+    Size: 3221225472
+    Block size: 4096
+    Blocks per group: 32768
+    Inodes per group: 8192
+    Inode size: 256
+    Journal blocks: 12288
+    Label: 
+    Blocks: 786432
+    Block groups: 24
+    Reserved block group size: 191
+Created filesystem with 11/196608 inodes and 25785/786432 blocks
+Formatting /cache...
+Creating filesystem with parameters:
+    Size: 268435456
+    Block size: 4096
+    Blocks per group: 32768
+    Inodes per group: 8192
+    Inode size: 256
+    Journal blocks: 1024
+    Label: 
+    Blocks: 65536
+    Block groups: 2
+    Reserved block group size: 15
+Created filesystem with 11/16384 inodes and 2089/65536 blocks
+failed to create /cache dir,err=File exists!
+W/ [File] : bootable/recovery/roots.cpp; [Line] : 123; [Func] : ensure_path_mounted; fs_type=ext4
+resize /system 
+executing '/sbin/e2fsck'
+e2fsck 1.42.9 (28-Dec-2013)
+Superblock last write time (__bionic_open_tzdata: couldn't find any tzdata when looking for localtime!
+__bionic_open_tzdata: couldn't find any tzdata when looking for GMT!
+__bionic_open_tzdata: couldn't find any tzdata when looking for posixrules!
+Fri Aug  4 04:58:13 2017,
+	now = Mon Jan 21 08:54:06 2013) is in the future.
+Fix? yes
+
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+system: 2094/94272 files (0.0% non-contiguous), 376798/377037 blocks
+executed '/sbin/e2fsck' done
+executed '/sbin/e2fsck' return 0
+executing '/sbin/resize2fs'
+resize2fs 1.42.9 (28-Dec-2013)
+Resizing the filesystem on /dev/block/platform/ff0f0000.rksdmmc/by-name/system to 393216 (4k) blocks.
+The filesystem on /dev/block/platform/ff0f0000.rksdmmc/by-name/system is now 393216 blocks long.
+
+executed '/sbin/resize2fs' done
+executed '/sbin/resize2fs' return 0
+D/ [File] : bootable/recovery/recovery.cpp; [Line] : 2827; [Func] : main; to wipe radical_update_partition. 
+Formatting /radical_update...
+Creating filesystem with parameters:
+    Size: 67108864
+    Block size: 4096
+    Blocks per group: 32768
+    Inodes per group: 4096
+    Inode size: 256
+    Journal blocks: 1024
+    Label: 
+    Blocks: 16384
+    Block groups: 1
+    Reserved block group size: 7
+Created filesystem with 11/4096 inodes and 1294/16384 blocks
+Formatting /mnt/internal_sd...
+I/ [File] : bootable/recovery/roots.cpp; [Line] : 340; [Func] : format_volume; VolumeLabel: DJI
+format '/dev/block/platform/ff0f0000.rksdmmc/by-name/user' to vfat filesystem
+executing '/sbin/mkdosfs'
+opening /dev/block/platform/ff0f0000.rksdmmc/by-name/user
+/dev/block/platform/ff0f0000.rksdmmc/by-name/user: 20046688 sectors in 1252918 FAT32 clusters (8192 bytes/cluster)
+MBR type: 11
+bps=512 spc=16 res=32 nft=2 mid=0xf0 spt=20066304 hds=0 hid=0 bsec=20066304 bspf=9792 rdcl=2 infs=1 bkbs=2
+executed '/sbin/mkdosfs' done
+executed '/sbin/mkdosfs' return 0
+I/ [File] : bootable/recovery/recovery.cpp; [Line] : 846; [Func] : finish_recovery; Saving locale "en_US"
