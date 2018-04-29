@@ -1,0 +1,83 @@
+3288开发：
+PCBA-test原理：
+摘除一个电阻吧@小马
+
+
+davic技术实现
+runtime实现原理
+build/debug
+
+bugodex原理：crash
+Cpp:奔溃调试tombstones，@debugc整理
+LOG
+定制日志打印逻辑
+快速指定某个进程是否可以打印数据
+rom修改，设置log的level，对开发开放，对用户关闭，不影响用户自己的程序
+AS
+脚本研究
+as的ragle，py的，dji-go的
+
+root@zs600a:/data/system 目录解读
+
+多网络源码分析
+https://redmine.rockchip.com.cn/issues/158079
+ro.wifi.channels= 默认wifi评点，是否可以优化自动选择噪声低的
+
+
+SurfaceComposerClient 设置翻转
+https://blog.csdn.net/androiddeveloper_lee/article/details/9496005
+https://blog.csdn.net/myarrow/article/details/7180561
+https://blog.csdn.net/luoshengyang/article/details/7691321
+
+bugs:
+https://jira.djicorp.com/browse/SAT-1645
+http://read.pudn.com/downloads86/sourcecode/comm/330501/MD5/MD5Checksum.cpp__.htm
+F:\K\4-bugs\sessionk0001
+1860原理：F:\K\out\gl300k\ota\system\bin
+F:\K\4-bugs\ag405
+F:\K\4-bugs\gl300k-tiny
+F:\K\4-bugs\binder
+otg,Usb电压
+https://blog.csdn.net/uranus_wm/article/details/9838847
+
+privison/go/devicetest/pc 优化工艺流程，device密码，至少可以缩短3步,售后
+从efuse到hello:https://confluence.djicorp.com/pages/viewpage.action?pageId=36415729
+
+3e错误码方案，loader没挂就好。。。
+做好 stop 3288 不后悔的准备
+
+3399：
+link.json原理
+libdji_link_jni原理，协议分析，mk原理@jni/Android.mk
+JNI实战收藏，https://developer.android.com/preview/behavior-changes.html#ndk
+device 系统模块打包原理
+rm500:/ # dmesg | grep avc原理@rm500_grep_vc
+C:\Users\key.guan\Desktop\lib64了解
+launcher3原理拖拽原理，学习研究！不能一直搬家额
+白屏原理，install
+SystemUI编译环境搭建
+系统应用AS下的settigns！;https://www.jianshu.com/p/3a4b5f1c09c1
+settings7详解
+https://juejin.im/entry/57e8d525bf22ec00587a5848
+原理
+https://blog.csdn.net/cloud_jianxi/article/details/45126739原理aapt2和aapt1，修改实战
+<path 原理，系统设置实战
+编译Android时禁用Jack（）odex如何禁止
+
+https://confluence.djicorp.com/pages/viewpage.action?pageId=34209838
+dex原理，如何屏蔽编译优化，为何编译可以优化？
+--------------------------
+GIT
+repo 实战的坑
+http://www.cauchy.me/2015/09/27/recovery-from-a-disastrous-git-rebase-mistake/
+https://blog.csdn.net/shift_wwx/article/details/41678773
+
+
+
+
+
+
+
+
+
+
