@@ -1,7 +1,41 @@
+﻿分析源码
+分析remote的系统为何慢，干掉有什么隐患
+freamwork端更停下。服务端解决问题吧。不用在go端修改代码！因为更新麻烦！
+Logger LOG = Logger.getLogger(ShareServer.class.getName());
+如何到Response serve(IHTTPSession session)
+下载最新版本试试？
+
+网络修复原理
+
+清理C盘
+
 3288开发：
 PCBA-test原理：
 摘除一个电阻吧@小马
 
+android系统开发规范
+AS环境搭建：settings-logtags原理，如何借鉴架构
+mk ;BUILD_STATIC_JAVA_LIBRARY 基本知识
+bouncycastle core-oj telephony-common ims-common包的源码目录
+编译环境
+preferencesupport 的了解
+39.	LOCAL_CERTIFICATE := platform  
+47.	ifneq ($(INCREMENTAL_BUILDS),)  
+48.	    LOCAL_PROGUARD_ENABLED := disabled  
+49.	    LOCAL_JACK_ENABLED := incremental  
+50.	    LOCAL_DX_FLAGS := --multi-dex  
+51.	    LOCAL_JACK_FLAGS := --multi-dex native  
+52.	endif  
+60.	ifeq (,$(ONE_SHOT_MAKEFILE))  
+
+9.	LOCAL_AAPT_FLAGS
+所有mk语法
+
+所有问题原因
+
+package.apk韩语？
+jsr305 ，如何借鉴架构
+cto进阶之路
 
 davic技术实现
 runtime实现原理
@@ -15,6 +49,7 @@ LOG
 rom修改，设置log的level，对开发开放，对用户关闭，不影响用户自己的程序
 AS
 脚本研究
+https://blog.csdn.net/topgun_chenlingyun/article/details/7701538
 as的ragle，py的，dji-go的
 
 root@zs600a:/data/system 目录解读
@@ -71,6 +106,11 @@ GIT
 repo 实战的坑
 http://www.cauchy.me/2015/09/27/recovery-from-a-disastrous-git-rebase-mistake/
 https://blog.csdn.net/shift_wwx/article/details/41678773
+-------------------------
+3288开发：
+PCBA-test原理：sessionk0001-reboot.log;各个项目测试原理，bug修复原理;gpio修复原理
+recovery:metadata分区原理，挂载原理
+
 
 
 
