@@ -1,4 +1,26 @@
-﻿分析源码
+﻿
+-------------------------------------
+ <intent-filter android:priority="9">
+                <action android:name="com.android.settings.action.SETTINGS" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.category"
+                       android:value="com.android.settings.category.device" />
+
+
+
+
+
+
+
+
+------------------------------------
+
+
+
+
+
+
+分析源码
 分析remote的系统为何慢，干掉有什么隐患
 freamwork端更停下。服务端解决问题吧。不用在go端修改代码！因为更新麻烦！
 Logger LOG = Logger.getLogger(ShareServer.class.getName());
