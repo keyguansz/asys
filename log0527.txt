@@ -1,21 +1,26 @@
-﻿
+﻿settings7详解(menifest架构，解决目前问题未导向)
+
+权限问题分析（系统原生如何绕过？）。整理迁移文档，系统项目框架设置，
+					   
+Make apk 基本原理
+http://www.txtlxg.com/228/xiaosayidao/article/details/75096276
+Ninja编译原理
+https://blog.csdn.net/ksjay_1943/article/details/53579176
+https://blog.csdn.net/kc58236582/article/details/46458765
+
+。迁移Systemui! 
+
+硬编码/make规则扫描gradle，编译，externalNativeBuild，
+
 -------------------------------------
- <intent-filter android:priority="9">
-                <action android:name="com.android.settings.action.SETTINGS" />
-            </intent-filter>
-            <meta-data android:name="com.android.settings.category"
-                       android:value="com.android.settings.category.device" />
-
-
-
-
-
-
-
 
 ------------------------------------
 
-
+Android event日志打印原理
+https://blog.csdn.net/yaowei514473839/article/details/53513435
+https://blog.csdn.net/darkengine/article/details/8477502
+http://www.voidcn.com/article/p-uqlsbgsq-bbs.html
+https://blog.csdn.net/yaowei514473839/article/details/53513435
 
 
 
