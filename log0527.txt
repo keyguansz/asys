@@ -1,6 +1,8 @@
 ﻿settings7详解(menifest架构，解决目前问题未导向)
 
 权限问题分析（系统原生如何绕过？）。整理迁移文档，系统项目框架设置，
+Sending non-protected broadcast kpad.intent.action.RECORDER_STOP from system 4543:com.XX.launcher/1000 pkg com.XX.launcher
+
 					   
 Make apk 基本原理
 http://www.txtlxg.com/228/xiaosayidao/article/details/75096276
