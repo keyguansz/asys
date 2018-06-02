@@ -1,52 +1,38 @@
-﻿settings7详解(menifest架构，解决目前问题未导向)
+﻿settings7架构详解(menifest架构，解决目前问题未导向)
+系统应用：Systemui! 解剖学习
 
-权限问题分析（系统原生如何绕过？）。整理迁移文档，系统项目框架设置，
-Sending non-protected broadcast kpad.intent.action.RECORDER_STOP from system 4543:com.XX.launcher/1000 pkg com.XX.launcher
-
+第三方模块架构了解
 					   
 Make apk 基本原理
+硬编码/make规则扫描gradle，编译，externalNativeBuild，
+https://blog.csdn.net/xiaosayidao/article/details/75096276
+LOCAL_USE_AAPT2
+AAPT2：
+兼容：‘’：但是找不到资源！！！
+不兼容：
+？：双引号呢？
+https://blog.csdn.net/hj2drf/article/details/53893900
+https://fucknmb.com/2017/10/31/aapt2%E8%B5%84%E6%BA%90compile%E8%BF%87%E7%A8%8B/
+
+AAPT1：
+不兼容：‘’：
+兼容：/$
+
+https://blog.csdn.net/hj2drf/article/details/53893900
+NoSuchFieldError: black_list_entries Lcom/android/settingslib/R$array; 
+	or its superclasses (declaration of 'com.android.settingslib.R$array' appears in /system/priv-app/Settings/Settings.apk)
 http://www.txtlxg.com/228/xiaosayidao/article/details/75096276
 Ninja编译原理
 https://blog.csdn.net/ksjay_1943/article/details/53579176
 https://blog.csdn.net/kc58236582/article/details/46458765
 
-。迁移Systemui! 
-
-硬编码/make规则扫描gradle，编译，externalNativeBuild，
-
--------------------------------------
-
-------------------------------------
-
-Android event日志打印原理
-https://blog.csdn.net/yaowei514473839/article/details/53513435
-https://blog.csdn.net/darkengine/article/details/8477502
-http://www.voidcn.com/article/p-uqlsbgsq-bbs.html
-https://blog.csdn.net/yaowei514473839/article/details/53513435
-
-
-
-
-分析源码
-分析remote的系统为何慢，干掉有什么隐患
-freamwork端更停下。服务端解决问题吧。不用在go端修改代码！因为更新麻烦！
-Logger LOG = Logger.getLogger(ShareServer.class.getName());
-如何到Response serve(IHTTPSession session)
-下载最新版本试试？
-
-网络修复原理
-
-清理C盘
-
-3288开发：
-PCBA-test原理：
-摘除一个电阻吧@小马
 
 android系统开发规范
 AS环境搭建：settings-logtags原理，如何借鉴架构
 mk ;BUILD_STATIC_JAVA_LIBRARY 基本知识
 bouncycastle core-oj telephony-common ims-common包的源码目录
 编译环境
+编译Android时禁用Jack（）odex如何禁止
 preferencesupport 的了解
 39.	LOCAL_CERTIFICATE := platform  
 47.	ifneq ($(INCREMENTAL_BUILDS),)  
@@ -64,6 +50,36 @@ preferencesupport 的了解
 
 package.apk韩语？
 jsr305 ，如何借鉴架构
+
+
+andorid系统命名规范？intent，action
+权限问题分析（系统原生如何绕过？）。
+Sending non-protected broadcast kpad.intent.action.RECORDER_STOP from system 4543:com.XX.launcher/1000 pkg com.XX.launcher
+
+------------------------------------
+Android event日志打印原理
+https://blog.csdn.net/yaowei514473839/article/details/53513435
+https://blog.csdn.net/darkengine/article/details/8477502
+http://www.voidcn.com/article/p-uqlsbgsq-bbs.html
+https://blog.csdn.net/yaowei514473839/article/details/53513435
+
+
+分析源码
+分析remote的系统为何慢，干掉有什么隐患
+freamwork端更停下。服务端解决问题吧。不用在go端修改代码！因为更新麻烦！
+Logger LOG = Logger.getLogger(ShareServer.class.getName());
+如何到Response serve(IHTTPSession session)
+下载最新版本试试？
+
+网络修复原理
+
+清理C盘
+
+3288开发：
+PCBA-test原理：
+摘除一个电阻吧@小马
+
+
 cto进阶之路
 
 davic技术实现
@@ -126,7 +142,7 @@ https://juejin.im/entry/57e8d525bf22ec00587a5848
 原理
 https://blog.csdn.net/cloud_jianxi/article/details/45126739原理aapt2和aapt1，修改实战
 <path 原理，系统设置实战
-编译Android时禁用Jack（）odex如何禁止
+
 
 https://confluence.djicorp.com/pages/viewpage.action?pageId=34209838
 dex原理，如何屏蔽编译优化，为何编译可以优化？
