@@ -1,4 +1,9 @@
-﻿settings7架构详解(menifest架构，解决目前问题未导向)
+﻿https://juejin.im/entry/58da1683128fe1006cd7592d
+https://blog.csdn.net/yegongheng/article/details/38659147
+https://github.com/kesenhoo/android-training-course-in-chinese/blob/master/basics/actionbar/styling.md
+https://blog.csdn.net/xy_nyle/article/details/18970211
+
+settings7架构详解(menifest架构，解决目前问题未导向)
 系统应用：Systemui! 解剖学习
 
 第三方模块架构了解
