@@ -1,4 +1,19 @@
-﻿https://juejin.im/entry/58da1683128fe1006cd7592d
+﻿
+
+Preference详解之Preference系的基本应用和管理(
+https://blog.csdn.net/CrazyMo_/article/details/51496516
+Android下PreferenceScreen 加载流程
+https://blog.csdn.net/Happy_Develop_/article/details/73498447
+DatePickerDialog 修改主题颜色
+https://blog.csdn.net/wxx_csdn/article/details/54344388
+Tcpdump命令+Wireshark
+https://www.cnblogs.com/findyou/p/3491035.html
+
+Android ActionBar学习(二) -- 自定义ActionBar Style
+https://blog.csdn.net/yegongheng/article/details/38659147
+https://juejin.im/entry/58da1683128fe1006cd7592d
+
+https://juejin.im/entry/58da1683128fe1006cd7592d
 https://blog.csdn.net/yegongheng/article/details/38659147
 https://github.com/kesenhoo/android-training-course-in-chinese/blob/master/basics/actionbar/styling.md
 https://blog.csdn.net/xy_nyle/article/details/18970211
