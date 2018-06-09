@@ -1,4 +1,10 @@
 ﻿
+frameworks
+命令：frameworks\cmds:settings.input.wm,am,添加自己的
+风格：这里研究吧，问问睿哥，frameworks\core\res\res\values
+
+
+https://blog.csdn.net/A771642/article/details/70284335
 
 Preference详解之Preference系的基本应用和管理(
 https://blog.csdn.net/CrazyMo_/article/details/51496516
