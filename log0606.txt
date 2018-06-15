@@ -1,7 +1,23 @@
-﻿
+﻿公司购房政策研究，资格
+digui fen,see new1.5,kg2,nath2.5,ga3,pe3.5,cj,rich
+xishu 
+
+https://confluence.djicorp.com/pages/viewpage.action?pageId=41309975  这是今天分享上整理的一个大型重构流程的基本套路TODOList，以后大型模块重构都可以按照这个思路进行
+
+键盘原理控制
+https://stackoverflow.com/questions/4336762/disabling-the-fullscreen-editing-view-for-soft-keyboard-input-in-landscape
+
 frameworks
 命令：frameworks\cmds:settings.input.wm,am,添加自己的
 风格：这里研究吧，问问睿哥，frameworks\core\res\res\values
+debug:用android stadio 开发framework
+https://blog.csdn.net/u012455213/article/details/54691340
+https://juejin.im/entry/5934cfd8fe88c20061ccc63e
+https://cloud.tencent.com/developer/article/1145378
+https://zhuanlan.zhihu.com/p/30892074
+ReceiverCallNotAllowedException
+https://blog.csdn.net/earbao/article/details/9981241
+
 
 
 https://blog.csdn.net/A771642/article/details/70284335
