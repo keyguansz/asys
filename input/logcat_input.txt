@@ -1,0 +1,134 @@
+18 08:56:01.052 336-336/? D/r_submix: adev_open_input_stream(addr=0)
+    submix_audio_device_create_pipe_l(addr=0, idx=9)
+      now using address 0 for route 9
+01-18 08:56:01.058 336-336/? D/r_submix: adev_close_input_stream()
+    submix_audio_device_release_pipe_l(idx=9) addr=0
+    submix_audio_device_destroy_pipe_l(): pipe destroyed
+01-26 14:29:39.059 639-639/system_process I/PackageManager: Adjusting ABI for com.android.settings to arm64-v8a (requirer=android, scannedPackage=null)
+    Adjusting ABI for com.android.rk to arm64-v8a (requirer=android, scannedPackage=null)
+    Adjusting ABI for com.cghs.stresstest to arm64-v8a (requirer=android, scannedPackage=null)
+    Adjusting ABI for com.android.inputdevices to arm64-v8a (requirer=android, scannedPackage=null)
+01-26 14:29:39.561 639-709/system_process I/Sensors: path open /dev/input/event2
+01-26 14:29:39.561 639-709/system_process E/Sensors: couldn't find 'proximity' input device
+01-26 14:29:39.703 639-639/system_process I/SystemServer: InitWatchdog
+    StartInputManagerService
+01-26 14:29:39.704 639-639/system_process I/InputManager: Initializing input manager, mUseDevInputEventForAudioJack=false
+01-26 14:29:39.919 639-639/system_process I/InputManager: Starting input manager
+01-26 14:29:39.922 639-733/system_process D/EventHub: No input device configuration file found for device 'rk29-keypad'.
+01-26 14:29:39.927 639-733/system_process W/EventHub: Unable to disable kernel key repeat for /dev/input/event3: Function not implemented
+01-26 14:29:39.927 639-733/system_process I/EventHub: New device: id=1, fd=147, path='/dev/input/event3', name='rk29-keypad', classes=0x401, configuration='', keyLayout='/system/usr/keylayout/rk29-keypad.kl', keyCharacterMap='/system/usr/keychars/Generic.kcm', builtinKeyboard=true, wakeMechanism=EPOLLWAKEUP, usingClockIoctl=true
+01-26 14:29:39.927 639-733/system_process D/EventHub: No input device configuration file found for device 'lightsensor-level'.
+01-26 14:29:39.936 639-639/system_process I/SystemServiceManager: Starting com.android.server.InputMethodManagerService$Lifecycle
+01-26 14:29:39.938 639-733/system_process D/EventHub: No input device configuration file found for device 'DJI RC'.
+01-26 14:29:39.943 639-733/system_process W/EventHub: Unable to disable kernel key repeat for /dev/input/event1: Function not implemented
+01-26 14:29:39.943 639-733/system_process I/EventHub: New device: id=3, fd=148, path='/dev/input/event1', name='DJI RC', classes=0x80000741, configuration='', keyLayout='/system/usr/keylayout/Generic.kl', keyCharacterMap='/system/usr/keychars/Generic.kcm', builtinKeyboard=false, wakeMechanism=EPOLLWAKEUP, usingClockIoctl=true
+01-26 14:29:39.965 639-733/system_process D/EventHub: No input device configuration file found for device 'cyttsp5_mt'.
+01-26 14:29:39.968 639-733/system_process W/EventHub: Unable to disable kernel key repeat for /dev/input/event0: Function not implemented
+01-26 14:29:39.968 639-733/system_process I/EventHub: New device: id=4, fd=149, path='/dev/input/event0', name='cyttsp5_mt', classes=0x15, configuration='', keyLayout='/system/usr/keylayout/Generic.kl', keyCharacterMap='/system/usr/keychars/Generic.kcm', builtinKeyboard=false, wakeMechanism=EPOLLWAKEUP, usingClockIoctl=true
+01-26 14:29:39.973 639-733/system_process I/InputReader: Device added: id=-1, name='Virtual', sources=0x00000301
+01-26 14:29:39.974 639-733/system_process I/InputReader:   Touch device 'cyttsp5_mt' could not query the properties of its associated display.  The device will be inoperable until the display size becomes available.
+    Device added: id=4, name='cyttsp5_mt', sources=0x00005103
+    Device added: id=3, name='DJI RC', sources=0x01002513
+    Device added: id=0, name='rk29-keypad', sources=0x00002103
+01-26 14:29:40.026 639-733/system_process I/InputReader: Reconfiguring input devices.  changes=0x00000004
+    Device reconfigured: id=4, name='cyttsp5_mt', size 1080x1920, orientation 1, mode 1, display id 0
+01-26 14:29:42.426 639-678/system_process E/InputMethodManagerService: Ignoring updateSystemUiLocked due to an invalid token. uid:1000 token:null
+01-26 14:29:42.467 639-678/system_process I/ActivityManager: Start proc 855:com.android.inputmethod.latin/u0a22 for service com.android.inputmethod.latin/.LatinIME
+01-26 14:29:42.468 639-678/system_process V/InputMethodManagerService: Adding window token: android.os.Binder@ef304bc
+01-26 14:29:42.485 639-686/system_process E/VoldConnector: Error handling '641 disk:8,0 18446744073709551615': java.lang.NumberFormatException: For input string: "18446744073709551615"
+01-26 14:29:42.590 855-878/com.android.inputmethod.latin E/kaka: totalFree:3578236928
+01-26 14:29:42.602 639-686/system_process E/VoldConnector: Error handling '641 disk:8,16 18446744073709551615': java.lang.NumberFormatException: For input string: "18446744073709551615"
+01-26 14:29:42.712 819-916/com.android.settings W/System.err: java.lang.RuntimeException: Failed creating Surface.
+        at com.dji.settings.js.InputDemo.installWindow(InputDemo.java:128)
+        at com.dji.settings.js.InputDemo.Run(InputDemo.java:97)
+        at com.dji.settings.js.InputDemo$1.run(InputDemo.java:51)
+        at java.lang.Thread.run(Thread.java:761)
+01-26 14:29:42.793 855-855/com.android.inputmethod.latin I/LatinIME: Hardware accelerated drawing: true
+01-26 14:29:42.918 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (client)' was finalized without being disposed!
+01-26 14:29:42.918 639-732/system_process W/InputDispatcher: channel 'input consumer (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-26 14:29:42.918 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (server)' was finalized without being disposed!
+01-26 14:29:42.918 639-732/system_process E/InputDispatcher: channel 'input consumer (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-26 14:29:42.918 639-647/system_process W/InputManager-JNI: Input channel object 'input consumer (server)' was disposed without first being unregistered with the input manager!
+01-26 14:29:42.918 639-647/system_process W/InputDispatcher: Attempted to unregister already unregistered input channel 'input consumer (server)'
+01-26 14:29:42.920 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (client)' was finalized without being disposed!
+    Input channel object 'input consumer (server)' was finalized without being disposed!
+01-26 14:29:42.920 639-647/system_process W/InputManager-JNI: Input channel object 'input consumer (server)' was disposed without first being unregistered with the input manager!
+01-26 14:29:42.920 639-732/system_process W/InputDispatcher: channel 'input consumer (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-26 14:29:42.920 639-732/system_process E/InputDispatcher: channel 'input consumer (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-26 14:29:42.920 639-647/system_process W/InputDispatcher: Attempted to unregister already unregistered input channel 'input consumer (server)'
+01-26 14:29:42.922 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (client)' was finalized without being disposed!
+    Input channel object 'input consumer (server)' was finalized without being disposed!
+01-26 14:29:42.922 639-647/system_process W/InputManager-JNI: Input channel object 'input consumer (server)' was disposed without first being unregistered with the input manager!
+01-26 14:29:42.922 639-732/system_process W/InputDispatcher: channel 'input consumer (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-26 14:29:42.922 639-732/system_process E/InputDispatcher: channel 'input consumer (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-26 14:29:42.922 639-647/system_process W/InputDispatcher: Attempted to unregister already unregistered input channel 'input consumer (server)'
+01-26 14:29:42.926 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (client)' was finalized without being disposed!
+    Input channel object 'input consumer (server)' was finalized without being disposed!
+01-26 14:29:42.926 639-647/system_process W/InputManager-JNI: Input channel object 'input consumer (server)' was disposed without first being unregistered with the input manager!
+01-26 14:29:42.927 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (client)' was finalized without being disposed!
+01-26 14:29:42.927 639-732/system_process W/InputDispatcher: channel 'input consumer (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-26 14:29:42.927 639-732/system_process E/InputDispatcher: channel 'input consumer (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-26 14:29:42.927 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (server)' was finalized without being disposed!
+01-26 14:29:42.928 639-647/system_process W/InputManager-JNI: Input channel object 'input consumer (server)' was disposed without first being unregistered with the input manager!
+01-26 14:29:42.928 639-647/system_process W/InputDispatcher: Attempted to unregister already unregistered input channel 'input consumer (server)'
+01-26 14:29:42.938 855-855/com.android.inputmethod.latin W/InputAttributes: No editor info for this field. Bug?
+01-26 14:29:42.967 855-1003/com.android.inputmethod.latin I/LatinIME:LogUtils: Dictionary info: dictionary = userunigram.en_US ; version = 1548512982 ; date = ?
+01-26 14:29:42.968 855-1003/com.android.inputmethod.latin E/ActivityThread: Failed to find provider info for user_dictionary
+01-26 14:29:42.969 855-1003/com.android.inputmethod.latin I/LatinIME:LogUtils: Dictionary info: dictionary = UserHistoryDictionary.en_US ; version = 1548512982 ; date = ?
+01-26 14:29:43.048 855-1003/com.android.inputmethod.latin I/LatinIME:LogUtils: Dictionary info: dictionary = main:en ; version = 54 ; date = 1414726273
+01-26 14:29:43.178 639-733/system_process I/InputReader: Reconfiguring input devices.  changes=0x00000020
+01-26 14:29:43.184 639-733/system_process I/InputReader: Reconfiguring input devices.  changes=0x00000010
+01-26 14:29:43.772 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (server)' was finalized without being disposed!
+01-26 14:29:43.772 639-647/system_process W/InputManager-JNI: Input channel object 'input consumer (server)' was disposed without first being unregistered with the input manager!
+01-26 14:29:43.772 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (client)' was finalized without being disposed!
+01-26 14:29:44.409 855-855/com.android.inputmethod.latin I/InputAttributes: InputType.TYPE_NULL is specified
+01-26 14:29:45.278 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (client)' was finalized without being disposed!
+    Input channel object 'input consumer (server)' was finalized without being disposed!
+01-26 14:29:45.278 639-732/system_process W/InputDispatcher: channel 'input consumer (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-26 14:29:45.278 639-647/system_process W/InputManager-JNI: Input channel object 'input consumer (server)' was disposed without first being unregistered with the input manager!
+01-26 14:29:45.278 639-732/system_process E/InputDispatcher: channel 'input consumer (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-26 14:29:45.279 639-647/system_process W/InputDispatcher: Attempted to unregister already unregistered input channel 'input consumer (server)'
+01-26 14:29:45.280 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (client)' was finalized without being disposed!
+01-26 14:29:45.280 639-732/system_process W/InputDispatcher: channel 'input consumer (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-26 14:29:45.280 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (server)' was finalized without being disposed!
+01-26 14:29:45.280 639-647/system_process W/InputManager-JNI: Input channel object 'input consumer (server)' was disposed without first being unregistered with the input manager!
+01-26 14:29:45.280 639-732/system_process E/InputDispatcher: channel 'input consumer (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-26 14:29:45.280 639-647/system_process W/InputDispatcher: Attempted to unregister already unregistered input channel 'input consumer (server)'
+01-26 14:29:45.281 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (client)' was finalized without being disposed!
+01-26 14:29:45.281 639-732/system_process W/InputDispatcher: channel 'input consumer (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-26 14:29:45.281 639-732/system_process E/InputDispatcher: channel 'input consumer (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-26 14:29:45.281 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (server)' was finalized without being disposed!
+01-26 14:29:45.281 639-647/system_process W/InputManager-JNI: Input channel object 'input consumer (server)' was disposed without first being unregistered with the input manager!
+01-26 14:29:45.281 639-647/system_process W/InputDispatcher: Attempted to unregister already unregistered input channel 'input consumer (server)'
+01-26 14:29:45.283 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (client)' was finalized without being disposed!
+01-26 14:29:45.283 639-732/system_process W/InputDispatcher: channel 'input consumer (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-26 14:29:45.283 639-732/system_process E/InputDispatcher: channel 'input consumer (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-26 14:29:45.283 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (server)' was finalized without being disposed!
+01-26 14:29:45.283 639-647/system_process W/InputManager-JNI: Input channel object 'input consumer (server)' was disposed without first being unregistered with the input manager!
+01-26 14:29:45.283 639-647/system_process W/InputDispatcher: Attempted to unregister already unregistered input channel 'input consumer (server)'
+01-26 14:29:45.285 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (client)' was finalized without being disposed!
+01-26 14:29:45.285 639-732/system_process W/InputDispatcher: channel 'input consumer (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-26 14:29:45.285 639-732/system_process E/InputDispatcher: channel 'input consumer (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-26 14:29:45.285 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (server)' was finalized without being disposed!
+01-26 14:29:45.285 639-647/system_process W/InputManager-JNI: Input channel object 'input consumer (server)' was disposed without first being unregistered with the input manager!
+01-26 14:29:45.285 639-647/system_process W/InputDispatcher: Attempted to unregister already unregistered input channel 'input consumer (server)'
+01-26 14:29:46.451 855-855/com.android.inputmethod.latin I/LatinIME: Timeout waiting for dictionary load
+01-26 14:29:47.109 855-855/com.android.inputmethod.latin I/SystemBroadcastReceiver: Boot has been completed
+    toggleAppIcon() : FLAG_SYSTEM = true
+01-26 14:30:46.746 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (client)' was finalized without being disposed!
+01-26 14:30:46.747 639-732/system_process W/InputDispatcher: channel 'input consumer (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-26 14:30:46.747 639-732/system_process E/InputDispatcher: channel 'input consumer (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-26 14:30:46.747 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (server)' was finalized without being disposed!
+01-26 14:30:46.747 639-647/system_process W/InputManager-JNI: Input channel object 'input consumer (server)' was disposed without first being unregistered with the input manager!
+01-26 14:30:46.747 639-647/system_process W/InputDispatcher: Attempted to unregister already unregistered input channel 'input consumer (server)'
+01-26 14:30:46.749 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (client)' was finalized without being disposed!
+    Input channel object 'input consumer (server)' was finalized without being disposed!
+01-26 14:30:46.749 639-647/system_process W/InputManager-JNI: Input channel object 'input consumer (server)' was disposed without first being unregistered with the input manager!
+01-26 14:30:46.749 639-732/system_process E/InputDispatcher: Received spurious receive callback for unknown input channel.  fd=251, events=0x9
+01-26 14:30:46.750 639-647/system_process W/InputChannel-JNI: Input channel object 'input consumer (client)' was finalized without being disposed!
+    Input channel object 'input consumer (server)' was finalized without being disposed!
+01-26 14:30:46.750 639-732/system_process W/InputDispatcher: channel 'input consumer (server)' ~ Consumer closed input channel or an error occurred.  events=0x9
+01-26 14:30:46.750 639-647/system_process W/InputManager-JNI: Input channel object 'input consumer (server)' was disposed without first being unregistered with the input manager!
+01-26 14:30:46.750 639-732/system_process E/InputDispatcher: channel 'input consumer (server)' ~ Channel is unrecoverably broken and will be disposed!
+01-26 14:30:46.751 639-647/system_process W/InputDispatcher: Attempted to unregister already unregistered input channel 'input consumer (server)'
+01-26 14:31:56.036 639-733/system_process I/InputReader: Detected input event buffer overrun for device DJI RC.
