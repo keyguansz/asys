@@ -1,0 +1,574 @@
+rk3399_android7.1_v1.00/frameworks/base$ sgrep Theme.Device
+./services/java/com/android/server/SystemServer.java:195:            com.android.internal.R.style.Theme_DeviceDefault_System;
+./services/core/java/com/android/server/InputMethodManagerService.java:3218:                    com.android.internal.R.style.Theme_DeviceDefault_Settings);
+./packages/SystemUI/AndroidManifest.xml:373:            android:theme="@android:style/Theme.DeviceDefault.Light.Panel"
+./packages/SystemUI/AndroidManifest.xml:492:            android:theme="@android:style/Theme.DeviceDefault.Dialog"
+./packages/SystemUI/res/values/styles.xml:220:    <style name="systemui_theme" parent="@*android:style/Theme.DeviceDefault.Settings.Dark" />
+./packages/SystemUI/res/values/styles.xml:222:    <style name="systemui_theme_remote_input" parent="@android:style/Theme.DeviceDefault.Light">
+./packages/SystemUI/res/values/styles.xml:226:    <style name="Theme.SystemUI.Dialog" parent="@android:style/Theme.DeviceDefault.Light.Dialog" />
+./packages/SystemUI/res/values/styles.xml:228:    <style name="Theme.SystemUI.Dialog.Alert" parent="@*android:style/Theme.DeviceDefault.Light.Dialog.Alert" />
+./packages/SystemUI/res/values/styles.xml:253:    <style name="Theme.AlertDialogHost" parent="android:Theme.DeviceDefault">
+./packages/SystemUI/res/values/styles.xml:317:    <style name="TunerSettings" parent="@android:style/Theme.DeviceDefault.Settings">
+./packages/SystemUI/res/values/styles.xml:322:    <style name="TunerPreferenceTheme" parent="@android:style/Theme.DeviceDefault.Settings">
+./packages/SystemUI/res/values/styles.xml:358:    <style name="edit_theme" parent="@*android:style/Theme.DeviceDefault.Settings.Dark">
+./packages/SystemUI/res/layout/notification_guts.xml:30:        android:theme="@*android:style/Theme.DeviceDefault.Light">
+./packages/SystemUI/res/layout/screen_pinning_request_land_phone.xml:24:    android:theme="@android:style/Theme.DeviceDefault.Light">
+./packages/SystemUI/res/layout/screen_pinning_request.xml:25:    android:theme="@android:style/Theme.DeviceDefault.Light">
+./packages/SystemUI/res/values-television/styles.xml:18:    <style name="Theme.SystemUI.Dialog.Alert" parent="@*android:style/Theme.DeviceDefault.Dialog.Alert" />
+./packages/SystemUI/src/com/android/systemui/statusbar/KeyboardShortcuts.java:121:        this.mContext = new ContextThemeWrapper(context, android.R.style.Theme_DeviceDefault_Light);
+./packages/Shell/AndroidManifest.xml:147:            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.Alert"
+./packages/PrintSpooler/res/values/themes.xml:18:    <style name="Theme.AddPrinterActivity" parent="@android:style/Theme.DeviceDefault.Light.Dialog">
+./packages/PrintSpooler/res/values/themes.xml:24:           parent="android:style/Theme.DeviceDefault.Light.DarkActionBar">
+./packages/PrintSpooler/res/values/themes.xml:28:    <style name="Theme.PrintActivity" parent="@android:style/Theme.DeviceDefault">
+./packages/Keyguard/test/AndroidManifest.xml:26:                android:theme="@android:style/Theme.DeviceDefault.Light">
+./packages/Keyguard/res/values/styles.xml:51:    <style name="PasswordTheme" parent="@android:style/Theme.DeviceDefault">
+./docs/html/sdk/api_diff/21/user_comments_for_20_to_21.xml:1663:  <identifier id="android.R.style.Theme_DeviceDefault_Settings"/>
+./core/java/com/android/internal/app/MediaRouteDialogPresenter.java:77:                    context, android.R.style.Theme_DeviceDefault_Dialog);
+./core/java/com/android/internal/app/MediaRouteDialogPresenter.java:83:                    context, android.R.style.Theme_DeviceDefault_Dialog);
+./core/java/com/android/internal/app/ResolverActivity.java:247:        setTheme(R.style.Theme_DeviceDefault_Resolver);
+./core/java/com/android/internal/app/MediaRouteChooserDialogFragment.java:47:        setStyle(STYLE_NORMAL, android.R.style.Theme_DeviceDefault_Dialog);
+./core/java/com/android/internal/app/MediaRouteControllerDialogFragment.java:42:        setStyle(STYLE_NORMAL, android.R.style.Theme_DeviceDefault_Dialog);
+./core/java/android/view/WindowManager.java:760:         * {@link android.R.style#Theme_DeviceDefault_NoActionBar_Fullscreen}, and
+./core/java/android/view/WindowManager.java:761:         * {@link android.R.style#Theme_DeviceDefault_Light_NoActionBar_Fullscreen}.</p>
+./core/java/android/view/WindowManager.java:853:         * {@link android.R.style#Theme_DeviceDefault_Wallpaper}, and
+./core/java/android/view/WindowManager.java:854:         * {@link android.R.style#Theme_DeviceDefault_Wallpaper_NoTitleBar}.</p>
+./core/java/android/view/WindowManager.java:932:         * {@link android.R.style#Theme_DeviceDefault_NoActionBar_Overscan}, and
+./core/java/android/view/WindowManager.java:933:         * {@link android.R.style#Theme_DeviceDefault_Light_NoActionBar_Overscan}.</p>
+./core/java/android/view/WindowManager.java:964:         * {@link android.R.style#Theme_DeviceDefault_NoActionBar_TranslucentDecor}, and
+./core/java/android/view/WindowManager.java:965:         * {@link android.R.style#Theme_DeviceDefault_Light_NoActionBar_TranslucentDecor}.</p>
+./core/java/android/view/WindowManager.java:983:         * {@link android.R.style#Theme_DeviceDefault_NoActionBar_TranslucentDecor}, and
+./core/java/android/view/WindowManager.java:984:         * {@link android.R.style#Theme_DeviceDefault_Light_NoActionBar_TranslucentDecor}.</p>
+./core/java/android/service/voice/VoiceInteractionSession.java:1276:                : com.android.internal.R.style.Theme_DeviceDefault_VoiceInteractionSession;
+./core/java/android/inputmethodservice/InputMethodService.java:782:                android.R.style.Theme_DeviceDefault_InputMethod,
+./core/java/android/inputmethodservice/InputMethodService.java:783:                android.R.style.Theme_DeviceDefault_InputMethod);
+./core/java/android/os/Build.java:451:         *      {@link android.R.style#Theme_DeviceDefault}. This may be the
+./core/java/android/os/Build.java:458:         *      {@link android.R.style#Theme_DeviceDefault} family.
+./core/java/android/content/res/Resources.java:144:                com.android.internal.R.style.Theme_DeviceDefault,
+./core/java/android/content/res/Resources.java:145:                com.android.internal.R.style.Theme_DeviceDefault_Light_DarkActionBar);
+./core/java/android/app/Notification.java:6055:         *     android:theme=&quot;@android:style/Theme.DeviceDefault.Light&quot; /&gt;</pre>
+./core/java/android/app/SystemServiceRegistry.java:365:                                    com.android.internal.R.style.Theme_DeviceDefault_Dialog,
+./core/java/android/app/SystemServiceRegistry.java:366:                                    com.android.internal.R.style.Theme_DeviceDefault_Light_Dialog)),
+./core/java/android/app/AlertDialog.java:104:     * @deprecated Use {@link android.R.style#Theme_DeviceDefault_Dialog_Alert}.
+./core/java/android/app/AlertDialog.java:113:     * @deprecated Use {@link android.R.style#Theme_DeviceDefault_Light_Dialog_Alert}.
+./core/java/android/app/AlertDialog.java:215:            return R.style.Theme_DeviceDefault_Dialog_Alert;
+./core/java/android/app/AlertDialog.java:217:            return R.style.Theme_DeviceDefault_Light_Dialog_Alert;
+./core/java/android/app/DialogFragment.java:207:            mTheme = com.android.internal.R.style.Theme_DeviceDefault_Dialog_NoFrame;
+./core/java/android/accounts/ChooseTypeAndAccountActivity.java:402:        setTheme(R.style.Theme_DeviceDefault_Light_Dialog_NoActionBar);
+./core/res/AndroidManifest.xml:3132:                 android:theme="@style/Theme.DeviceDefault.Light.DarkActionBar"
+./core/res/AndroidManifest.xml:3136:                android:theme="@style/Theme.DeviceDefault.Resolver"
+./core/res/AndroidManifest.xml:3169:                android:theme="@style/Theme.DeviceDefault.Light.Dialog"
+./core/res/AndroidManifest.xml:3202:                android:theme="@style/Theme.DeviceDefault.Light.Dialog"
+./core/res/AndroidManifest.xml:3210:                android:theme="@style/Theme.DeviceDefault.Light.Dialog"
+./core/res/AndroidManifest.xml:3217:                android:theme="@style/Theme.DeviceDefault.Light.Dialog"
+./core/res/AndroidManifest.xml:3225:                android:theme="@style/Theme.DeviceDefault.Light.Dialog.NoActionBar"
+./core/res/AndroidManifest.xml:3232:                android:theme="@style/Theme.DeviceDefault.Light.DialogWhenLarge"
+./core/res/AndroidManifest.xml:3237:               android:theme="@style/Theme.DeviceDefault.Light.Dialog"
+./core/res/AndroidManifest.xml:3257:                android:theme="@style/Theme.DeviceDefault.Light.Dialog.Alert"
+./core/res/AndroidManifest.xml:3278:                android:theme="@style/Theme.DeviceDefault.Light.Dialog.Alert">
+./core/res/AndroidManifest.xml:3286:                android:theme="@style/Theme.DeviceDefault.Light.Dialog.Alert"
+./core/res/res/values/public.xml:1788:  <public type="style" name="Theme.DeviceDefault" id="0x01030128" />
+./core/res/res/values/public.xml:1789:  <public type="style" name="Theme.DeviceDefault.NoActionBar" id="0x01030129" />
+./core/res/res/values/public.xml:1790:  <public type="style" name="Theme.DeviceDefault.NoActionBar.Fullscreen" id="0x0103012a" />
+./core/res/res/values/public.xml:1791:  <public type="style" name="Theme.DeviceDefault.Light" id="0x0103012b" />
+./core/res/res/values/public.xml:1792:  <public type="style" name="Theme.DeviceDefault.Light.NoActionBar" id="0x0103012c" />
+./core/res/res/values/public.xml:1793:  <public type="style" name="Theme.DeviceDefault.Light.NoActionBar.Fullscreen" id="0x0103012d" />
+./core/res/res/values/public.xml:1794:  <public type="style" name="Theme.DeviceDefault.Dialog" id="0x0103012e" />
+./core/res/res/values/public.xml:1795:  <public type="style" name="Theme.DeviceDefault.Dialog.MinWidth" id="0x0103012f" />
+./core/res/res/values/public.xml:1796:  <public type="style" name="Theme.DeviceDefault.Dialog.NoActionBar" id="0x01030130" />
+./core/res/res/values/public.xml:1797:  <public type="style" name="Theme.DeviceDefault.Dialog.NoActionBar.MinWidth" id="0x01030131" />
+./core/res/res/values/public.xml:1798:  <public type="style" name="Theme.DeviceDefault.Light.Dialog" id="0x01030132" />
+./core/res/res/values/public.xml:1799:  <public type="style" name="Theme.DeviceDefault.Light.Dialog.MinWidth" id="0x01030133" />
+./core/res/res/values/public.xml:1800:  <public type="style" name="Theme.DeviceDefault.Light.Dialog.NoActionBar" id="0x01030134" />
+./core/res/res/values/public.xml:1801:  <public type="style" name="Theme.DeviceDefault.Light.Dialog.NoActionBar.MinWidth" id="0x01030135" />
+./core/res/res/values/public.xml:1802:  <public type="style" name="Theme.DeviceDefault.DialogWhenLarge" id="0x01030136" />
+./core/res/res/values/public.xml:1803:  <public type="style" name="Theme.DeviceDefault.DialogWhenLarge.NoActionBar" id="0x01030137" />
+./core/res/res/values/public.xml:1804:  <public type="style" name="Theme.DeviceDefault.Light.DialogWhenLarge" id="0x01030138" />
+./core/res/res/values/public.xml:1805:  <public type="style" name="Theme.DeviceDefault.Light.DialogWhenLarge.NoActionBar" id="0x01030139" />
+./core/res/res/values/public.xml:1806:  <public type="style" name="Theme.DeviceDefault.Panel" id="0x0103013a" />
+./core/res/res/values/public.xml:1807:  <public type="style" name="Theme.DeviceDefault.Light.Panel" id="0x0103013b" />
+./core/res/res/values/public.xml:1808:  <public type="style" name="Theme.DeviceDefault.Wallpaper" id="0x0103013c" />
+./core/res/res/values/public.xml:1809:  <public type="style" name="Theme.DeviceDefault.Wallpaper.NoTitleBar" id="0x0103013d" />
+./core/res/res/values/public.xml:1810:  <public type="style" name="Theme.DeviceDefault.InputMethod" id="0x0103013e" />
+./core/res/res/values/public.xml:1811:  <public type="style" name="Theme.DeviceDefault.Light.DarkActionBar" id="0x0103013f" />
+./core/res/res/values/public.xml:2055:  <public type="style" name="Theme.DeviceDefault.NoActionBar.Overscan" id="0x010301df" />
+./core/res/res/values/public.xml:2056:  <public type="style" name="Theme.DeviceDefault.Light.NoActionBar.Overscan" id="0x010301e0" />
+./core/res/res/values/public.xml:2089:  <public type="style" name="Theme.DeviceDefault.NoActionBar.TranslucentDecor" id="0x010301e3" />
+./core/res/res/values/public.xml:2090:  <public type="style" name="Theme.DeviceDefault.Light.NoActionBar.TranslucentDecor" id="0x010301e4" />
+./core/res/res/values/public.xml:2368:    <public type="style" name="Theme.DeviceDefault.Settings" id="0x01030223" />
+./core/res/res/values/public.xml:2603:    <public type="style" name="Theme.DeviceDefault.Dialog.Alert" id="0x010302d1" />
+./core/res/res/values/public.xml:2604:    <public type="style" name="Theme.DeviceDefault.Light.Dialog.Alert" id="0x010302d2" />
+./core/res/res/values/symbols.xml:1433:  <java-symbol type="style" name="Theme.DeviceDefault.Dialog.Alert" />
+./core/res/res/values/symbols.xml:1434:  <java-symbol type="style" name="Theme.DeviceDefault.Light.Dialog.Alert" />
+./core/res/res/values/symbols.xml:1445:  <java-symbol type="style" name="Theme.DeviceDefault.Dialog.NoFrame" />
+./core/res/res/values/symbols.xml:1447:  <java-symbol type="style" name="Theme.DeviceDefault.VoiceInteractionSession" />
+./core/res/res/values/symbols.xml:2234:  <java-symbol type="style" name="Theme.DeviceDefault.Resolver" />
+./core/res/res/values/symbols.xml:2235:  <java-symbol type="style" name="Theme.DeviceDefault.System" />
+./core/res/res/values/themes_holo.xml:41:         #Theme_Holo} or {@link #Theme_DeviceDefault}.</p>
+./core/res/res/values/themes_holo.xml:46:         with API level 14, the default system theme is supplied by {@link #Theme_DeviceDefault},
+./core/res/res/values/themes_device_defaults.xml:52:    <style name="Theme.DeviceDefaultBase" parent="Theme.Material" >
+./core/res/res/values/themes_device_defaults.xml:90:        <item name="dialogTheme">@style/Theme.DeviceDefault.Dialog</item>
+./core/res/res/values/themes_device_defaults.xml:93:        <item name="alertDialogTheme">@style/Theme.DeviceDefault.Dialog.Alert</item>
+./core/res/res/values/themes_device_defaults.xml:97:        <item name="presentationTheme">@style/Theme.DeviceDefault.Dialog.Presentation</item>
+./core/res/res/values/themes_device_defaults.xml:183:        <item name="searchDialogTheme">@style/Theme.DeviceDefault.SearchBar</item>
+./core/res/res/values/themes_device_defaults.xml:209:    <style name="Theme.DeviceDefault" parent="Theme.DeviceDefaultBase" />
+./core/res/res/values/themes_device_defaults.xml:211:    <!-- Variant of {@link #Theme_DeviceDefault} with no action bar -->
+./core/res/res/values/themes_device_defaults.xml:212:    <style name="Theme.DeviceDefault.NoActionBar" parent="Theme.Material.NoActionBar">
+./core/res/res/values/themes_device_defaults.xml:219:    <!-- Variant of {@link #Theme_DeviceDefault} with no action bar and no status bar.  This theme
+./core/res/res/values/themes_device_defaults.xml:221:    <style name="Theme.DeviceDefault.NoActionBar.Fullscreen" parent="Theme.Material.NoActionBar.Fullscreen">
+./core/res/res/values/themes_device_defaults.xml:228:    <!-- Variant of {@link #Theme_DeviceDefault} with no action bar and no status bar and
+./core/res/res/values/themes_device_defaults.xml:232:    <style name="Theme.DeviceDefault.NoActionBar.Overscan" parent="Theme.Material.NoActionBar.Overscan">
+./core/res/res/values/themes_device_defaults.xml:239:    <!-- Variant of {@link #Theme_DeviceDefault} that has no title bar and translucent
+./core/res/res/values/themes_device_defaults.xml:242:    <style name="Theme.DeviceDefault.NoActionBar.TranslucentDecor" parent="Theme.Material.NoActionBar.TranslucentDecor">
+./core/res/res/values/themes_device_defaults.xml:252:    <style name="Theme.DeviceDefault.Dialog" parent="Theme.Material.Dialog" >
+./core/res/res/values/themes_device_defaults.xml:268:    <!-- Variant of {@link #Theme_DeviceDefault_Dialog} that has a nice minimum width for a
+./core/res/res/values/themes_device_defaults.xml:270:    <style name="Theme.DeviceDefault.Dialog.MinWidth" parent="Theme.Material.Dialog.MinWidth">
+./core/res/res/values/themes_device_defaults.xml:277:    <!-- Variant of {@link #Theme_DeviceDefault_Dialog} without an action bar -->
+./core/res/res/values/themes_device_defaults.xml:278:    <style name="Theme.DeviceDefault.Dialog.NoActionBar" parent="Theme.Material.Dialog.NoActionBar">
+./core/res/res/values/themes_device_defaults.xml:285:    <!-- Variant of {@link #Theme_DeviceDefault_Dialog_NoActionBar} that has a nice minimum width
+./core/res/res/values/themes_device_defaults.xml:287:    <style name="Theme.DeviceDefault.Dialog.NoActionBar.MinWidth" parent="Theme.Material.Dialog.NoActionBar.MinWidth">
+./core/res/res/values/themes_device_defaults.xml:294:    <!-- Variant of Theme.DeviceDefault.Dialog that has a fixed size. -->
+./core/res/res/values/themes_device_defaults.xml:295:    <style name="Theme.DeviceDefault.Dialog.FixedSize">
+./core/res/res/values/themes_device_defaults.xml:302:    <!-- Variant of Theme.DeviceDefault.Dialog.NoActionBar that has a fixed size. -->
+./core/res/res/values/themes_device_defaults.xml:303:    <style name="Theme.DeviceDefault.Dialog.NoActionBar.FixedSize">
+./core/res/res/values/themes_device_defaults.xml:312:    <style name="Theme.DeviceDefault.DialogWhenLarge" parent="Theme.Material.DialogWhenLarge">
+./core/res/res/values/themes_device_defaults.xml:322:    <style name="Theme.DeviceDefault.DialogWhenLarge.NoActionBar" parent="Theme.Material.DialogWhenLarge.NoActionBar">
+./core/res/res/values/themes_device_defaults.xml:330:    <style name="Theme.DeviceDefault.Dialog.Presentation" parent="Theme.Material.Dialog.Presentation">
+./core/res/res/values/themes_device_defaults.xml:340:    <style name="Theme.DeviceDefault.Panel" parent="Theme.Material.Panel">
+./core/res/res/values/themes_device_defaults.xml:349:    <style name="Theme.DeviceDefault.Wallpaper" parent="Theme.Material.Wallpaper">
+./core/res/res/values/themes_device_defaults.xml:358:    <style name="Theme.DeviceDefault.Wallpaper.NoTitleBar" parent="Theme.Material.Wallpaper.NoTitleBar">
+./core/res/res/values/themes_device_defaults.xml:367:    <style name="Theme.DeviceDefault.InputMethod" parent="Theme.Material.InputMethod">
+./core/res/res/values/themes_device_defaults.xml:376:    <style name="Theme.DeviceDefault.VoiceInteractionSession" parent="Theme.Material.VoiceInteractionSession">
+./core/res/res/values/themes_device_defaults.xml:383:    <style name="Theme.DeviceDefault.Dialog.Alert" parent="Theme.Material.Dialog.Alert">
+./core/res/res/values/themes_device_defaults.xml:392:    <style name="Theme.DeviceDefault.SearchBar" parent="Theme.Material.SearchBar">
+./core/res/res/values/themes_device_defaults.xml:399:    <style name="Theme.DeviceDefault.Dialog.NoFrame" parent="Theme.Material.Dialog.NoFrame">
+./core/res/res/values/themes_device_defaults.xml:406:    <!-- Variant of {@link #Theme_DeviceDefault} with a light-colored style -->
+./core/res/res/values/themes_device_defaults.xml:407:    <style name="Theme.DeviceDefault.Light" parent="Theme.Material.Light" >
+./core/res/res/values/themes_device_defaults.xml:443:        <item name="dialogTheme">@style/Theme.DeviceDefault.Light.Dialog</item>
+./core/res/res/values/themes_device_defaults.xml:446:        <item name="alertDialogTheme">@style/Theme.DeviceDefault.Light.Dialog.Alert</item>
+./core/res/res/values/themes_device_defaults.xml:450:        <item name="presentationTheme">@style/Theme.DeviceDefault.Light.Dialog.Presentation</item>
+./core/res/res/values/themes_device_defaults.xml:536:        <item name="searchDialogTheme">@style/Theme.DeviceDefault.Light.SearchBar</item>
+./core/res/res/values/themes_device_defaults.xml:560:    <style name="Theme.DeviceDefault.Light.DarkActionBar" parent="Theme.Material.Light.DarkActionBar">
+./core/res/res/values/themes_device_defaults.xml:567:    <!-- Variant of {@link #Theme_DeviceDefault_Light} with no action bar -->
+./core/res/res/values/themes_device_defaults.xml:568:    <style name="Theme.DeviceDefault.Light.NoActionBar" parent="Theme.Material.Light.NoActionBar">
+./core/res/res/values/themes_device_defaults.xml:575:    <!-- Variant of {@link #Theme_DeviceDefault_Light} with no action bar and no status bar.
+./core/res/res/values/themes_device_defaults.xml:577:    <style name="Theme.DeviceDefault.Light.NoActionBar.Fullscreen" parent="Theme.Material.Light.NoActionBar.Fullscreen">
+./core/res/res/values/themes_device_defaults.xml:584:    <!-- Variant of {@link #Theme_DeviceDefault_Light} with no action bar and no status bar
+./core/res/res/values/themes_device_defaults.xml:588:    <style name="Theme.DeviceDefault.Light.NoActionBar.Overscan" parent="Theme.Material.Light.NoActionBar.Overscan">
+./core/res/res/values/themes_device_defaults.xml:595:    <!-- Variant of {@link #Theme_DeviceDefault_Light} that has no title bar and translucent
+./core/res/res/values/themes_device_defaults.xml:598:    <style name="Theme.DeviceDefault.Light.NoActionBar.TranslucentDecor" parent="Theme.Material.Light.NoActionBar.TranslucentDecor">
+./core/res/res/values/themes_device_defaults.xml:608:    <style name="Theme.DeviceDefault.Light.Dialog" parent="Theme.Material.Light.Dialog">
+./core/res/res/values/themes_device_defaults.xml:624:    <!-- Variant of {@link #Theme_DeviceDefault_Light_Dialog} that has a nice minimum width for a
+./core/res/res/values/themes_device_defaults.xml:626:    <style name="Theme.DeviceDefault.Light.Dialog.MinWidth" parent="Theme.Material.Light.Dialog.MinWidth">
+./core/res/res/values/themes_device_defaults.xml:633:     <!-- Variant of {@link #Theme_DeviceDefault_Light_Dialog} without an action bar -->
+./core/res/res/values/themes_device_defaults.xml:634:    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar" parent="Theme.Material.Light.Dialog.NoActionBar">
+./core/res/res/values/themes_device_defaults.xml:641:    <!-- Variant of {@link #Theme_DeviceDefault_Light_Dialog_NoActionBar} that has a nice minimum
+./core/res/res/values/themes_device_defaults.xml:643:    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar.MinWidth" parent="Theme.Material.Light.Dialog.NoActionBar.MinWidth">
+./core/res/res/values/themes_device_defaults.xml:650:    <!-- Variant of Theme.DeviceDefault.Dialog that has a fixed size. -->
+./core/res/res/values/themes_device_defaults.xml:651:    <style name="Theme.DeviceDefault.Light.Dialog.FixedSize">
+./core/res/res/values/themes_device_defaults.xml:663:    <!-- Variant of Theme.DeviceDefault.Dialog.NoActionBar that has a fixed size. -->
+./core/res/res/values/themes_device_defaults.xml:664:    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar.FixedSize">
+./core/res/res/values/themes_device_defaults.xml:678:    <style name="Theme.DeviceDefault.Light.DialogWhenLarge" parent="Theme.Material.Light.DialogWhenLarge">
+./core/res/res/values/themes_device_defaults.xml:688:    <style name="Theme.DeviceDefault.Light.DialogWhenLarge.NoActionBar" parent="Theme.Material.Light.DialogWhenLarge.NoActionBar">
+./core/res/res/values/themes_device_defaults.xml:696:    <style name="Theme.DeviceDefault.Light.Dialog.Presentation" parent="Theme.Material.Light.Dialog.Presentation">
+./core/res/res/values/themes_device_defaults.xml:706:    <style name="Theme.DeviceDefault.Light.Panel" parent="Theme.Material.Light.Panel">
+./core/res/res/values/themes_device_defaults.xml:713:    <style name="Theme.DeviceDefault.Light.Dialog.Alert" parent="Theme.Material.Light.Dialog.Alert">
+./core/res/res/values/themes_device_defaults.xml:722:    <style name="Theme.DeviceDefault.Light.SearchBar" parent="Theme.Material.Light.SearchBar">
+./core/res/res/values/themes_device_defaults.xml:729:    <style name="Theme.DeviceDefault.Light.Voice" parent="Theme.Material.Light.Voice">
+./core/res/res/values/themes_device_defaults.xml:737:    <style name="Theme.DeviceDefault.Settings" parent="Theme.Material.Settings">
+./core/res/res/values/themes_device_defaults.xml:747:         Theme.DeviceDefault.Settings.  -->
+./core/res/res/values/themes_device_defaults.xml:748:    <style name="Theme.DeviceDefault.Settings.Dark" parent="Theme.Material">
+./core/res/res/values/themes_device_defaults.xml:756:    <!-- Variant of {@link #Theme_DeviceDefault_Settings_Dark} with no action bar -->
+./core/res/res/values/themes_device_defaults.xml:757:    <style name="Theme.DeviceDefault.Settings.Dark.NoActionBar" parent="Theme.Material.NoActionBar">
+./core/res/res/values/themes_device_defaults.xml:765:    <style name="Theme.DeviceDefault.Settings.Dialog" parent="Theme.Material.Settings.Dialog">
+./core/res/res/values/themes_device_defaults.xml:773:    <style name="Theme.DeviceDefault.Settings.DialogWhenLarge" parent="Theme.Material.Settings.DialogWhenLarge">
+./core/res/res/values/themes_device_defaults.xml:781:    <style name="Theme.DeviceDefault.Settings.Dialog.Alert" parent="Theme.Material.Settings.Dialog.Alert">
+./core/res/res/values/themes_device_defaults.xml:790:    <style name="Theme.DeviceDefault.Resolver" parent="Theme.Material.Light">
+./core/res/res/values/themes_device_defaults.xml:874:    <style name="Theme.DeviceDefault.System" parent="Theme.DeviceDefault.Light.DarkActionBar" />
+./core/res/res/values/themes_device_defaults.xml:890:    <style name="Dji.Theme.Dialog" parent="Theme.DeviceDefault.Light.Dialog.Alert">
+./core/res/res/values/themes.xml:41:         #Theme_Holo} or {@link #Theme_DeviceDefault}.</p>
+./core/res/res/values/themes.xml:226:        <item name="presentationTheme">@style/Theme.DeviceDefault.Dialog.Presentation</item>
+./core/res/res/values/themes.xml:844:    <style name="Theme.Dialog.AppError" parent="Theme.DeviceDefault.Light.Dialog.Alert">
+./core/res/res/values/themes.xml:889:    <style name="Theme.Dialog.RecentApplications" parent="Theme.DeviceDefault.Light.Dialog">
+./core/res/res/values/themes.xml:899:    <style name="Theme.Toast" parent="Theme.DeviceDefault.Dialog">
+./core/res/res/values-large/themes_device_defaults.xml:34:    <style name="Theme.DeviceDefault.DialogWhenLarge" parent="@style/Theme.DeviceDefault.Dialog.FixedSize">
+./core/res/res/values-large/themes_device_defaults.xml:37:    <style name="Theme.DeviceDefault.DialogWhenLarge.NoActionBar" parent="@style/Theme.DeviceDefault.Dialog.NoActionBar.FixedSize">
+./core/res/res/values-large/themes_device_defaults.xml:40:    <style name="Theme.DeviceDefault.Light.DialogWhenLarge" parent="@style/Theme.DeviceDefault.Light.Dialog.FixedSize" />
+./core/res/res/values-large/themes_device_defaults.xml:41:    <style name="Theme.DeviceDefault.Light.DialogWhenLarge.NoActionBar" parent="@style/Theme.DeviceDefault.Light.Dialog.NoActionBar.FixedSize" />
+key@RDCMP33-in:~/work/rk3399_android7.1_v1.00/frameworks/base$ sgrep Theme.Device
+./services/java/com/android/server/SystemServer.java:195:            com.android.internal.R.style.Theme_DeviceDefault_System;
+./services/core/java/com/android/server/InputMethodManagerService.java:3218:                    com.android.internal.R.style.Theme_DeviceDefault_Settings);
+./packages/SystemUI/AndroidManifest.xml:373:            android:theme="@android:style/Theme.DeviceDefault.Light.Panel"
+./packages/SystemUI/AndroidManifest.xml:492:            android:theme="@android:style/Theme.DeviceDefault.Dialog"
+./packages/SystemUI/res/values/styles.xml:220:    <style name="systemui_theme" parent="@*android:style/Theme.DeviceDefault.Settings.Dark" />
+./packages/SystemUI/res/values/styles.xml:222:    <style name="systemui_theme_remote_input" parent="@android:style/Theme.DeviceDefault.Light">
+./packages/SystemUI/res/values/styles.xml:226:    <style name="Theme.SystemUI.Dialog" parent="@android:style/Theme.DeviceDefault.Light.Dialog" />
+./packages/SystemUI/res/values/styles.xml:228:    <style name="Theme.SystemUI.Dialog.Alert" parent="@*android:style/Theme.DeviceDefault.Light.Dialog.Alert" />
+./packages/SystemUI/res/values/styles.xml:253:    <style name="Theme.AlertDialogHost" parent="android:Theme.DeviceDefault">
+./packages/SystemUI/res/values/styles.xml:317:    <style name="TunerSettings" parent="@android:style/Theme.DeviceDefault.Settings">
+./packages/SystemUI/res/values/styles.xml:322:    <style name="TunerPreferenceTheme" parent="@android:style/Theme.DeviceDefault.Settings">
+./packages/SystemUI/res/values/styles.xml:358:    <style name="edit_theme" parent="@*android:style/Theme.DeviceDefault.Settings.Dark">
+./packages/SystemUI/res/layout/notification_guts.xml:30:        android:theme="@*android:style/Theme.DeviceDefault.Light">
+./packages/SystemUI/res/layout/screen_pinning_request_land_phone.xml:24:    android:theme="@android:style/Theme.DeviceDefault.Light">
+./packages/SystemUI/res/layout/screen_pinning_request.xml:25:    android:theme="@android:style/Theme.DeviceDefault.Light">
+./packages/SystemUI/res/values-television/styles.xml:18:    <style name="Theme.SystemUI.Dialog.Alert" parent="@*android:style/Theme.DeviceDefault.Dialog.Alert" />
+./packages/SystemUI/src/com/android/systemui/statusbar/KeyboardShortcuts.java:121:        this.mContext = new ContextThemeWrapper(context, android.R.style.Theme_DeviceDefault_Light);
+./packages/Shell/AndroidManifest.xml:147:            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.Alert"
+./packages/PrintSpooler/res/values/themes.xml:18:    <style name="Theme.AddPrinterActivity" parent="@android:style/Theme.DeviceDefault.Light.Dialog">
+./packages/PrintSpooler/res/values/themes.xml:24:           parent="android:style/Theme.DeviceDefault.Light.DarkActionBar">
+./packages/PrintSpooler/res/values/themes.xml:28:    <style name="Theme.PrintActivity" parent="@android:style/Theme.DeviceDefault">
+./packages/Keyguard/test/AndroidManifest.xml:26:                android:theme="@android:style/Theme.DeviceDefault.Light">
+./packages/Keyguard/res/values/styles.xml:51:    <style name="PasswordTheme" parent="@android:style/Theme.DeviceDefault">
+./docs/html/sdk/api_diff/21/user_comments_for_20_to_21.xml:1663:  <identifier id="android.R.style.Theme_DeviceDefault_Settings"/>
+./core/java/com/android/internal/app/MediaRouteDialogPresenter.java:77:                    context, android.R.style.Theme_DeviceDefault_Dialog);
+./core/java/com/android/internal/app/MediaRouteDialogPresenter.java:83:                    context, android.R.style.Theme_DeviceDefault_Dialog);
+./core/java/com/android/internal/app/ResolverActivity.java:247:        setTheme(R.style.Theme_DeviceDefault_Resolver);
+./core/java/com/android/internal/app/MediaRouteChooserDialogFragment.java:47:        setStyle(STYLE_NORMAL, android.R.style.Theme_DeviceDefault_Dialog);
+./core/java/com/android/internal/app/MediaRouteControllerDialogFragment.java:42:        setStyle(STYLE_NORMAL, android.R.style.Theme_DeviceDefault_Dialog);
+./core/java/android/view/WindowManager.java:760:         * {@link android.R.style#Theme_DeviceDefault_NoActionBar_Fullscreen}, and
+./core/java/android/view/WindowManager.java:761:         * {@link android.R.style#Theme_DeviceDefault_Light_NoActionBar_Fullscreen}.</p>
+./core/java/android/view/WindowManager.java:853:         * {@link android.R.style#Theme_DeviceDefault_Wallpaper}, and
+./core/java/android/view/WindowManager.java:854:         * {@link android.R.style#Theme_DeviceDefault_Wallpaper_NoTitleBar}.</p>
+./core/java/android/view/WindowManager.java:932:         * {@link android.R.style#Theme_DeviceDefault_NoActionBar_Overscan}, and
+./core/java/android/view/WindowManager.java:933:         * {@link android.R.style#Theme_DeviceDefault_Light_NoActionBar_Overscan}.</p>
+./core/java/android/view/WindowManager.java:964:         * {@link android.R.style#Theme_DeviceDefault_NoActionBar_TranslucentDecor}, and
+./core/java/android/view/WindowManager.java:965:         * {@link android.R.style#Theme_DeviceDefault_Light_NoActionBar_TranslucentDecor}.</p>
+./core/java/android/view/WindowManager.java:983:         * {@link android.R.style#Theme_DeviceDefault_NoActionBar_TranslucentDecor}, and
+./core/java/android/view/WindowManager.java:984:         * {@link android.R.style#Theme_DeviceDefault_Light_NoActionBar_TranslucentDecor}.</p>
+./core/java/android/service/voice/VoiceInteractionSession.java:1276:                : com.android.internal.R.style.Theme_DeviceDefault_VoiceInteractionSession;
+./core/java/android/inputmethodservice/InputMethodService.java:782:                android.R.style.Theme_DeviceDefault_InputMethod,
+./core/java/android/inputmethodservice/InputMethodService.java:783:                android.R.style.Theme_DeviceDefault_InputMethod);
+./core/java/android/os/Build.java:451:         *      {@link android.R.style#Theme_DeviceDefault}. This may be the
+./core/java/android/os/Build.java:458:         *      {@link android.R.style#Theme_DeviceDefault} family.
+./core/java/android/content/res/Resources.java:144:                com.android.internal.R.style.Theme_DeviceDefault,
+./core/java/android/content/res/Resources.java:145:                com.android.internal.R.style.Theme_DeviceDefault_Light_DarkActionBar);
+./core/java/android/app/Notification.java:6055:         *     android:theme=&quot;@android:style/Theme.DeviceDefault.Light&quot; /&gt;</pre>
+./core/java/android/app/SystemServiceRegistry.java:365:                                    com.android.internal.R.style.Theme_DeviceDefault_Dialog,
+./core/java/android/app/SystemServiceRegistry.java:366:                                    com.android.internal.R.style.Theme_DeviceDefault_Light_Dialog)),
+./core/java/android/app/AlertDialog.java:104:     * @deprecated Use {@link android.R.style#Theme_DeviceDefault_Dialog_Alert}.
+./core/java/android/app/AlertDialog.java:113:     * @deprecated Use {@link android.R.style#Theme_DeviceDefault_Light_Dialog_Alert}.
+./core/java/android/app/AlertDialog.java:215:            return R.style.Theme_DeviceDefault_Dialog_Alert;
+./core/java/android/app/AlertDialog.java:217:            return R.style.Theme_DeviceDefault_Light_Dialog_Alert;
+./core/java/android/app/DialogFragment.java:207:            mTheme = com.android.internal.R.style.Theme_DeviceDefault_Dialog_NoFrame;
+./core/java/android/accounts/ChooseTypeAndAccountActivity.java:402:        setTheme(R.style.Theme_DeviceDefault_Light_Dialog_NoActionBar);
+./core/res/AndroidManifest.xml:3132:                 android:theme="@style/Theme.DeviceDefault.Light.DarkActionBar"
+./core/res/AndroidManifest.xml:3136:                android:theme="@style/Theme.DeviceDefault.Resolver"
+./core/res/AndroidManifest.xml:3169:                android:theme="@style/Theme.DeviceDefault.Light.Dialog"
+./core/res/AndroidManifest.xml:3202:                android:theme="@style/Theme.DeviceDefault.Light.Dialog"
+./core/res/AndroidManifest.xml:3210:                android:theme="@style/Theme.DeviceDefault.Light.Dialog"
+./core/res/AndroidManifest.xml:3217:                android:theme="@style/Theme.DeviceDefault.Light.Dialog"
+./core/res/AndroidManifest.xml:3225:                android:theme="@style/Theme.DeviceDefault.Light.Dialog.NoActionBar"
+./core/res/AndroidManifest.xml:3232:                android:theme="@style/Theme.DeviceDefault.Light.DialogWhenLarge"
+./core/res/AndroidManifest.xml:3237:               android:theme="@style/Theme.DeviceDefault.Light.Dialog"
+./core/res/AndroidManifest.xml:3257:                android:theme="@style/Theme.DeviceDefault.Light.Dialog.Alert"
+./core/res/AndroidManifest.xml:3278:                android:theme="@style/Theme.DeviceDefault.Light.Dialog.Alert">
+./core/res/AndroidManifest.xml:3286:                android:theme="@style/Theme.DeviceDefault.Light.Dialog.Alert"
+./core/res/res/values/public.xml:1788:  <public type="style" name="Theme.DeviceDefault" id="0x01030128" />
+./core/res/res/values/public.xml:1789:  <public type="style" name="Theme.DeviceDefault.NoActionBar" id="0x01030129" />
+./core/res/res/values/public.xml:1790:  <public type="style" name="Theme.DeviceDefault.NoActionBar.Fullscreen" id="0x0103012a" />
+./core/res/res/values/public.xml:1791:  <public type="style" name="Theme.DeviceDefault.Light" id="0x0103012b" />
+./core/res/res/values/public.xml:1792:  <public type="style" name="Theme.DeviceDefault.Light.NoActionBar" id="0x0103012c" />
+./core/res/res/values/public.xml:1793:  <public type="style" name="Theme.DeviceDefault.Light.NoActionBar.Fullscreen" id="0x0103012d" />
+./core/res/res/values/public.xml:1794:  <public type="style" name="Theme.DeviceDefault.Dialog" id="0x0103012e" />
+./core/res/res/values/public.xml:1795:  <public type="style" name="Theme.DeviceDefault.Dialog.MinWidth" id="0x0103012f" />
+./core/res/res/values/public.xml:1796:  <public type="style" name="Theme.DeviceDefault.Dialog.NoActionBar" id="0x01030130" />
+./core/res/res/values/public.xml:1797:  <public type="style" name="Theme.DeviceDefault.Dialog.NoActionBar.MinWidth" id="0x01030131" />
+./core/res/res/values/public.xml:1798:  <public type="style" name="Theme.DeviceDefault.Light.Dialog" id="0x01030132" />
+./core/res/res/values/public.xml:1799:  <public type="style" name="Theme.DeviceDefault.Light.Dialog.MinWidth" id="0x01030133" />
+./core/res/res/values/public.xml:1800:  <public type="style" name="Theme.DeviceDefault.Light.Dialog.NoActionBar" id="0x01030134" />
+./core/res/res/values/public.xml:1801:  <public type="style" name="Theme.DeviceDefault.Light.Dialog.NoActionBar.MinWidth" id="0x01030135" />
+./core/res/res/values/public.xml:1802:  <public type="style" name="Theme.DeviceDefault.DialogWhenLarge" id="0x01030136" />
+./core/res/res/values/public.xml:1803:  <public type="style" name="Theme.DeviceDefault.DialogWhenLarge.NoActionBar" id="0x01030137" />
+./core/res/res/values/public.xml:1804:  <public type="style" name="Theme.DeviceDefault.Light.DialogWhenLarge" id="0x01030138" />
+./core/res/res/values/public.xml:1805:  <public type="style" name="Theme.DeviceDefault.Light.DialogWhenLarge.NoActionBar" id="0x01030139" />
+./core/res/res/values/public.xml:1806:  <public type="style" name="Theme.DeviceDefault.Panel" id="0x0103013a" />
+./core/res/res/values/public.xml:1807:  <public type="style" name="Theme.DeviceDefault.Light.Panel" id="0x0103013b" />
+./core/res/res/values/public.xml:1808:  <public type="style" name="Theme.DeviceDefault.Wallpaper" id="0x0103013c" />
+./core/res/res/values/public.xml:1809:  <public type="style" name="Theme.DeviceDefault.Wallpaper.NoTitleBar" id="0x0103013d" />
+./core/res/res/values/public.xml:1810:  <public type="style" name="Theme.DeviceDefault.InputMethod" id="0x0103013e" />
+./core/res/res/values/public.xml:1811:  <public type="style" name="Theme.DeviceDefault.Light.DarkActionBar" id="0x0103013f" />
+./core/res/res/values/public.xml:2055:  <public type="style" name="Theme.DeviceDefault.NoActionBar.Overscan" id="0x010301df" />
+./core/res/res/values/public.xml:2056:  <public type="style" name="Theme.DeviceDefault.Light.NoActionBar.Overscan" id="0x010301e0" />
+./core/res/res/values/public.xml:2089:  <public type="style" name="Theme.DeviceDefault.NoActionBar.TranslucentDecor" id="0x010301e3" />
+./core/res/res/values/public.xml:2090:  <public type="style" name="Theme.DeviceDefault.Light.NoActionBar.TranslucentDecor" id="0x010301e4" />
+./core/res/res/values/public.xml:2368:    <public type="style" name="Theme.DeviceDefault.Settings" id="0x01030223" />
+./core/res/res/values/public.xml:2603:    <public type="style" name="Theme.DeviceDefault.Dialog.Alert" id="0x010302d1" />
+./core/res/res/values/public.xml:2604:    <public type="style" name="Theme.DeviceDefault.Light.Dialog.Alert" id="0x010302d2" />
+./core/res/res/values/symbols.xml:1433:  <java-symbol type="style" name="Theme.DeviceDefault.Dialog.Alert" />
+./core/res/res/values/symbols.xml:1434:  <java-symbol type="style" name="Theme.DeviceDefault.Light.Dialog.Alert" />
+./core/res/res/values/symbols.xml:1445:  <java-symbol type="style" name="Theme.DeviceDefault.Dialog.NoFrame" />
+./core/res/res/values/symbols.xml:1447:  <java-symbol type="style" name="Theme.DeviceDefault.VoiceInteractionSession" />
+./core/res/res/values/symbols.xml:2234:  <java-symbol type="style" name="Theme.DeviceDefault.Resolver" />
+./core/res/res/values/symbols.xml:2235:  <java-symbol type="style" name="Theme.DeviceDefault.System" />
+./core/res/res/values/themes_holo.xml:41:         #Theme_Holo} or {@link #Theme_DeviceDefault}.</p>
+./core/res/res/values/themes_holo.xml:46:         with API level 14, the default system theme is supplied by {@link #Theme_DeviceDefault},
+./core/res/res/values/themes_device_defaults.xml:52:    <style name="Theme.DeviceDefaultBase" parent="Theme.Material" >
+./core/res/res/values/themes_device_defaults.xml:90:        <item name="dialogTheme">@style/Theme.DeviceDefault.Dialog</item>
+./core/res/res/values/themes_device_defaults.xml:93:        <item name="alertDialogTheme">@style/Theme.DeviceDefault.Dialog.Alert</item>
+./core/res/res/values/themes_device_defaults.xml:97:        <item name="presentationTheme">@style/Theme.DeviceDefault.Dialog.Presentation</item>
+./core/res/res/values/themes_device_defaults.xml:183:        <item name="searchDialogTheme">@style/Theme.DeviceDefault.SearchBar</item>
+./core/res/res/values/themes_device_defaults.xml:209:    <style name="Theme.DeviceDefault" parent="Theme.DeviceDefaultBase" />
+./core/res/res/values/themes_device_defaults.xml:211:    <!-- Variant of {@link #Theme_DeviceDefault} with no action bar -->
+./core/res/res/values/themes_device_defaults.xml:212:    <style name="Theme.DeviceDefault.NoActionBar" parent="Theme.Material.NoActionBar">
+./core/res/res/values/themes_device_defaults.xml:219:    <!-- Variant of {@link #Theme_DeviceDefault} with no action bar and no status bar.  This theme
+./core/res/res/values/themes_device_defaults.xml:221:    <style name="Theme.DeviceDefault.NoActionBar.Fullscreen" parent="Theme.Material.NoActionBar.Fullscreen">
+./core/res/res/values/themes_device_defaults.xml:228:    <!-- Variant of {@link #Theme_DeviceDefault} with no action bar and no status bar and
+./core/res/res/values/themes_device_defaults.xml:232:    <style name="Theme.DeviceDefault.NoActionBar.Overscan" parent="Theme.Material.NoActionBar.Overscan">
+./core/res/res/values/themes_device_defaults.xml:239:    <!-- Variant of {@link #Theme_DeviceDefault} that has no title bar and translucent
+./core/res/res/values/themes_device_defaults.xml:242:    <style name="Theme.DeviceDefault.NoActionBar.TranslucentDecor" parent="Theme.Material.NoActionBar.TranslucentDecor">
+./core/res/res/values/themes_device_defaults.xml:252:    <style name="Theme.DeviceDefault.Dialog" parent="Theme.Material.Dialog" >
+./core/res/res/values/themes_device_defaults.xml:268:    <!-- Variant of {@link #Theme_DeviceDefault_Dialog} that has a nice minimum width for a
+./core/res/res/values/themes_device_defaults.xml:270:    <style name="Theme.DeviceDefault.Dialog.MinWidth" parent="Theme.Material.Dialog.MinWidth">
+./core/res/res/values/themes_device_defaults.xml:277:    <!-- Variant of {@link #Theme_DeviceDefault_Dialog} without an action bar -->
+./core/res/res/values/themes_device_defaults.xml:278:    <style name="Theme.DeviceDefault.Dialog.NoActionBar" parent="Theme.Material.Dialog.NoActionBar">
+./core/res/res/values/themes_device_defaults.xml:285:    <!-- Variant of {@link #Theme_DeviceDefault_Dialog_NoActionBar} that has a nice minimum width
+./core/res/res/values/themes_device_defaults.xml:287:    <style name="Theme.DeviceDefault.Dialog.NoActionBar.MinWidth" parent="Theme.Material.Dialog.NoActionBar.MinWidth">
+./core/res/res/values/themes_device_defaults.xml:294:    <!-- Variant of Theme.DeviceDefault.Dialog that has a fixed size. -->
+./core/res/res/values/themes_device_defaults.xml:295:    <style name="Theme.DeviceDefault.Dialog.FixedSize">
+./core/res/res/values/themes_device_defaults.xml:302:    <!-- Variant of Theme.DeviceDefault.Dialog.NoActionBar that has a fixed size. -->
+./core/res/res/values/themes_device_defaults.xml:303:    <style name="Theme.DeviceDefault.Dialog.NoActionBar.FixedSize">
+./core/res/res/values/themes_device_defaults.xml:312:    <style name="Theme.DeviceDefault.DialogWhenLarge" parent="Theme.Material.DialogWhenLarge">
+./core/res/res/values/themes_device_defaults.xml:322:    <style name="Theme.DeviceDefault.DialogWhenLarge.NoActionBar" parent="Theme.Material.DialogWhenLarge.NoActionBar">
+./core/res/res/values/themes_device_defaults.xml:330:    <style name="Theme.DeviceDefault.Dialog.Presentation" parent="Theme.Material.Dialog.Presentation">
+./core/res/res/values/themes_device_defaults.xml:340:    <style name="Theme.DeviceDefault.Panel" parent="Theme.Material.Panel">
+./core/res/res/values/themes_device_defaults.xml:349:    <style name="Theme.DeviceDefault.Wallpaper" parent="Theme.Material.Wallpaper">
+./core/res/res/values/themes_device_defaults.xml:358:    <style name="Theme.DeviceDefault.Wallpaper.NoTitleBar" parent="Theme.Material.Wallpaper.NoTitleBar">
+./core/res/res/values/themes_device_defaults.xml:367:    <style name="Theme.DeviceDefault.InputMethod" parent="Theme.Material.InputMethod">
+./core/res/res/values/themes_device_defaults.xml:376:    <style name="Theme.DeviceDefault.VoiceInteractionSession" parent="Theme.Material.VoiceInteractionSession">
+./core/res/res/values/themes_device_defaults.xml:383:    <style name="Theme.DeviceDefault.Dialog.Alert" parent="Theme.Material.Dialog.Alert">
+./core/res/res/values/themes_device_defaults.xml:392:    <style name="Theme.DeviceDefault.SearchBar" parent="Theme.Material.SearchBar">
+./core/res/res/values/themes_device_defaults.xml:399:    <style name="Theme.DeviceDefault.Dialog.NoFrame" parent="Theme.Material.Dialog.NoFrame">
+./core/res/res/values/themes_device_defaults.xml:406:    <!-- Variant of {@link #Theme_DeviceDefault} with a light-colored style -->
+./core/res/res/values/themes_device_defaults.xml:407:    <style name="Theme.DeviceDefault.Light" parent="Theme.Material.Light" >
+./core/res/res/values/themes_device_defaults.xml:443:        <item name="dialogTheme">@style/Theme.DeviceDefault.Light.Dialog</item>
+./core/res/res/values/themes_device_defaults.xml:446:        <item name="alertDialogTheme">@style/Theme.DeviceDefault.Light.Dialog.Alert</item>
+./core/res/res/values/themes_device_defaults.xml:450:        <item name="presentationTheme">@style/Theme.DeviceDefault.Light.Dialog.Presentation</item>
+./core/res/res/values/themes_device_defaults.xml:536:        <item name="searchDialogTheme">@style/Theme.DeviceDefault.Light.SearchBar</item>
+./core/res/res/values/themes_device_defaults.xml:560:    <style name="Theme.DeviceDefault.Light.DarkActionBar" parent="Theme.Material.Light.DarkActionBar">
+./core/res/res/values/themes_device_defaults.xml:567:    <!-- Variant of {@link #Theme_DeviceDefault_Light} with no action bar -->
+./core/res/res/values/themes_device_defaults.xml:568:    <style name="Theme.DeviceDefault.Light.NoActionBar" parent="Theme.Material.Light.NoActionBar">
+./core/res/res/values/themes_device_defaults.xml:575:    <!-- Variant of {@link #Theme_DeviceDefault_Light} with no action bar and no status bar.
+./core/res/res/values/themes_device_defaults.xml:577:    <style name="Theme.DeviceDefault.Light.NoActionBar.Fullscreen" parent="Theme.Material.Light.NoActionBar.Fullscreen">
+./core/res/res/values/themes_device_defaults.xml:584:    <!-- Variant of {@link #Theme_DeviceDefault_Light} with no action bar and no status bar
+./core/res/res/values/themes_device_defaults.xml:588:    <style name="Theme.DeviceDefault.Light.NoActionBar.Overscan" parent="Theme.Material.Light.NoActionBar.Overscan">
+./core/res/res/values/themes_device_defaults.xml:595:    <!-- Variant of {@link #Theme_DeviceDefault_Light} that has no title bar and translucent
+./core/res/res/values/themes_device_defaults.xml:598:    <style name="Theme.DeviceDefault.Light.NoActionBar.TranslucentDecor" parent="Theme.Material.Light.NoActionBar.TranslucentDecor">
+./core/res/res/values/themes_device_defaults.xml:608:    <style name="Theme.DeviceDefault.Light.Dialog" parent="Theme.Material.Light.Dialog">
+./core/res/res/values/themes_device_defaults.xml:624:    <!-- Variant of {@link #Theme_DeviceDefault_Light_Dialog} that has a nice minimum width for a
+./core/res/res/values/themes_device_defaults.xml:626:    <style name="Theme.DeviceDefault.Light.Dialog.MinWidth" parent="Theme.Material.Light.Dialog.MinWidth">
+./core/res/res/values/themes_device_defaults.xml:633:     <!-- Variant of {@link #Theme_DeviceDefault_Light_Dialog} without an action bar -->
+./core/res/res/values/themes_device_defaults.xml:634:    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar" parent="Theme.Material.Light.Dialog.NoActionBar">
+./core/res/res/values/themes_device_defaults.xml:641:    <!-- Variant of {@link #Theme_DeviceDefault_Light_Dialog_NoActionBar} that has a nice minimum
+./core/res/res/values/themes_device_defaults.xml:643:    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar.MinWidth" parent="Theme.Material.Light.Dialog.NoActionBar.MinWidth">
+./core/res/res/values/themes_device_defaults.xml:650:    <!-- Variant of Theme.DeviceDefault.Dialog that has a fixed size. -->
+./core/res/res/values/themes_device_defaults.xml:651:    <style name="Theme.DeviceDefault.Light.Dialog.FixedSize">
+./core/res/res/values/themes_device_defaults.xml:663:    <!-- Variant of Theme.DeviceDefault.Dialog.NoActionBar that has a fixed size. -->
+./core/res/res/values/themes_device_defaults.xml:664:    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar.FixedSize">
+./core/res/res/values/themes_device_defaults.xml:678:    <style name="Theme.DeviceDefault.Light.DialogWhenLarge" parent="Theme.Material.Light.DialogWhenLarge">
+./core/res/res/values/themes_device_defaults.xml:688:    <style name="Theme.DeviceDefault.Light.DialogWhenLarge.NoActionBar" parent="Theme.Material.Light.DialogWhenLarge.NoActionBar">
+./core/res/res/values/themes_device_defaults.xml:696:    <style name="Theme.DeviceDefault.Light.Dialog.Presentation" parent="Theme.Material.Light.Dialog.Presentation">
+./core/res/res/values/themes_device_defaults.xml:706:    <style name="Theme.DeviceDefault.Light.Panel" parent="Theme.Material.Light.Panel">
+./core/res/res/values/themes_device_defaults.xml:713:    <style name="Theme.DeviceDefault.Light.Dialog.Alert" parent="Theme.Material.Light.Dialog.Alert">
+./core/res/res/values/themes_device_defaults.xml:722:    <style name="Theme.DeviceDefault.Light.SearchBar" parent="Theme.Material.Light.SearchBar">
+./core/res/res/values/themes_device_defaults.xml:729:    <style name="Theme.DeviceDefault.Light.Voice" parent="Theme.Material.Light.Voice">
+./core/res/res/values/themes_device_defaults.xml:737:    <style name="Theme.DeviceDefault.Settings" parent="Theme.Material.Settings">
+./core/res/res/values/themes_device_defaults.xml:747:         Theme.DeviceDefault.Settings.  -->
+./core/res/res/values/themes_device_defaults.xml:748:    <style name="Theme.DeviceDefault.Settings.Dark" parent="Theme.Material">
+./core/res/res/values/themes_device_defaults.xml:756:    <!-- Variant of {@link #Theme_DeviceDefault_Settings_Dark} with no action bar -->
+./core/res/res/values/themes_device_defaults.xml:757:    <style name="Theme.DeviceDefault.Settings.Dark.NoActionBar" parent="Theme.Material.NoActionBar">
+./core/res/res/values/themes_device_defaults.xml:765:    <style name="Theme.DeviceDefault.Settings.Dialog" parent="Theme.Material.Settings.Dialog">
+./core/res/res/values/themes_device_defaults.xml:773:    <style name="Theme.DeviceDefault.Settings.DialogWhenLarge" parent="Theme.Material.Settings.DialogWhenLarge">
+./core/res/res/values/themes_device_defaults.xml:781:    <style name="Theme.DeviceDefault.Settings.Dialog.Alert" parent="Theme.Material.Settings.Dialog.Alert">
+./core/res/res/values/themes_device_defaults.xml:790:    <style name="Theme.DeviceDefault.Resolver" parent="Theme.Material.Light">
+./core/res/res/values/themes_device_defaults.xml:874:    <style name="Theme.DeviceDefault.System" parent="Theme.DeviceDefault.Light.DarkActionBar" />
+./core/res/res/values/themes_device_defaults.xml:890:    <style name="Dji.Theme.Dialog" parent="Theme.DeviceDefault.Light.Dialog.Alert">
+./core/res/res/values/themes.xml:41:         #Theme_Holo} or {@link #Theme_DeviceDefault}.</p>
+./core/res/res/values/themes.xml:226:        <item name="presentationTheme">@style/Theme.DeviceDefault.Dialog.Presentation</item>
+./core/res/res/values/themes.xml:844:    <style name="Theme.Dialog.AppError" parent="Theme.DeviceDefault.Light.Dialog.Alert">
+./core/res/res/values/themes.xml:889:    <style name="Theme.Dialog.RecentApplications" parent="Theme.DeviceDefault.Light.Dialog">
+./core/res/res/values/themes.xml:899:    <style name="Theme.Toast" parent="Theme.DeviceDefault.Dialog">
+./core/res/res/values-large/themes_device_defaults.xml:34:    <style name="Theme.DeviceDefault.DialogWhenLarge" parent="@style/Theme.DeviceDefault.Dialog.FixedSize">
+./core/res/res/values-large/themes_device_defaults.xml:37:    <style name="Theme.DeviceDefault.DialogWhenLarge.NoActionBar" parent="@style/Theme.DeviceDefault.Dialog.NoActionBar.FixedSize">
+./core/res/res/values-large/themes_device_defaults.xml:40:    <style name="Theme.DeviceDefault.Light.DialogWhenLarge" parent="@style/Theme.DeviceDefault.Light.Dialog.FixedSize" />
+./core/res/res/values-large/themes_device_defaults.xml:41:    <style name="Theme.DeviceDefault.Light.DialogWhenLarge.NoActionBar" parent="@style/Theme.DeviceDefault.Light.Dialog.NoActionBar.FixedSize" />
+./core/res/res/values-television/themes_device_defaults.xml:17:    <style name="Theme.DeviceDefault.Dialog.Alert" parent="Theme.Leanback.Dialog.Alert" />
+./core/res/res/values-television/themes_device_defaults.xml:18:    <style name="Theme.DeviceDefault.Light.Dialog.Alert" parent="Theme.Leanback.Light.Dialog.Alert" />
+./core/res/res/values-watch/themes_device_defaults.xml:36:    <style name="Theme.DeviceDefault" parent="Theme.DeviceDefaultBase">
+./core/res/res/values-watch/themes_device_defaults.xml:47:    <!-- Variant of {@link #Theme_DeviceDefault} with no action bar -->
+./core/res/res/values-watch/themes_device_defaults.xml:48:    <style name="Theme.DeviceDefault.NoActionBar" parent="Theme.Material.NoActionBar">
+./core/res/res/values-watch/themes_device_defaults.xml:59:    <!-- Variant of {@link #Theme_DeviceDefault} with no action bar and no status bar.  This theme
+./core/res/res/values-watch/themes_device_defaults.xml:61:    <style name="Theme.DeviceDefault.NoActionBar.Fullscreen" parent="Theme.Material.NoActionBar.Fullscreen">
+./core/res/res/values-watch/themes_device_defaults.xml:72:    <!-- Variant of {@link #Theme_DeviceDefault} with no action bar and no status bar and
+./core/res/res/values-watch/themes_device_defaults.xml:76:    <style name="Theme.DeviceDefault.NoActionBar.Overscan" parent="Theme.Material.NoActionBar.Overscan">
+./core/res/res/values-watch/themes_device_defaults.xml:87:    <!-- Variant of {@link #Theme_DeviceDefault} that has no title bar and translucent
+./core/res/res/values-watch/themes_device_defaults.xml:90:    <style name="Theme.DeviceDefault.NoActionBar.TranslucentDecor" parent="Theme.Material.NoActionBar.TranslucentDecor">
+./core/res/res/values-watch/themes_device_defaults.xml:102:    <style name="Theme.DeviceDefault.Resolver">
+./core/res/res/values-watch/themes_device_defaults.xml:109:    <style name="Theme.DeviceDefault.System" />
+./core/res/res/values-watch/themes_device_defaults.xml:113:    <style name="Theme.DeviceDefault.InputMethod" parent="Theme.DeviceDefault.Panel">
+./core/res/res/values-watch/themes_device_defaults.xml:123:    <style name="Theme.DeviceDefault.Dialog" parent="Theme.Material.Dialog" >
+./core/res/res/values-watch/themes_device_defaults.xml:145:    <style name="Theme.DeviceDefault.Settings" parent="Theme.DeviceDefault"/>
+./core/res/res/values-watch/themes_device_defaults.xml:146:    <style name="Theme.DeviceDefault.Settings.NoActionBar" parent="Theme.DeviceDefault"/>
+./core/res/res/values-watch/themes_device_defaults.xml:147:    <style name="Theme.DeviceDefault.Settings.BaseDialog" parent="Theme.DeviceDefault.Dialog"/>
+./core/res/res/values-watch/themes_device_defaults.xml:148:    <style name="Theme.DeviceDefault.Settings.Dialog" parent="Theme.DeviceDefault.Settings.BaseDialog"/>
+./core/res/res/values-watch/themes_device_defaults.xml:149:    <style name="Theme.DeviceDefault.Settings.DialogWhenLarge" parent="Theme.DeviceDefault.DialogWhenLarge"/>
+./core/res/res/values-watch/themes_device_defaults.xml:150:    <style name="Theme.DeviceDefault.Settings.DialogWhenLarge.NoActionBar" parent="Theme.DeviceDefault.DialogWhenLarge.NoActionBar"/>
+./core/res/res/values-watch/themes_device_defaults.xml:151:    <style name="Theme.DeviceDefault.Settings.Dialog.Presentation" parent="Theme.DeviceDefault.Dialog.Presentation"/>
+./core/res/res/values-watch/themes_device_defaults.xml:152:    <style name="Theme.DeviceDefault.Settings.SearchBar" parent="Theme.DeviceDefault.SearchBar"/>
+./core/res/res/values-watch/themes_device_defaults.xml:154:    <style name="Theme.DeviceDefault.Settings.Dialog.Alert" parent="Theme.Material.Dialog.Alert">
+./core/res/res/values-watch/themes_device_defaults.xml:166:    <style name="Theme.DeviceDefault.Settings.CompactMenu" parent="Theme.Material.CompactMenu">
+./core/res/res/values-watch/themes_device_defaults.xml:178:    <!-- Variant of {@link #Theme_DeviceDefault_Dialog} that has a nice minimum width for a
+./core/res/res/values-watch/themes_device_defaults.xml:180:    <style name="Theme.DeviceDefault.Dialog.MinWidth" parent="Theme.Material.Dialog.MinWidth">
+./core/res/res/values-watch/themes_device_defaults.xml:192:    <!-- Variant of {@link #Theme_DeviceDefault_Dialog} without an action bar -->
+./core/res/res/values-watch/themes_device_defaults.xml:193:    <style name="Theme.DeviceDefault.Dialog.NoActionBar" parent="Theme.Material.Dialog.NoActionBar">
+./core/res/res/values-watch/themes_device_defaults.xml:205:    <!-- Variant of {@link #Theme_DeviceDefault_Dialog_NoActionBar} that has a nice minimum width
+./core/res/res/values-watch/themes_device_defaults.xml:207:    <style name="Theme.DeviceDefault.Dialog.NoActionBar.MinWidth" parent="Theme.Material.Dialog.NoActionBar.MinWidth">
+./core/res/res/values-watch/themes_device_defaults.xml:221:    <style name="Theme.DeviceDefault.DialogWhenLarge" parent="Theme.Material.DialogWhenLarge">
+./core/res/res/values-watch/themes_device_defaults.xml:235:    <style name="Theme.DeviceDefault.DialogWhenLarge.NoActionBar" parent="Theme.Material.DialogWhenLarge.NoActionBar">
+./core/res/res/values-watch/themes_device_defaults.xml:247:    <style name="Theme.DeviceDefault.Dialog.Presentation" parent="Theme.Material.Dialog.Presentation">
+./core/res/res/values-watch/themes_device_defaults.xml:261:    <style name="Theme.DeviceDefault.Panel" parent="Theme.Material.Panel">
+./core/res/res/values-watch/themes_device_defaults.xml:274:    <style name="Theme.DeviceDefault.Wallpaper" parent="Theme.Material.Wallpaper">
+./core/res/res/values-watch/themes_device_defaults.xml:287:    <style name="Theme.DeviceDefault.Wallpaper.NoTitleBar" parent="Theme.Material.Wallpaper.NoTitleBar">
+./core/res/res/values-watch/themes_device_defaults.xml:300:    <style name="Theme.DeviceDefault.VoiceInteractionSession" parent="Theme.Material.VoiceInteractionSession">
+./core/res/res/values-watch/themes_device_defaults.xml:311:    <style name="Theme.DeviceDefault.Dialog.Alert" parent="Theme.Material.Dialog.Alert">
+./core/res/res/values-watch/themes_device_defaults.xml:324:    <style name="Theme.DeviceDefault.SearchBar" parent="Theme.Material.SearchBar">
+./core/res/res/values-watch/themes_device_defaults.xml:335:    <style name="Theme.DeviceDefault.Dialog.NoFrame" parent="Theme.Material.Dialog.NoFrame">
+./core/res/res/values-watch/themes.xml:18:    <style name="Theme.Dialog.AppError" parent="Theme.DeviceDefault.Dialog.Alert">
+key@RDCMP33-in:~/work/rk3399_android7.1_v1.00/frameworks/base$ sgrep Theme_Device
+./services/java/com/android/server/SystemServer.java:195:            com.android.internal.R.style.Theme_DeviceDefault_System;
+./services/core/java/com/android/server/InputMethodManagerService.java:3218:                    com.android.internal.R.style.Theme_DeviceDefault_Settings);
+./packages/SystemUI/src/com/android/systemui/statusbar/KeyboardShortcuts.java:121:        this.mContext = new ContextThemeWrapper(context, android.R.style.Theme_DeviceDefault_Light);
+./docs/html/sdk/api_diff/21/user_comments_for_20_to_21.xml:1663:  <identifier id="android.R.style.Theme_DeviceDefault_Settings"/>
+./core/java/com/android/internal/app/MediaRouteDialogPresenter.java:77:                    context, android.R.style.Theme_DeviceDefault_Dialog);
+./core/java/com/android/internal/app/MediaRouteDialogPresenter.java:83:                    context, android.R.style.Theme_DeviceDefault_Dialog);
+./core/java/com/android/internal/app/ResolverActivity.java:247:        setTheme(R.style.Theme_DeviceDefault_Resolver);
+./core/java/com/android/internal/app/MediaRouteChooserDialogFragment.java:47:        setStyle(STYLE_NORMAL, android.R.style.Theme_DeviceDefault_Dialog);
+./core/java/com/android/internal/app/MediaRouteControllerDialogFragment.java:42:        setStyle(STYLE_NORMAL, android.R.style.Theme_DeviceDefault_Dialog);
+./core/java/android/view/WindowManager.java:760:         * {@link android.R.style#Theme_DeviceDefault_NoActionBar_Fullscreen}, and
+./core/java/android/view/WindowManager.java:761:         * {@link android.R.style#Theme_DeviceDefault_Light_NoActionBar_Fullscreen}.</p>
+./core/java/android/view/WindowManager.java:853:         * {@link android.R.style#Theme_DeviceDefault_Wallpaper}, and
+./core/java/android/view/WindowManager.java:854:         * {@link android.R.style#Theme_DeviceDefault_Wallpaper_NoTitleBar}.</p>
+./core/java/android/view/WindowManager.java:932:         * {@link android.R.style#Theme_DeviceDefault_NoActionBar_Overscan}, and
+./core/java/android/view/WindowManager.java:933:         * {@link android.R.style#Theme_DeviceDefault_Light_NoActionBar_Overscan}.</p>
+./core/java/android/view/WindowManager.java:964:         * {@link android.R.style#Theme_DeviceDefault_NoActionBar_TranslucentDecor}, and
+./core/java/android/view/WindowManager.java:965:         * {@link android.R.style#Theme_DeviceDefault_Light_NoActionBar_TranslucentDecor}.</p>
+./core/java/android/view/WindowManager.java:983:         * {@link android.R.style#Theme_DeviceDefault_NoActionBar_TranslucentDecor}, and
+./core/java/android/view/WindowManager.java:984:         * {@link android.R.style#Theme_DeviceDefault_Light_NoActionBar_TranslucentDecor}.</p>
+./core/java/android/service/voice/VoiceInteractionSession.java:1276:                : com.android.internal.R.style.Theme_DeviceDefault_VoiceInteractionSession;
+./core/java/android/inputmethodservice/InputMethodService.java:782:                android.R.style.Theme_DeviceDefault_InputMethod,
+./core/java/android/inputmethodservice/InputMethodService.java:783:                android.R.style.Theme_DeviceDefault_InputMethod);
+./core/java/android/os/Build.java:451:         *      {@link android.R.style#Theme_DeviceDefault}. This may be the
+./core/java/android/os/Build.java:458:         *      {@link android.R.style#Theme_DeviceDefault} family.
+./core/java/android/content/res/Resources.java:144:                com.android.internal.R.style.Theme_DeviceDefault,
+./core/java/android/content/res/Resources.java:145:                com.android.internal.R.style.Theme_DeviceDefault_Light_DarkActionBar);
+./core/java/android/app/SystemServiceRegistry.java:365:                                    com.android.internal.R.style.Theme_DeviceDefault_Dialog,
+./core/java/android/app/SystemServiceRegistry.java:366:                                    com.android.internal.R.style.Theme_DeviceDefault_Light_Dialog)),
+./core/java/android/app/AlertDialog.java:104:     * @deprecated Use {@link android.R.style#Theme_DeviceDefault_Dialog_Alert}.
+./core/java/android/app/AlertDialog.java:113:     * @deprecated Use {@link android.R.style#Theme_DeviceDefault_Light_Dialog_Alert}.
+./core/java/android/app/AlertDialog.java:215:            return R.style.Theme_DeviceDefault_Dialog_Alert;
+./core/java/android/app/AlertDialog.java:217:            return R.style.Theme_DeviceDefault_Light_Dialog_Alert;
+./core/java/android/app/DialogFragment.java:207:            mTheme = com.android.internal.R.style.Theme_DeviceDefault_Dialog_NoFrame;
+./core/java/android/accounts/ChooseTypeAndAccountActivity.java:402:        setTheme(R.style.Theme_DeviceDefault_Light_Dialog_NoActionBar);
+./core/res/res/values/themes_holo.xml:41:         #Theme_Holo} or {@link #Theme_DeviceDefault}.</p>
+./core/res/res/values/themes_holo.xml:46:         with API level 14, the default system theme is supplied by {@link #Theme_DeviceDefault},
+./core/res/res/values/themes_device_defaults.xml:211:    <!-- Variant of {@link #Theme_DeviceDefault} with no action bar -->
+./core/res/res/values/themes_device_defaults.xml:219:    <!-- Variant of {@link #Theme_DeviceDefault} with no action bar and no status bar.  This theme
+./core/res/res/values/themes_device_defaults.xml:228:    <!-- Variant of {@link #Theme_DeviceDefault} with no action bar and no status bar and
+./core/res/res/values/themes_device_defaults.xml:239:    <!-- Variant of {@link #Theme_DeviceDefault} that has no title bar and translucent
+./core/res/res/values/themes_device_defaults.xml:268:    <!-- Variant of {@link #Theme_DeviceDefault_Dialog} that has a nice minimum width for a
+./core/res/res/values/themes_device_defaults.xml:277:    <!-- Variant of {@link #Theme_DeviceDefault_Dialog} without an action bar -->
+./core/res/res/values/themes_device_defaults.xml:285:    <!-- Variant of {@link #Theme_DeviceDefault_Dialog_NoActionBar} that has a nice minimum width
+./core/res/res/values/themes_device_defaults.xml:406:    <!-- Variant of {@link #Theme_DeviceDefault} with a light-colored style -->
+./core/res/res/values/themes_device_defaults.xml:567:    <!-- Variant of {@link #Theme_DeviceDefault_Light} with no action bar -->
+./core/res/res/values/themes_device_defaults.xml:575:    <!-- Variant of {@link #Theme_DeviceDefault_Light} with no action bar and no status bar.
+./core/res/res/values/themes_device_defaults.xml:584:    <!-- Variant of {@link #Theme_DeviceDefault_Light} with no action bar and no status bar
+./core/res/res/values/themes_device_defaults.xml:595:    <!-- Variant of {@link #Theme_DeviceDefault_Light} that has no title bar and translucent
+./core/res/res/values/themes_device_defaults.xml:624:    <!-- Variant of {@link #Theme_DeviceDefault_Light_Dialog} that has a nice minimum width for a
+./core/res/res/values/themes_device_defaults.xml:633:     <!-- Variant of {@link #Theme_DeviceDefault_Light_Dialog} without an action bar -->
+./core/res/res/values/themes_device_defaults.xml:641:    <!-- Variant of {@link #Theme_DeviceDefault_Light_Dialog_NoActionBar} that has a nice minimum
+./core/res/res/values/themes_device_defaults.xml:756:    <!-- Variant of {@link #Theme_DeviceDefault_Settings_Dark} with no action bar -->
+./core/res/res/values/themes.xml:41:         #Theme_Holo} or {@link #Theme_DeviceDefault}.</p>
+./core/res/res/values-watch/themes_device_defaults.xml:47:    <!-- Variant of {@link #Theme_DeviceDefault} with no action bar -->
+./core/res/res/values-watch/themes_device_defaults.xml:59:    <!-- Variant of {@link #Theme_DeviceDefault} with no action bar and no status bar.  This theme
+./core/res/res/values-watch/themes_device_defaults.xml:72:    <!-- Variant of {@link #Theme_DeviceDefault} with no action bar and no status bar and
+./core/res/res/values-watch/themes_device_defaults.xml:87:    <!-- Variant of {@link #Theme_DeviceDefault} that has no title bar and translucent
+./core/res/res/values-watch/themes_device_defaults.xml:178:    <!-- Variant of {@link #Theme_DeviceDefault_Dialog} that has a nice minimum width for a
+./core/res/res/values-watch/themes_device_defaults.xml:192:    <!-- Variant of {@link #Theme_DeviceDefault_Dialog} without an action bar -->
+./core/res/res/values-watch/themes_device_defaults.xml:205:    <!-- Variant of {@link #Theme_DeviceDefault_Dialog_NoActionBar} that has a nice minimum width
+----------------------------------
+key@RDCMP33-in:~/work/rk3399_android7.1_v1.00/packages$ sgrep Theme.Device
+./apps/CellBroadcastReceiver/AndroidManifest.xml:63:                  android:theme="@android:style/Theme.DeviceDefault.Light"
+./apps/CellBroadcastReceiver/AndroidManifest.xml:89:                  android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
+./apps/CellBroadcastReceiver/res/values/styles.xml:25:    <style name="CellBroadcastSettingsTheme" parent="android:Theme.DeviceDefault.Settings" />
+./apps/StorageManager/res/values/themes.xml:32:    <style name="TransparentDialog" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar.TranslucentDecor">
+./apps/PackageInstaller/AndroidManifest.xml:112:                android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar" />
+./apps/PackageInstaller/res/values/styles.xml:20:           parent="@android:style/Theme.DeviceDefault.Light.DialogWhenLarge.NoActionBar">
+./apps/PackageInstaller/res/values/styles.xml:43:           parent="@android:style/Theme.DeviceDefault.Light.Panel">
+./apps/PackageInstaller/res/values/styles.xml:48:           parent="@android:style/Theme.DeviceDefault.Settings">
+./apps/PackageInstaller/res/values/themes.xml:21:           parent="@android:style/Theme.DeviceDefault.Settings">
+./apps/PackageInstaller/res/values/themes.xml:30:           parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+./apps/PackageInstaller/res/values-watch/styles.xml:18:    <style name="Theme.DialogWhenLarge" parent="@android:style/Theme.DeviceDefault.NoActionBar"/>
+./apps/PackageInstaller/res/values-watch/themes.xml:19:    <style name="Settings" parent="@android:style/Theme.DeviceDefault.NoActionBar" />
+./apps/PackageInstaller/res/values-watch/themes.xml:21:    <style name="GrantPermissions" parent="@android:style/Theme.DeviceDefault.NoActionBar">
+./apps/PackageInstaller/dji/main/res/values/themes.xml:38:           parent="@android:style/Theme.DeviceDefault.Dialog.NoActionBar">
+./apps/HTMLViewer/AndroidManifest.xml:32:                android:theme="@android:style/Theme.DeviceDefault">
+./apps/Settings/AndroidManifest.xml:223:                android:theme="@*android:style/Theme.DeviceDefault.Light.Voice"
+./apps/Settings/AndroidManifest.xml:393:                  android:theme="@*android:style/Theme.DeviceDefault.Light.Dialog.Alert">
+./apps/Settings/AndroidManifest.xml:602:                  android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar"
+./apps/Settings/AndroidManifest.xml:771:                  android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar"
+./apps/Settings/AndroidManifest.xml:1050:                android:theme="@android:style/Theme.DeviceDefault.Light.Panel"
+./apps/Settings/AndroidManifest.xml:1169:                android:theme="@*android:style/Theme.DeviceDefault.Light.Dialog.Alert">
+./apps/Settings/AndroidManifest.xml:1287:                android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar"
+./apps/Settings/AndroidManifest.xml:2106:                  android:theme="@*android:style/Theme.DeviceDefault.Light.Dialog.Alert">
+./apps/Settings/AndroidManifest.xml:2127:                  android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+./apps/Settings/AndroidManifest.xml:2134:                  android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+./apps/Settings/AndroidManifest.xml:2145:                  android:theme="@*android:style/Theme.DeviceDefault.Light.Dialog.Alert">
+./apps/Settings/AndroidManifest.xml:2168:                  android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.Alert">
+./apps/Settings/AndroidManifest.xml:2178:                android:theme="@*android:style/Theme.DeviceDefault.Light.Dialog.Alert"
+./apps/Settings/AndroidManifest.xml:2241:                  android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.Alert"
+./apps/Settings/AndroidManifest.xml:2269:                android:theme="@*android:style/Theme.DeviceDefault.Light.Dialog.Alert"
+./apps/Settings/AndroidManifest.xml:2278:                android:theme="@*android:style/Theme.DeviceDefault.Light.Dialog.Alert"
+./apps/Settings/AndroidManifest.xml:2348:                android:theme="@*android:style/Theme.DeviceDefault.Light.Voice"
+./apps/Settings/AndroidManifest.xml:2567:                  android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.Alert">
+./apps/Settings/AndroidManifest.xml:2585:                  android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.Alert">
+./apps/Settings/AndroidManifest.xml:2595:                  android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.Alert">
+./apps/Settings/AndroidManifest.xml:2848:            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar"
+./apps/Settings/AndroidManifest.xml:2866:                android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar"
+./apps/Settings/AndroidManifest.xml:2992:                  android:theme="@*android:style/Theme.DeviceDefault.Light.Dialog.Alert">
+./apps/Settings/res/values/themes.xml:134:    <style name="Theme.SettingsBase" parent="@android:style/Theme.DeviceDefault.Settings" />
+./apps/Settings/res/values/themes.xml:208:    <style name="Theme.DialogWhenLarge" parent="@*android:style/Theme.DeviceDefault.Settings.DialogWhenLarge">
+./apps/Settings/res/values/themes.xml:239:    <style name="Theme.AlertDialog" parent="@*android:style/Theme.DeviceDefault.Settings.Dialog.Alert">
+./apps/Settings/res/values/themes.xml:259:    <style name="Theme.ConfirmDeviceCredentialsDark" parent="@android:style/Theme.DeviceDefault">
+./apps/Settings/res/values/themes.xml:286:    <style name="FallbackHome" parent="@android:style/Theme.DeviceDefault.NoActionBar">
+./apps/Bluetooth/res/values/dji_themes.xml:38:           parent="@android:style/Theme.DeviceDefault">
+./apps/Bluetooth/res/values/dji_themes.xml:170:    <style name="Dji.Dialog.Alert"  parent="@android:style/Theme.DeviceDefault.Dialog.Alert">
+./apps/SafetyRegulatoryInfo/AndroidManifest.xml:25:        android:theme="@android:style/Theme.DeviceDefault.Settings">
+./apps/Nfc/src/com/android/nfc/cardemulation/DefaultRemovedActivity.java:32:        setTheme(R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+./apps/Nfc/src/com/android/nfc/cardemulation/AppChooserActivity.java:83:        setTheme(R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+./apps/Nfc/src/com/android/nfc/cardemulation/TapAgainDialog.java:59:        setTheme(R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+./apps/Launcher3/res/values/styles.xml:22:    <style name="BaseLauncherTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
+./apps/Launcher3/res/values/styles.xml:34:    <style name="WidgetContainerTheme" parent="@android:style/Theme.DeviceDefault.Settings">
+./apps/Launcher3/res/values/styles.xml:41:    <style name="CustomOverscroll.Light" parent="@android:style/Theme.DeviceDefault.Light">
+./apps/Launcher3/res/values-v25/styles.xml:21:    <style name="WidgetContainerTheme" parent="@android:style/Theme.DeviceDefault.Settings">
+./apps/Launcher3/res/values-sw720dp/styles.xml:22:    <style name="BaseLauncherTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
+./apps/WallpaperPicker/res/values/styles.xml:21:    <style name="WallpaperTheme" parent="@android:style/Theme.DeviceDefault">
+./apps/WallpaperPicker/res/values-v19/styles.xml:21:    <style name="WallpaperTheme" parent="@android:style/Theme.DeviceDefault">
+./experimental/PermissionApp2/res/layout/permission_activity.xml:29:        android:theme="@android:style/Theme.DeviceDefault" >
+./services/Telephony/res/values/styles.xml:182:    <style name="NetworkOperatorsSettingsTheme" parent="@android:style/Theme.DeviceDefault.Settings" />
+./services/Telephony/res/values/styles.xml:248:    <style name="EmergencyDialerTheme" parent="@*android:style/Theme.DeviceDefault.Settings.Dark.NoActionBar">
+./providers/MediaProvider/res/values/styles.xml:19:    <style name="PickerDialogTheme" parent="@*android:style/Theme.DeviceDefault.Settings.Dialog">
+./providers/DownloadProvider/ui/src/com/android/providers/downloads/ui/TrampolineActivity.java:141:                    context, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+./providers/DownloadProvider/ui/src/com/android/providers/downloads/ui/TrampolineActivity.java:203:                    context, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+./inputmethods/LatinIME/java/res/values/platform-theme.xml:22:    <style name="platformActivityTheme" parent="@android:style/Theme.DeviceDefault" />
+./inputmethods/LatinIME/java/res/values/platform-theme.xml:23:    <style name="platformSettingsTheme" parent="@android:style/Theme.DeviceDefault" />
+./inputmethods/LatinIME/java/res/values/platform-theme.xml:24:    <style name="platformDialogTheme" parent="@android:style/Theme.DeviceDefault.Dialog" />
+./inputmethods/LatinIME/java/res/values-v21/platform-theme.xml:22:    <style name="platformActivityTheme" parent="@android:style/Theme.DeviceDefault.Light" />
+./inputmethods/LatinIME/java/res/values-v21/platform-theme.xml:23:    <style name="platformSettingsTheme" parent="@android:style/Theme.DeviceDefault.Settings" />
+./inputmethods/LatinIME/java/res/values-v21/platform-theme.xml:24:    <style name="platformDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog" />
+./wallpapers/LivePicker/res/values/styles.xml:22:    <style name="LivePickerTheme" parent="@android:style/Theme.DeviceDefault.Settings" />
+./wallpapers/LivePicker/src/com/android/wallpaper/livepicker/LiveWallpaperPreview.java:270:            Context themedContext = new ContextThemeWrapper(this, android.R.style.Theme_DeviceDefault_Settings);
+key@RDCMP33-in:~/work/rk3399_android7.1_v1.00/packages$ sgrep Theme_Device
+./apps/Nfc/src/com/android/nfc/cardemulation/DefaultRemovedActivity.java:32:        setTheme(R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+./apps/Nfc/src/com/android/nfc/cardemulation/AppChooserActivity.java:83:        setTheme(R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+./apps/Nfc/src/com/android/nfc/cardemulation/TapAgainDialog.java:59:        setTheme(R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+./providers/DownloadProvider/ui/src/com/android/providers/downloads/ui/TrampolineActivity.java:141:                    context, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+./providers/DownloadProvider/ui/src/com/android/providers/downloads/ui/TrampolineActivity.java:203:                    context, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+./wallpapers/LivePicker/src/com/android/wallpaper/livepicker/LiveWallpaperPreview.java:270:            Context themedContext = new ContextThemeWrapper(this, android.R.style.Theme_DeviceDefault_Settings);
