@@ -1,0 +1,646 @@
+01-18 16:50:05.300 214-225/? E/vold: Failed to chmod /data/system_ce/0: No such file or directory
+    Failed to chmod /data/misc_ce/0: No such file or directory
+    Failed to chmod /data/media/0: No such file or directory
+01-18 16:50:07.352 311-311/? E/DrmService: rknand_sys_storage open fail
+01-18 16:50:07.411 311-311/? E/DrmService: Unable to open path (/sys/class/android_usb/android0/iSerial),error is(No such file or directory)
+    try /config/usb_gadget/g1/strings/0x409/serialnumber
+01-18 16:50:07.560 214-225/? E/vold: Failed to chmod /data/misc_ce/0: No such file or directory
+01-18 16:50:08.463 214-223/? E/vold: Failed to pclose /system/bin/sgdisk --android-dump /dev/block/vold/disk:8,0 : No medium found
+01-18 16:50:08.481 214-223/? E/vold: Failed to pclose /system/bin/sgdisk --android-dump /dev/block/vold/disk:8,0 : No medium found
+01-18 16:50:08.506 214-223/? E/vold: Failed to pclose /system/bin/sgdisk --android-dump /dev/block/vold/disk:8,0 : No medium found
+01-18 16:50:08.529 214-223/? E/vold: Failed to pclose /system/bin/sgdisk --android-dump /dev/block/vold/disk:8,16 : No medium found
+01-18 16:50:08.547 214-223/? E/vold: Failed to pclose /system/bin/sgdisk --android-dump /dev/block/vold/disk:8,16 : No medium found
+01-18 16:50:08.567 214-223/? E/vold: Failed to pclose /system/bin/sgdisk --android-dump /dev/block/vold/disk:8,16 : No medium found
+01-18 16:50:11.190 611-611/system_process E/PackageManager: waitForLatch done!
+01-18 16:50:11.210 611-611/system_process E/PackageManager: There should probably be exactly one setup wizard; found 0: matches=[]
+01-18 16:50:11.636 611-656/system_process E/BatteryStatsService: no controller energy info supplied
+01-18 16:50:12.163 611-611/system_process E/ConnectivityService: Ignoring protectedNetwork 14
+    Ignoring protectedNetwork 15
+01-18 16:50:12.208 611-611/system_process E/WallpaperManagerService: Invalid wallpaper data
+    Unable to apply new wallpaper
+01-18 16:50:12.489 611-611/system_process E/UsbDeviceManager: failed to write to /sys/class/android_usb/android0/f_rndis/ethaddr
+06-01 18:40:06.946 611-611/system_process E/UsbDeviceManager: waitForState(acm,adb) FAILED: got none
+    Failed to switch USB config to acm,adb
+    Failsafe 2: Restoring default USB functions.
+06-01 18:40:07.116 611-611/system_process E/LockSettingsStorage: Cannot read file java.io.FileNotFoundException: /data/system/gatekeeper.password.key: open failed: ENOENT (No such file or directory)
+    Cannot read file java.io.FileNotFoundException: /data/system/password.key: open failed: ENOENT (No such file or directory)
+    Cannot read file java.io.FileNotFoundException: /data/system/gatekeeper.pattern.key: open failed: ENOENT (No such file or directory)
+06-01 18:40:07.117 611-611/system_process E/LockSettingsStorage: Cannot read file java.io.FileNotFoundException: /data/system/gatekeeper.gesture.key: open failed: ENOENT (No such file or directory)
+    Cannot read file java.io.FileNotFoundException: /data/system/gesture.key: open failed: ENOENT (No such file or directory)
+06-01 18:40:07.286 611-652/system_process E/InputMethodManagerService: Ignoring updateSystemUiLocked due to an invalid token. uid:1000 token:null
+06-01 18:40:07.363 214-225/? E/vold: Failed to chmod /data/misc_ce/0: No such file or directory
+06-01 18:40:07.388 611-667/system_process E/VoldConnector: Error handling '641 disk:8,0 18446744073709551615': java.lang.NumberFormatException: For input string: "18446744073709551615"
+06-01 18:40:07.403 842-864/com.android.inputmethod.latin E/kaka: totalFree:3524259840
+06-01 18:40:07.423 214-224/? E/vold: Failed to pclose /system/bin/sgdisk --android-dump /dev/block/vold/disk:8,0 : No medium found
+06-01 18:40:07.434 611-667/system_process E/VoldConnector: Error handling '641 disk:8,16 18446744073709551615': java.lang.NumberFormatException: For input string: "18446744073709551615"
+06-01 18:40:07.460 214-224/? E/vold: Failed to pclose /system/bin/sgdisk --android-dump /dev/block/vold/disk:8,16 : No medium found
+06-01 18:40:07.837 777-1012/com.android.phone E/ActivityThread: Failed to find provider info for com.android.contacts
+06-01 18:40:07.879 842-1023/com.android.inputmethod.latin E/ActivityThread: Failed to find provider info for user_dictionary
+06-01 18:40:07.996 611-741/system_process E/ActivityThread: Failed to find provider info for com.android.calendar
+06-01 18:40:08.000 611-741/system_process E/ActivityThread: Failed to find provider info for com.android.calendar
+06-01 18:40:08.021 611-652/system_process E/LocationManagerService: no geocoder provider found
+06-01 18:40:08.914 783-1046/? E/ActivityThread: Failed to find provider info for com.android.contacts
+06-01 18:40:09.146 611-1144/system_process E/ActivityThread: Failed to find provider info for call_log
+06-01 18:40:10.199 611-735/system_process E/ConnectivityService: Exception adding interface: java.lang.IllegalStateException: command '27 network interface add 100 usb0' failed with '400 27 addInterfaceToNetwork() failed (Device or resource busy)'
+06-01 18:40:10.200 611-735/system_process E/ConnectivityService: Exception in addRoute for non-gateway: java.lang.IllegalStateException: command '28 network route add 100 usb0 192.168.42.0/24' failed with '400 28 addRoute() failed (No such file or directory)'
+06-01 18:40:10.202 611-735/system_process E/ConnectivityService: Exception in addRoute for gateway: java.lang.IllegalStateException: command '29 network route add 100 usb0 0.0.0.0/0 192.168.42.1' failed with '400 29 addRoute() failed (No such file or directory)'
+06-01 18:40:10.440 805-1215/com.android.settings E/kaka: totalFree:3591249920
+06-01 18:40:10.973 1308-1322/? E/kaka: totalFree:3598446592
+06-01 18:40:11.027 1308-1323/? E/kaka: totalFree:3597185024
+06-01 18:40:11.058 1326-1341/? E/kaka: totalFree:3594727424
+06-01 18:40:11.575 1326-1340/? E/kaka: totalFree:3590406144
+06-01 18:40:11.612 1350-1363/com.dpad.update E/kaka: totalFree:3588395008
+06-01 18:40:11.939 1350-1364/com.dpad.update E/kaka: totalFree:3584671744
+06-01 18:40:12.195 1382-1395/com.dji E/kaka: totalFree:3589013504
+06-01 18:40:12.411 1382-1394/com.dji E/kaka: totalFree:3586682880
+06-01 18:40:12.924 805-1299/com.android.settings E/kaka: totalFree:3553619968
+06-01 18:40:12.944 805-1299/com.android.settings E/kaka: totalFree:3553427456
+06-01 18:40:12.949 1326-1341/? E/kaka: totalFree:3553402880
+06-01 18:40:13.015 1423-1436/? E/kaka: totalFree:3549184000
+06-01 18:40:13.120 1423-1437/? E/kaka: totalFree:3544088576
+06-01 18:40:13.134 1439-1453/? E/kaka: totalFree:3542249472
+06-01 18:40:13.260 1439-1452/? E/kaka: totalFree:3538477056
+06-01 18:40:13.282 1439-1456/? E/kaka: totalFree:3538149376
+06-01 18:40:13.394 1459-1472/? E/kaka: totalFree:3534356480
+06-01 18:40:13.507 1459-1471/? E/kaka: totalFree:3528314880
+06-01 18:40:13.529 1490-1504/? E/kaka: totalFree:3527274496
+06-01 18:40:14.191 1490-1504/? E/kaka: totalFree:3511267328
+06-01 18:40:14.300 1521-1534/? E/kaka: totalFree:3508494336
+06-01 18:40:14.921 1521-1535/? E/kaka: totalFree:3525754880
+06-01 18:40:14.924 805-1299/com.android.settings E/kaka: totalFree:3525754880
+06-01 18:40:14.926 805-1299/com.android.settings E/kaka: totalFree:3525758976
+06-01 18:40:25.226 611-1093/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:40:25.236 611-1093/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:40:26.385 611-1093/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:40:26.390 611-1093/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:40:32.697 1326-1830/? E/kaka: totalFree:3534970880
+06-01 18:40:54.557 1490-1503/? E/kaka: totalFree:3536441344
+06-01 18:40:54.568 1490-2058/? E/kaka: totalFree:3536441344
+06-01 18:40:54.570 1326-1830/? E/kaka: totalFree:3536441344
+06-01 18:41:04.687 611-628/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:41:04.695 611-628/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:41:14.922 1521-2083/? E/ActivityThread: Failed to find provider info for com.android.contacts
+06-01 18:44:11.899 611-628/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:44:11.909 611-628/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:44:16.250 805-2094/com.android.settings E/kaka: totalFree:3499094016
+06-01 18:44:41.577 611-1084/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:44:41.584 611-1084/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:47:47.905 611-834/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:47:47.913 611-834/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:47:51.969 611-1093/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:47:51.978 611-1093/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:47:59.497 2159-2174/? A/libc: Fatal signal 6 (SIGABRT), code -6 in tid 2174 (ChildProcessMai)
+06-01 18:47:59.568 2179-2179/? A/DEBUG: *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+    Build fingerprint: 'DJI/rm500/rm500:7.1.2/V00.00.05.33/533:userdebug/test-keys'
+    Revision: '0'
+    ABI: 'arm64'
+    pid: 2159, tid: 2174, name: ChildProcessMai  >>> com.android.webview:sandboxed_process0 <<<
+    signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+06-01 18:47:59.571 2179-2179/? A/DEBUG: Abort message: '[FATAL:jni_android.cc(236)] Please include Java exception stack in crash report
+    '
+        x0   0000000000000000  x1   000000000000087e  x2   0000000000000006  x3   0000000000000008
+        x4   00000079dc930003  x5   0000000000000009  x6   0000000000000009  x7   00000079ca9d0663
+        x8   0000000000000083  x9   ffffffffffffffdf  x10  0000000000000000  x11  0000000000000001
+        x12  00000079dc92fff9  x13  0000000000000054  x14  00000079ca9d0658  x15  ffffffffffffffff
+        x16  00000079e6674ee0  x17  00000079e661eb3c  x18  0000000000000010  x19  00000079dc9314f8
+        x20  0000000000000006  x21  00000079dc931450  x22  000000000000000b  x23  0000000000000000
+        x24  00000079dc9308a0  x25  00000079e94953d0  x26  000000000000007f  x27  0000000000000001
+        x28  50e5a35b176b901d  x29  00000079dc930340  x30  00000079e661bf68
+        sp   00000079dc930320  pc   00000079e661eb44  pstate 0000000060000000
+06-01 18:47:59.576 2179-2179/? A/DEBUG: backtrace:
+        #00 pc 000000000006bb44  /system/lib64/libc.so (tgkill+8)
+        #01 pc 0000000000068f64  /system/lib64/libc.so (pthread_kill+64)
+        #02 pc 0000000000023f58  /system/lib64/libc.so (raise+24)
+        #03 pc 000000000001c810  /system/lib64/libc.so (abort+52)
+        #04 pc 0000000002dc0d48  /system/app/webview/webview.apk (offset 0x93f000)
+06-01 18:48:07.158 805-2096/com.android.settings E/kaka: totalFree:3434737664
+06-01 18:48:08.817 611-652/system_process E/ActivityManager: ANR in com.android.htmlviewer (com.android.htmlviewer/.HTMLViewerActivity)
+    PID: 2118
+    Reason: Input dispatching timed out (Waiting to send non-key event because the focused window has not finished processing certain input events that were delivered to it over 500.0ms ago.  Wait queue length: 15.  Wait queue head age: 9397.3ms.)
+    Load: 1.2 / 0.57 / 0.27
+    CPU usage from 475325ms to 0ms ago (2018-06-01 18:40:12.082 to 2018-06-01 18:48:07.407):
+      4.3% 234/surfaceflinger: 2.1% user + 2.2% kernel / faults: 4591 minor
+      3.8% 805/com.android.settings: 2.9% user + 0.9% kernel / faults: 15893 minor 23 major
+      3.8% 314/djilink: 0.6% user + 3.1% kernel / faults: 5 minor
+      3.5% 611/system_server: 2.1% user + 1.3% kernel / faults: 28076 minor 90 major
+      1.9% 1326/android.process.media: 1.4% user + 0.5% kernel / faults: 10500 minor 1 major
+      1.1% 1147/com.dpad.launcher: 0.8% user + 0.3% kernel / faults: 7857 minor 2 major
+      0.6% 783/com.android.systemui: 0.4% user + 0.2% kernel / faults: 11511 minor 2 major
+      0.5% 325/media.codec: 0.1% user + 0.3% kernel / faults: 2 minor
+      0.4% 313/mediaserver: 0.1% user + 0.2% kernel / faults: 12 minor
+      0.3% 211/logd: 0.1% user + 0.2% kernel / faults: 212 minor
+      0.3% 319/audioserver: 0.1% user + 0.1% kernel / faults: 93 minor
+      0.3% 233/servicemanager: 0.1% user + 0.2% kernel / faults: 1 minor
+      0.2% 842/com.android.inputmethod.latin: 0.1% user + 0.1% kernel / faults: 2093 minor
+      0.2% 3/ksoftirqd/0: 0% user + 0.2% kernel
+      0.1% 1//init: 0.1% user + 0% kernel / faults: 8 minor
+      0.1% 406/logcatext: 0.1% user + 0% kernel / faults: 2 minor
+      0.1% 916/sdcard: 0% user + 0.1% kernel / faults: 62 minor
+      0.1% 290/kworker/u13:3: 0% user + 0.1% kernel
+      0.1% 312/rild: 0% user + 0.1% kernel
+      0.1% 177/kworker/u13:0: 0% user + 0.1% kernel
+      0.1% 466/logcat: 0% user + 0% kernel / faults: 2 minor
+      0% 6/kworker/u12:0: 0% user + 0% kernel
+      0% 50/kworker/u12:1: 0% user + 0% kernel
+      0% 777/com.android.phone: 0% user + 0% kernel / faults: 1993 minor 1 major
+      0% 7/rcu_preempt: 0% user + 0% kernel
+      0% 151/mmcqd/2: 0% user + 0% kernel
+      0% 178/kworker/u13:1: 0% user + 0% kernel
+      0% 646/kworker/1:2: 0% user + 0% kernel
+      0% 1350/com.dpad.update: 0% user + 0% kernel / faults: 2936 minor 1 major
+      0% 139/kworker/u12:2: 0% user + 0% kernel
+      0% 288/f2fs_discard-25: 0% user + 0% kernel
+      0% 1308/android.rockchip.update.service: 0% user + 0% kernel / faults: 1729 minor
+      0% 308/abc: 0% user + 0% kernel
+      0% 181/ueventd: 0% user + 0% kernel / faults: 1 minor
+      0% 1158/com.cghs.stresstest: 0% user + 0% kernel / faults: 1568 minor
+      0% 148/kworker/0:2: 0% user + 0% kernel
+      0% 317/zygote64: 0% user + 0% kernel / faults: 1061 minor
+      0% 1120/android.ext.services: 0% user + 0% kernel / faults: 1545 minor
+      0% 214/vold: 0% user + 0% kernel / faults: 78 minor
+      0% 230/healthd: 0% user + 0% kernel / faults: 1 minor
+      0% 144/cfinteractive: 0% user + 0% kernel
+      0% 243/kworker/u12:4: 0% user + 0% kernel
+      0% 8/rcu_sched: 0% user + 0% kernel
+      0% 136/irq/136-2-0070: 0% user + 0% kernel
+      0% 329/netd: 0% user + 0% kernel / faults: 164 minor
+      0% 213/debuggerd64: 0% user + 0% kernel / faults: 88 minor
+      0% 267/dmcrypt_write: 0% user + 0% kernel
+      0% 101/kworker/5:1: 0% user + 0% kernel
+      0% 232/lmkd: 0% user + 0% kernel
+      0% 318/zygote: 0% user + 0% kernel / faults: 261 minor
+      0% 333/crashlogd: 0% user + 0% kernel
+      0% 469/logcat: 0% user + 0% kernel
+      0% 718/dji_wms: 0% user + 0% kernel
+      0% 29/ksoftirqd/4: 0% user + 0% kernel
+      0% 244/kworker/0:1H: 0% user + 0% kernel
+      0% 270/kworker/1:1H: 0% user + 0% kernel
+     +0% 1382/com.dji: 0% user + 0% kernel
+     +0% 1423/com.android.managedprovisioning: 0% user + 0% kernel
+     +0% 1439/com.android.onetimeinitializer: 0% user + 0% kernel
+     +0% 1459/com.dji.test: 0% user + 0% kernel
+     +0% 1490/com.google.android.inputmethod.japanese: 0% user + 0% kernel
+     +0% 1521/com.google.android.inputmethod.pinyin: 0% user + 0% kernel
+     +0% 2100/kworker/1:1: 0% user + 0% kernel
+     +0% 2102/kworker/5:0: 0% user + 0% kernel
+     +0% 2118/com.android.htmlviewer: 0% user + 0% ker
+06-01 18:48:19.522 2203-2217/? E/kaka: totalFree:3442868224
+06-01 18:48:23.748 611-1084/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:48:23.763 611-1084/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:48:29.357 2287-2304/? A/chromium: [FATAL:jni_android.cc(236)] Please include Java exception stack in crash report
+06-01 18:48:29.358 2287-2304/? A/libc: Fatal signal 6 (SIGABRT), code -6 in tid 2304 (ChildProcessMai)
+06-01 18:48:29.427 2308-2308/? A/DEBUG: *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+06-01 18:48:29.428 2308-2308/? A/DEBUG: Build fingerprint: 'DJI/rm500/rm500:7.1.2/V00.00.05.33/533:userdebug/test-keys'
+    Revision: '0'
+    ABI: 'arm64'
+    pid: 2287, tid: 2304, name: ChildProcessMai  >>> com.android.webview:sandboxed_process0 <<<
+06-01 18:48:29.429 2308-2308/? A/DEBUG: signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+06-01 18:48:29.431 2308-2308/? A/DEBUG: Abort message: '[FATAL:jni_android.cc(236)] Please include Java exception stack in crash report
+    '
+        x0   0000000000000000  x1   0000000000000900  x2   0000000000000006  x3   0000000000000008
+        x4   00000079e4297003  x5   0000000000000009  x6   0000000000000009  x7   00000079ca635663
+        x8   0000000000000083  x9   ffffffffffffffdf  x10  0000000000000000  x11  0000000000000001
+        x12  00000079e4296ff9  x13  0000000000000054  x14  00000079ca635658  x15  00004209ed1a23de
+        x16  00000079e6674ee0  x17  00000079e661eb3c  x18  0000000000000010  x19  00000079e42984f8
+        x20  0000000000000006  x21  00000079e4298450  x22  000000000000000b  x23  0000000000000000
+        x24  00000079e42978a0  x25  00000079e94953d0  x26  000000000000007f  x27  0000000000000001
+        x28  50e5a35b176b901d  x29  00000079e4297340  x30  00000079e661bf68
+        sp   00000079e4297320  pc   00000079e661eb44  pstate 0000000060000000
+06-01 18:48:29.433 2308-2308/? A/DEBUG: backtrace:
+        #00 pc 000000000006bb44  /system/lib64/libc.so (tgkill+8)
+        #01 pc 0000000000068f64  /system/lib64/libc.so (pthread_kill+64)
+        #02 pc 0000000000023f58  /system/lib64/libc.so (raise+24)
+        #03 pc 000000000001c810  /system/lib64/libc.so (abort+52)
+        #04 pc 0000000002dc0d48  /system/app/webview/webview.apk (offset 0x93f000)
+06-01 18:48:31.379 2315-2315/? E/art: setrlimit(RLIMIT_CORE) failed for pid 2315: Operation not permitted
+06-01 18:48:35.705 805-2094/com.android.settings E/kaka: totalFree:3427004416
+06-01 18:48:35.895 2245-2258/? E/kaka: totalFree:3426623488
+06-01 18:48:35.906 2315-2329/? E/kaka: totalFree:3426959360
+06-01 18:48:35.983 611-2236/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:48:35.989 611-2236/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:48:36.407 805-2219/com.android.settings E/kaka: totalFree:3424739328
+06-01 18:48:36.407 2315-2328/? E/kaka: totalFree:3424739328
+06-01 18:48:36.609 611-2236/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:48:36.615 611-2236/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:48:38.190 805-817/com.android.settings E/kaka: totalFree:3423715328
+06-01 18:48:39.828 611-834/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:48:39.838 611-834/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:48:46.032 611-1108/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:48:46.046 611-1108/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:48:46.450 2245-2286/? E/Surface: queueBuffer: error queuing buffer to SurfaceTexture, -19
+06-01 18:49:09.097 611-652/system_process E/ActivityManager: ANR in com.android.htmlviewer (com.android.htmlviewer/.HTMLViewerActivity)
+    PID: 2245
+    Reason: Input dispatching timed out (Waiting because no window has focus but there is a focused application that may eventually add a window when it finishes starting up.)
+    Load: 1.84 / 0.87 / 0.4
+    CPU usage from 31230ms to 0ms ago (2018-06-01 18:48:36.409 to 2018-06-01 18:49:07.638):
+      15% 234/surfaceflinger: 6.5% user + 8.6% kernel / faults: 355 minor
+      13% 805/com.android.settings: 9.6% user + 3.7% kernel / faults: 6305 minor 2 major
+      7.9% 611/system_server: 5% user + 2.9% kernel / faults: 6052 minor
+      4.5% 2245/com.android.htmlviewer: 2.4% user + 2% kernel / faults: 434 minor
+      3.4% 314/djilink: 0.5% user + 2.8% kernel / faults: 6 minor
+      1.4% 319/audioserver: 0.9% user + 0.5% kernel / faults: 17 minor
+      0.7% 211/logd: 0.3% user + 0.3% kernel / faults: 15 minor
+      0.7% 783/com.android.systemui: 0.4% user + 0.2% kernel / faults: 268 minor
+      0.5% 177/kworker/u13:0: 0% user + 0.5% kernel
+      0.5% 178/kworker/u13:1: 0% user + 0.5% kernel
+      0.4% 1147/com.dpad.launcher: 0.2% user + 0.2% kernel / faults: 1668 minor
+      0.3% 312/rild: 0% user + 0.2% kernel
+      0.2% 406/logcatext: 0.2% user + 0% kernel
+      0.2% 1//init: 0.1% user + 0% kernel
+      0.2% 3/ksoftirqd/0: 0% user + 0.2% kernel
+      0.2% 842/com.android.inputmethod.latin: 0.1% user + 0% kernel / faults: 4 minor
+      0.1% 466/logcat: 0% user + 0.1% kernel
+      0.1% 7/rcu_preempt: 0% user + 0.1% kernel
+      0.1% 243/kworker/u12:4: 0% user + 0.1% kernel
+      0% 50/kworker/u12:1: 0% user + 0% kernel
+      0% 2100/kworker/1:1: 0% user + 0% kernel
+      0% 233/servicemanager: 0% user + 0% kernel
+      0% 777/com.android.phone: 0% user + 0% kernel / faults: 7 minor
+      0% 2315/com.android.webview:sandboxed_process0: 0% user + 0% kernel / faults: 605 minor
+      0% 144/cfinteractive: 0% user + 0% kernel
+      0% 151/mmcqd/2: 0% user + 0% kernel
+      0% 230/healthd: 0% user + 0% kernel
+      0% 288/f2fs_discard-25: 0% user + 0% kernel
+      0% 329/netd: 0% user + 0% kernel
+      0% 1120/android.ext.services: 0% user + 0% kernel
+      0% 1350/com.dpad.update: 0% user + 0% kernel
+      0% 1423/com.android.managedprovisioning: 0% user + 0% kernel
+    9.7% TOTAL: 4.3% user + 3.8% kernel + 0% iowait + 0.6% irq + 0.8% softirq
+    CPU usage from 936ms to 1446ms later (2018-06-01 18:49:08.574 to 2018-06-01 18:49:09.084):
+      1.6% 50/kworker/u12:1: 0% user + 1.6% kernel
+      1.6% 136/irq/136-2-0070: 0% user + 1.6% kernel
+      1.7% 234/surfaceflinger: 0% user + 1.7% kernel / faults: 23 minor
+        1.7% 293/surfaceflinger: 1.7% user + 0% kernel
+      1.7% 314/djilink: 0% user + 1.7% kernel
+      1.9% 611/system_server: 0% user + 1.9% kernel
+        1.9% 652/ActivityManager: 0% user + 1.9% kernel
+    2.3% TOTAL: 0% user + 1.3% kernel + 0.3% irq + 0.6% softirq
+06-01 18:49:13.404 2315-2328/? E/kaka: totalFree:3436748800
+06-01 18:49:14.591 2364-2364/? E/art: setrlimit(RLIMIT_CORE) failed for pid 2364: Operation not permitted
+06-01 18:49:16.583 2406-2422/? A/chromium: [FATAL:jni_android.cc(236)] Please include Java exception stack in crash report
+06-01 18:49:16.583 2406-2422/? A/libc: Fatal signal 6 (SIGABRT), code -6 in tid 2422 (ChildProcessMai)
+06-01 18:49:16.653 2426-2426/? A/DEBUG: *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+06-01 18:49:16.654 2426-2426/? A/DEBUG: Build fingerprint: 'DJI/rm500/rm500:7.1.2/V00.00.05.33/533:userdebug/test-keys'
+    Revision: '0'
+    ABI: 'arm64'
+    pid: 2406, tid: 2422, name: ChildProcessMai  >>> com.android.webview:sandboxed_process0 <<<
+    signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+06-01 18:49:16.657 2426-2426/? A/DEBUG: Abort message: '[FATAL:jni_android.cc(236)] Please include Java exception stack in crash report
+    '
+        x0   0000000000000000  x1   0000000000000976  x2   0000000000000006  x3   0000000000000008
+        x4   00000079e439b003  x5   0000000000000009  x6   0000000000000009  x7   00000079ca635663
+        x8   0000000000000083  x9   ffffffffffffffdf  x10  0000000000000000  x11  0000000000000001
+        x12  00000079e439aff9  x13  0000000000000054  x14  00000079ca635658  x15  00003480c1adf554
+        x16  00000079e6674ee0  x17  00000079e661eb3c  x18  0000000000000010  x19  00000079e439c4f8
+        x20  0000000000000006  x21  00000079e439c450  x22  000000000000000b  x23  0000000000000000
+        x24  00000079e439b8a0  x25  00000079e94953d0  x26  000000000000007f  x27  0000000000000001
+        x28  50e5a35b176b901d  x29  00000079e439b340  x30  00000079e661bf68
+        sp   00000079e439b320  pc   00000079e661eb44  pstate 0000000060000000
+06-01 18:49:16.659 2426-2426/? A/DEBUG: backtrace:
+06-01 18:49:16.660 2426-2426/? A/DEBUG:     #00 pc 000000000006bb44  /system/lib64/libc.so (tgkill+8)
+        #01 pc 0000000000068f64  /system/lib64/libc.so (pthread_kill+64)
+        #02 pc 0000000000023f58  /system/lib64/libc.so (raise+24)
+        #03 pc 000000000001c810  /system/lib64/libc.so (abort+52)
+        #04 pc 0000000002dc0d48  /system/app/webview/webview.apk (offset 0x93f000)
+06-01 18:49:18.629 2436-2436/? E/art: setrlimit(RLIMIT_CORE) failed for pid 2436: Operation not permitted
+06-01 18:49:24.488 805-2435/com.android.settings E/kaka: totalFree:3422048256
+06-01 18:49:43.311 2436-2450/? E/kaka: totalFree:3432427520
+06-01 18:49:43.312 2364-2377/? E/kaka: totalFree:3432427520
+06-01 18:49:45.590 2436-2448/? E/kaka: totalFree:3432521728
+06-01 18:49:45.591 2436-2448/? E/kaka: totalFree:3432521728
+06-01 18:49:45.593 2364-2376/? E/kaka: totalFree:3432521728
+06-01 18:49:45.594 2364-2376/? E/kaka: totalFree:3432521728
+06-01 18:49:45.630 611-822/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:49:45.637 611-822/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:49:55.611 2364-2405/? E/Surface: queueBuffer: error queuing buffer to SurfaceTexture, -19
+06-01 18:50:12.121 611-652/system_process E/ActivityManager: ANR in com.android.htmlviewer (com.android.htmlviewer/.HTMLViewerActivity)
+    PID: 2364
+    Reason: Input dispatching timed out (Waiting because no window has focus but there is a focused application that may eventually add a window when it finishes starting up.)
+    Load: 1.88 / 1.1 / 0.51
+    CPU usage from 63031ms to 0ms ago (2018-06-01 18:49:07.638 to 2018-06-01 18:50:10.669):
+      26% 234/surfaceflinger: 13% user + 12% kernel / faults: 743 minor
+      4.5% 611/system_server: 3.1% user + 1.4% kernel / faults: 6834 minor
+      4.4% 314/djilink: 0.8% user + 3.6% kernel
+      3.1% 805/com.android.settings: 2.3% user + 0.7% kernel / faults: 5288 minor
+      1.2% 211/logd: 0.5% user + 0.6% kernel / faults: 76 minor
+      0.7% 290/kworker/u13:3: 0% user + 0.7% kernel
+      0.8% 783/com.android.systemui: 0.5% user + 0.2% kernel / faults: 837 minor
+      0.6% 177/kworker/u13:0: 0% user + 0.6% kernel
+      0.6% 233/servicemanager: 0% user + 0.5% kernel
+      0.5% 319/audioserver: 0.2% user + 0.3% kernel / faults: 5 minor
+      0.5% 406/logcatext: 0.3% user + 0.2% kernel / faults: 1 minor
+      0.4% 466/logcat: 0.2% user + 0.1% kernel / faults: 1 minor
+      0.3% 1147/com.dpad.launcher: 0.1% user + 0.1% kernel / faults: 1803 minor
+      0.3% 3/ksoftirqd/0: 0% user + 0.3% kernel
+      0.3% 312/rild: 0% user + 0.2% kernel
+      0.1% 1//init: 0.1% user + 0% kernel
+      0.1% 7/rcu_preempt: 0% user + 0.1% kernel
+      0% 50/kworker/u12:1: 0% user + 0% kernel
+      0% 243/kworker/u12:4: 0% user + 0% kernel
+      0% 777/com.android.phone: 0% user + 0% kernel / faults: 93 minor
+      0% 317/zygote64: 0% user + 0% kernel / faults: 453 minor
+      0% 6/kworker/u12:0: 0% user + 0% kernel
+      0% 136/irq/136-2-0070: 0% user + 0% kernel
+      0% 144/cfinteractive: 0% user + 0% kernel
+      0% 178/kworker/u13:1: 0% user + 0% kernel
+      0% 2100/kworker/1:1: 0% user + 0% kernel
+      0% 148/kworker/0:2: 0% user + 0% kernel
+      0% 212/debuggerd: 0% user + 0% kernel / faults: 133 minor
+      0% 288/f2fs_discard-25: 0% user + 0% kernel
+      0% 308/abc: 0% user + 0% kernel
+      0% 842/com.android.inputmethod.latin: 0% user + 0% kernel / faults: 12 minor
+      0% 1158/com.cghs.stresstest: 0% user + 0% kernel / faults: 96 minor
+      0% 8/rcu_sched: 0% user + 0% kernel
+      0% 10/migration/0: 0% user + 0% kernel
+      0% 151/mmcqd/2: 0% user + 0% kernel
+      0% 181/ueventd: 0% user + 0% kernel
+      0% 213/debuggerd64: 0% user + 0% kernel / faults: 60 minor
+      0% 230/healthd: 0% user + 0% kernel
+      0% 232/lmkd: 0% user + 0% kernel
+      0% 267/dmcrypt_write: 0% user + 0% kernel
+      0% 329/netd: 0% user + 0% kernel
+      0% 333/crashlogd: 0% user + 0% kernel
+      0% 718/dji_wms: 0% user + 0% kernel
+      0% 1439/com.android.onetimeinitializer: 0% user + 0% kernel
+      0% 1459/com.dji.test: 0% user + 0% kernel
+     +0% 2364/com.android.htmlviewer: 0% user + 0% kernel
+     +0% 2381/kbase_event: 0% user + 0% kernel
+     +0% 2436/com.android.webview:sandboxed_process0: 0% user + 0% kernel
+     +0% 2452/kworker/u13:2: 0% user + 0% kernel
+     +0% 2453/kworker/u12:2: 0% user + 0% kernel
+    13% TOTAL: 6.2% user + 5.2% kernel + 0% iowait + 1.2% irq + 1.1% softirq
+    CPU usage from 930ms to 1440ms later (2018-06-01 18:50:11.600 to 2018-06-01 18:50:12.110) with 99% awake:
+      1.7% 314/djilink: 0% user + 1.7% kernel
+        1.7% 353/TcpLinkHandler: 0% user + 1.7% kernel
+      1.9% 611/system_server: 0% user + 1.9% kernel
+        1.9% 652/ActivityManager: 0% user + 1.9% kernel
+    1.3% TOTAL: 0% user + 0.6% kernel + 0.3% irq + 0.3% softirq
+06-01 18:50:26.905 2436-2450/? E/kaka: totalFree:3438743552
+06-01 18:50:28.104 611-697/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:50:28.110 611-697/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:50:54.244 314-357/? E/Listener: add listener for 56
+06-01 18:50:54.245 314-357/? E/TcpServerLinkHandler: _recvData failed:Success
+    exception in client:Success
+06-01 18:50:54.245 314-357/? E/DJILink: remove listener 56
+06-01 18:50:54.246 314-357/? E/Listener: add listener for 56
+06-01 18:50:54.247 314-357/? E/TcpServerLinkHandler: _recvData failed:Success
+    exception in client:Success
+06-01 18:50:54.247 314-357/? E/DJILink: remove listener 56
+06-01 18:50:54.548 314-357/? E/Listener: add listener for 56
+06-01 18:50:54.549 314-357/? E/TcpServerLinkHandler: _recvData failed:Success
+    exception in client:Success
+06-01 18:50:54.549 314-357/? E/DJILink: remove listener 56
+06-01 18:51:00.834 611-2361/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:51:00.842 611-2361/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:51:12.923 2492-2492/com.android.htmlviewer E/art: setrlimit(RLIMIT_CORE) failed for pid 2492: Operation not permitted
+06-01 18:51:15.474 2534-2550/? A/chromium: [FATAL:jni_android.cc(236)] Please include Java exception stack in crash report
+06-01 18:51:15.474 2534-2550/? A/libc: Fatal signal 6 (SIGABRT), code -6 in tid 2550 (ChildProcessMai)
+06-01 18:51:15.545 2552-2552/? A/DEBUG: *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+06-01 18:51:15.546 2552-2552/? A/DEBUG: Build fingerprint: 'DJI/rm500/rm500:7.1.2/V00.00.05.33/533:userdebug/test-keys'
+    Revision: '0'
+06-01 18:51:15.547 2552-2552/? A/DEBUG: ABI: 'arm64'
+    pid: 2534, tid: 2550, name: ChildProcessMai  >>> com.android.webview:sandboxed_process0 <<<
+    signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+06-01 18:51:15.549 2552-2552/? A/DEBUG: Abort message: '[FATAL:jni_android.cc(236)] Please include Java exception stack in crash report
+    '
+        x0   0000000000000000  x1   00000000000009f6  x2   0000000000000006  x3   0000000000000008
+        x4   00000079e439b003  x5   0000000000000009  x6   0000000000000009  x7   00000079ca635663
+        x8   0000000000000083  x9   ffffffffffffffdf  x10  0000000000000000  x11  0000000000000001
+        x12  00000079e439aff9  x13  0000000000000054  x14  00000079ca635658  x15  0000424e9c6fed24
+        x16  00000079e6674ee0  x17  00000079e661eb3c  x18  0000000000000010  x19  00000079e439c4f8
+        x20  0000000000000006  x21  00000079e439c450  x22  000000000000000b  x23  0000000000000000
+        x24  00000079e439b8a0  x25  00000079e94953d0  x26  000000000000007f  x27  0000000000000001
+        x28  50e5a35b176b901d  x29  00000079e439b340  x30  00000079e661bf68
+        sp   00000079e439b320  pc   00000079e661eb44  pstate 0000000060000000
+06-01 18:51:15.552 2552-2552/? A/DEBUG: backtrace:
+        #00 pc 000000000006bb44  /system/lib64/libc.so (tgkill+8)
+        #01 pc 0000000000068f64  /system/lib64/libc.so (pthread_kill+64)
+        #02 pc 0000000000023f58  /system/lib64/libc.so (raise+24)
+        #03 pc 000000000001c810  /system/lib64/libc.so (abort+52)
+06-01 18:51:15.553 2552-2552/? A/DEBUG:     #04 pc 0000000002dc0d48  /system/app/webview/webview.apk (offset 0x93f000)
+06-01 18:51:17.522 2560-2560/com.android.webview:sandboxed_process0 E/art: setrlimit(RLIMIT_CORE) failed for pid 2560: Operation not permitted
+06-01 18:51:22.850 805-2101/com.android.settings E/kaka: totalFree:3419885568
+06-01 18:51:24.443 611-656/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:51:24.458 313-313/? E/MediaPlayerService: Obtain calling ProcessName failed
+06-01 18:51:24.462 611-656/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:51:24.488 313-921/? E/MediaPlayerService: Obtain calling ProcessName failed
+06-01 18:51:24.552 325-1083/? E/OMXNodeInstance: setConfig(1450033:google.vorbis.decoder, ConfigPriority(0x6f800002)) ERROR: Undefined(0x80001001)
+06-01 18:51:33.581 314-357/? E/Listener: add listener for 56
+06-01 18:51:33.581 314-357/? E/TcpServerLinkHandler: _recvData failed:Success
+    exception in client:Success
+06-01 18:51:33.582 314-357/? E/DJILink: remove listener 56
+06-01 18:51:35.379 314-357/? E/Listener: add listener for 56
+06-01 18:51:35.381 314-357/? E/TcpServerLinkHandler: _recvData failed:Success
+    exception in client:Success
+06-01 18:51:35.381 314-357/? E/DJILink: remove listener 56
+06-01 18:51:35.385 314-357/? E/Listener: add listener for 56
+06-01 18:51:35.385 314-357/? E/TcpServerLinkHandler: _recvData failed:Success
+    exception in client:Success
+06-01 18:51:35.385 314-357/? E/DJILink: remove listener 56
+06-01 18:51:35.407 314-357/? E/Listener: add listener for 56
+06-01 18:51:35.408 314-357/? E/TcpServerLinkHandler: _recvData failed:Success
+    exception in client:Success
+06-01 18:51:35.408 314-357/? E/DJILink: remove listener 56
+06-01 18:51:36.016 611-1108/system_process E/BatteryStatsService: no controller energy info supplied
+06-01 18:51:36.017 611-1108/system_process E/BatteryStatsService: no controller energy info supplied
+06-01 18:51:36.021 611-1108/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:51:36.427 2560-2574/com.android.webview:sandboxed_process0 E/kaka: totalFree:3419250688
+06-01 18:51:36.429 2492-2504/com.android.htmlviewer E/kaka: totalFree:3419123712
+06-01 18:51:38.263 611-697/system_process E/UserRestrictionsUtils: Unknown restriction: null
+06-01 18:51:38.264 611-697/system_process E/UserRestrictionsUtils: Unknown restriction: null
+06-01 18:51:38.265 611-697/system_process E/UserRestrictionsUtils: Unknown restriction: null
+06-01 18:51:38.554 233-233/? E/SELinux: avc:  denied  { find } for service=netd pid=805 uid=1000 scontext=u:r:system_app:s0 tcontext=u:object_r:netd_service:s0 tclass=service_manager permissive=1
+06-01 18:51:46.463 2492-2533/com.android.htmlviewer E/Surface: queueBuffer: error queuing buffer to SurfaceTexture, -19
+06-01 18:51:48.315 314-350/? E/Listener: add listener for 56
+06-01 18:51:48.406 1326-1830/android.process.media E/kaka: totalFree:3418288128
+06-01 18:51:48.418 1326-1830/android.process.media E/kaka: totalFree:3418402816
+06-01 18:51:48.548 234-720/? E/BufferQueueProducer: [com.android.settings/com.android.settings.deviceinfo.UsbModeChooserActivity] connect: already connected (cur=1 req=1)
+06-01 18:51:48.601 234-247/? E/BufferQueueProducer: [com.android.settings/com.android.settings.deviceinfo.UsbModeChooserActivity] connect: already connected (cur=1 req=1)
+06-01 18:51:50.616 234-247/? E/BufferQueueProducer: [com.android.settings/com.android.settings.Settings$DevelopmentSettingsActivity] connect: already connected (cur=1 req=1)
+06-01 18:51:50.672 314-350/? E/DJILink: remove listener 56
+06-01 18:51:50.672 314-350/? E/UartLinkHandler: close 56 for /dev/ttyGS0
+06-01 18:51:52.691 1326-1340/android.process.media E/kaka: totalFree:3416707072
+06-01 18:51:52.705 1326-1340/android.process.media E/kaka: totalFree:3416707072
+06-01 18:51:56.774 611-822/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:51:56.779 611-822/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:51:56.780 234-951/? E/BufferQueueProducer: [com.android.settings/com.android.settings.Settings] connect: already connected (cur=1 req=1)
+06-01 18:51:58.802 611-629/system_process E/UserRestrictionsUtils: Unknown restriction: null
+06-01 18:51:58.804 611-629/system_process E/UserRestrictionsUtils: Unknown restriction: null
+06-01 18:51:58.806 611-629/system_process E/UserRestrictionsUtils: Unknown restriction: null
+06-01 18:51:58.935 234-951/? E/BufferQueueProducer: [com.android.settings/com.android.settings.Settings$DevelopmentSettingsActivity] connect: already connected (cur=1 req=1)
+06-01 18:51:59.036 233-233/? E/SELinux: avc:  denied  { find } for service=netd pid=805 uid=1000 scontext=u:r:system_app:s0 tcontext=u:object_r:netd_service:s0 tclass=service_manager permissive=1
+06-01 18:52:03.643 234-245/? E/BufferQueueProducer: [com.android.settings/com.android.settings.Settings$DevelopmentSettingsActivity] connect: already connected (cur=1 req=1)
+06-01 18:52:04.691 314-350/? E/Listener: add listener for 56
+06-01 18:52:04.704 314-350/? E/DJILink: remove listener 56
+06-01 18:52:04.704 314-350/? E/UartLinkHandler: close 56 for /dev/ttyGS0
+06-01 18:52:04.799 1326-1830/android.process.media E/kaka: totalFree:3415552000
+06-01 18:52:04.805 1326-1830/android.process.media E/kaka: totalFree:3415543808
+06-01 18:52:04.811 1326-1340/android.process.media E/kaka: totalFree:3415543808
+06-01 18:52:04.815 1326-1340/android.process.media E/kaka: totalFree:3415543808
+06-01 18:52:04.902 234-951/? E/BufferQueueProducer: [com.android.settings/com.android.settings.deviceinfo.UsbModeChooserActivity] connect: already connected (cur=1 req=1)
+06-01 18:52:04.955 234-369/? E/BufferQueueProducer: [com.android.settings/com.android.settings.deviceinfo.UsbModeChooserActivity] connect: already connected (cur=1 req=1)
+06-01 18:52:07.081 314-350/? E/Listener: add listener for 56
+06-01 18:52:07.081 314-350/? E/DJILink: remove listener 56
+06-01 18:52:07.081 314-350/? E/UartLinkHandler: close 56 for /dev/ttyGS0
+06-01 18:52:07.320 234-369/? E/BufferQueueProducer: [com.android.settings/com.android.settings.Settings$DevelopmentSettingsActivity] connect: already connected (cur=1 req=1)
+06-01 18:52:07.476 314-350/? E/Listener: add listener for 56
+06-01 18:52:07.486 1326-1830/android.process.media E/kaka: totalFree:3413549056
+06-01 18:52:07.489 314-350/? E/DJILink: remove listener 56
+06-01 18:52:07.489 314-350/? E/UartLinkHandler: close 56 for /dev/ttyGS0
+06-01 18:52:07.492 1326-1830/android.process.media E/kaka: totalFree:3413549056
+06-01 18:52:07.506 1326-1340/android.process.media E/kaka: totalFree:3413508096
+06-01 18:52:07.514 1326-1340/android.process.media E/kaka: totalFree:3413508096
+06-01 18:52:10.147 234-245/? E/BufferQueueProducer: [StatusBar] connect: already connected (cur=1 req=1)
+06-01 18:52:10.199 314-357/? E/Listener: add listener for 56
+06-01 18:52:10.202 314-357/? E/TcpServerLinkHandler: _recvData failed:Success
+    exception in client:Success
+06-01 18:52:10.202 314-357/? E/DJILink: remove listener 56
+06-01 18:52:14.345 611-2236/system_process E/UserRestrictionsUtils: Unknown restriction: null
+    Unknown restriction: null
+06-01 18:52:14.347 611-2236/system_process E/UserRestrictionsUtils: Unknown restriction: null
+06-01 18:52:14.485 234-369/? E/BufferQueueProducer: [com.android.settings/com.android.settings.DevelopmentSettings] connect: already connected (cur=1 req=1)
+06-01 18:52:14.611 233-233/? E/SELinux: avc:  denied  { find } for service=netd pid=805 uid=1000 scontext=u:r:system_app:s0 tcontext=u:object_r:netd_service:s0 tclass=service_manager permissive=1
+06-01 18:52:14.745 234-951/? E/BufferQueueProducer: [StatusBar] connect: already connected (cur=1 req=1)
+06-01 18:52:20.393 314-350/? E/Listener: add listener for 56
+06-01 18:52:20.393 314-350/? E/DJILink: remove listener 56
+06-01 18:52:20.393 314-350/? E/UartLinkHandler: close 56 for /dev/ttyGS0
+06-01 18:52:21.103 234-369/? E/BufferQueueProducer: [com.android.settings/com.android.settings.DevelopmentSettings] connect: already connected (cur=1 req=1)
+06-01 18:52:23.455 611-667/system_process E/UsbDeviceManager: waitForState(acm,adb) FAILED: got none
+    Failed to switch USB config to acm,adb
+    Failsafe 1: Restoring previous USB functions.
+06-01 18:52:23.527 1326-1830/android.process.media E/kaka: totalFree:3411562496
+06-01 18:52:23.536 1326-1830/android.process.media E/kaka: totalFree:3411595264
+06-01 18:52:23.812 314-350/? E/Listener: add listener for 56
+06-01 18:52:23.820 314-350/? E/DJILink: remove listener 56
+06-01 18:52:23.820 314-350/? E/UartLinkHandler: close 56 for /dev/ttyGS0
+06-01 18:52:23.849 1326-1340/android.process.media E/kaka: totalFree:3411562496
+06-01 18:52:23.861 1326-1340/android.process.media E/kaka: totalFree:3411562496
+06-01 18:52:23.919 1326-1830/android.process.media E/kaka: totalFree:3410669568
+06-01 18:52:23.926 1326-1830/android.process.media E/kaka: totalFree:3410669568
+06-01 18:52:24.012 234-369/? E/BufferQueueProducer: [com.android.settings/com.android.settings.deviceinfo.UsbModeChooserActivity] connect: already connected (cur=1 req=1)
+06-01 18:52:24.063 234-720/? E/BufferQueueProducer: [com.android.settings/com.android.settings.deviceinfo.UsbModeChooserActivity] connect: already connected (cur=1 req=1)
+06-01 18:52:29.692 314-350/? E/Listener: add listener for 56
+06-01 18:52:29.692 314-350/? E/DJILink: remove listener 56
+06-01 18:52:29.692 314-350/? E/UartLinkHandler: close 56 for /dev/ttyGS0
+06-01 18:52:29.882 234-951/? E/BufferQueueProducer: [com.android.settings/com.android.settings.DevelopmentSettings] connect: already connected (cur=1 req=1)
+06-01 18:52:30.079 314-350/? E/Listener: add listener for 56
+06-01 18:52:30.089 1326-1340/android.process.media E/kaka: totalFree:3409784832
+06-01 18:52:30.095 1326-1340/android.process.media E/kaka: totalFree:3409752064
+06-01 18:52:30.140 314-350/? E/DJILink: remove listener 56
+06-01 18:52:30.140 314-350/? E/UartLinkHandler: close 56 for /dev/ttyGS0
+06-01 18:52:30.150 1326-1830/android.process.media E/kaka: totalFree:3409563648
+06-01 18:52:30.163 1326-1830/android.process.media E/kaka: totalFree:3409563648
+06-01 18:52:31.712 234-951/? E/BufferQueueProducer: [com.dpad.launcher/com.dpad.launcher.Launcher] connect: already connected (cur=1 req=1)
+06-01 18:52:32.032 805-2435/com.android.settings E/kaka: totalFree:3412402176
+06-01 18:52:33.104 611-1093/system_process E/BatteryStatsService: no controller energy info supplied
+    no controller energy info supplied
+06-01 18:52:33.111 611-1093/system_process E/BatteryStatsService: modem info is invalid: ModemActivityInfo{ mTimestamp=0 mSleepTimeMs=0 mIdleTimeMs=0 mTxTimeMs[]=[0, 0, 0, 0, 0] mRxTimeMs=0 mEnergyUsed=0}
+06-01 18:52:33.140 234-720/? E/BufferQueueProducer: [com.android.settings/com.android.settings.Settings] connect: already connected (cur=1 req=1)
+06-01 18:52:34.712 234-369/? E/BufferQueueProducer: [com.android.settings/com.android.settings.Settings$ProductImproveSettingsActivity] connect: already connected (cur=1 req=1)
+06-01 18:52:45.138 314-350/? E/Listener: add listener for 56
+06-01 18:54:17.558 234-369/? E/BufferQueueProducer: [ColorFade] connect: already connected (cur=1 req=1)
+06-01 18:54:17.599 805-2333/com.android.settings E/kaka: totalFree:3410399232
+06-01 18:54:18.145 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:18.180 611-672/system_process E/libEGL: call to OpenGL ES API with no current context (logged once per thread)
+06-01 18:54:18.375 1490-2058/com.google.android.inputmethod.japanese E/kaka: totalFree:3408261120
+06-01 18:54:18.383 1490-2058/com.google.android.inputmethod.japanese E/kaka: totalFree:3408101376
+06-01 18:54:18.409 1490-2058/com.google.android.inputmethod.japanese E/kaka: totalFree:3408261120
+06-01 18:54:18.419 1490-2058/com.google.android.inputmethod.japanese E/kaka: totalFree:3408261120
+06-01 18:54:18.767 1490-2058/com.google.android.inputmethod.japanese E/kaka: totalFree:3409285120
+06-01 18:54:18.775 1490-1504/com.google.android.inputmethod.japanese E/kaka: totalFree:3409285120
+06-01 18:54:18.960 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:18.971 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:18.978 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:18.995 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.011 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.028 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.045 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.062 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.079 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.095 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.112 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.128 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.145 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.162 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.178 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.195 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.212 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.229 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.245 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.262 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.279 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.296 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.313 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.330 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.346 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.363 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.380 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.397 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.413 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.431 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.446 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.463 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.480 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.496 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.513 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.529 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.546 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.563 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.580 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.596 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.613 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.630 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.647 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.664 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.680 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.697 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.713 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.730 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.746 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.763 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.779 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.796 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.813 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.829 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.846 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.864 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.880 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.897 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.913 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.931 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.947 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.963 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.980 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:19.996 611-768/system_process E/Lights?Hal: write_int failed to open /sys/class/backlight/rk28_bl/brightness
+06-01 18:54:24.679 314-357/? E/Listener: add listener for 57
+06-01 18:54:24.680 314-357/? E/TcpServerLinkHandler: _recvData failed:Success
+    exception in client:Success
+06-01 18:54:24.680 314-357/? E/DJILink: remove listener 57
+06-01 18:54:24.681 314-357/? E/Listener: add listener for 57
+06-01 18:54:24.682 314-357/? E/TcpServerLinkHandler: _recvData failed:Success
+    exception in client:Success
+06-01 18:54:24.682 314-357/? E/DJILink: remove listener 57
+06-01 18:54:24.985 314-357/? E/Listener: add listener for 57
+06-01 18:54:24.986 314-357/? E/TcpServerLinkHandler: _recvData failed:Success
+    exception in client:Success
+06-01 18:54:24.986 314-357/? E/DJILink: remove listener 57
+06-01 18:54:29.117 234-245/? E/BufferQueueProducer: [com.dpad.launcher/com.dpad.launcher.Launcher] connect: already connected (cur=1 req=1)
+06-01 18:54:29.397 2492-2608/com.android.htmlviewer E/kaka: totalFree:3413897216
+06-01 18:54:29.401 2560-2574/com.android.webview:sandboxed_process0 E/kaka: totalFree:3413897216
