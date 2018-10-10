@@ -1,0 +1,38 @@
+如何单独生成编译：classes.jack
+
+ninja: Entering directory `.'
+ninja: error: 'out/target/common/obj/JAVA_LIBRARIES/opt-dpad-msgpack_intermediates/classes.jack', 
+needed by 'out/target/common/obj/JAVA_LIBRARIES/services.core_intermediates/classes.jack',
+ missing and no known rule to make it
+make: *** [ninja_wrapper] Error 1
+make: Leaving directory `/home/key/work/rk3399_android7.1_v1.00'
+
+
+服务之间的生命周期，如何监听某个服务初始化完成的事件
+10-10 06:46:13.182 9294-9294/system_process D/AndroidRuntime: Shutting down VM
+10-10 06:46:13.183 9294-9294/system_process E/AndroidRuntime: *** FATAL EXCEPTION IN SYSTEM PROCESS: main
+                                                              java.lang.RuntimeException: No data directory found for package android
+                                                                  at android.app.ContextImpl.getDataDir(ContextImpl.java:1945)
+                                                                  at android.app.ContextImpl.getPreferencesDir(ContextImpl.java:467)
+                                                                  at android.app.ContextImpl.getSharedPreferencesPath(ContextImpl.java:628)
+                                                                  at android.app.ContextImpl.getSharedPreferences(ContextImpl.java:346)
+                                                                  at com.dpad.core.analytics.util.SharedPrefUtil.<init>(SharedPrefUtil.java:31)
+                                                                  at com.dpad.core.analytics.util.SharedPrefUtil.init(SharedPrefUtil.java:36)
+                                                                  at com.dpad.core.analytics.DJIA.init(DJIA.java:146)
+                                                                  at com.dpad.core.analytics.DJIA.init(DJIA.java:121)
+                                                                  at com.dpad.core.DpadReportUtil.initDJIReport(DpadReportUtil.java:19)
+
+二次依赖问题如何解决？？？																  
+AndroidRuntime: *** FATAL EXCEPTION IN SYSTEM PROCESS: main
+                                                              java.lang.NoClassDefFoundError: Failed resolution of: Lorg/msgpack/core/MessagePack;
+															  
+UserEnvironment这个是啥？？？															  
+10-10 09:31:17.768 2105-2105/system_process E/Environment: Path requests must specify a user by using UserEnvironment
+                                                           java.lang.Throwable
+                                                               at android.os.Environment.throwIfUserRequired(Environment.java:913)
+                                                               at android.os.Environment.getExternalStorageDirectory(Environment.java:449)
+															   
+系统进程的网的安全性如何保证
+
+搞成服务的可行性
+
