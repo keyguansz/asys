@@ -1,4 +1,4 @@
-如何单独生成编译：classes.jack
+﻿如何单独生成编译：classes.jack
 
 ninja: Entering directory `.'
 ninja: error: 'out/target/common/obj/JAVA_LIBRARIES/opt-dpad-msgpack_intermediates/classes.jack', 
@@ -35,4 +35,7 @@ UserEnvironment这个是啥？？？
 系统进程的网的安全性如何保证
 
 搞成服务的可行性
+
+setrlim的原理
+2018-10-11 08:25:42.045 13134-13134/com.android.inputmethod.latin E/art: setrlimit(RLIMIT_CORE) failed for pid 13134: Operation not permitted
 
