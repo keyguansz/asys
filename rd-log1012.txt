@@ -1,0 +1,50 @@
+1.LOCAL_DEX_PREOPT 原理
+2.修改overlay为何都是，server.jar寻址不到资源，解压framework-res.apk其实是有的
+资源编译原理，怎么去排查问题，佳节资源编译原理，怎么去排查问题，佳节
+[ 22% 1035/4563] Building with Jack: out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/with-local/classes.dex
+FAILED: /bin/bash out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/with-local/classes.dex.rsp
+ERROR: /home/key/work/rk3399_android7.1_v1.00/frameworks/base/core/java/com/dji/DjiCoreHelper.java:120: dji_browser_lable cannot be resolved or is not a field
+ERROR: /home/key/work/rk3399_android7.1_v1.00/frameworks/base/core/java/com/dji/DjiCoreHelper.java:140: dji_browser_lable cannot be resolved or is not a field
+[ 22% 1035/4563] target Prebuilt: webview (out/target/product/rk3399_excavator/obj/APPS/webview_intermediates/package.apk)
+Archive:  out/target/product/rk3399_excavator/obj/APPS/webview_intermediates/package.apk
+  inflating: out/target/product/rk3399_excavator/obj/APPS/webview_intermediates/uncompressedlibs/lib/arm64-v8a/libwebviewchromium.so  
+  inflating: out/target/product/rk3399_excavator/obj/APPS/webview_intermediates/uncompressedlibs/lib/armeabi-v7a/libwebviewchromium.so  
+deleting: lib/arm64-v8a/libwebviewchromium.so
+deleting: lib/armeabi-v7a/libwebviewchromium.so
+  adding: lib/arm64-v8a/libwebviewchromium.so (stored 0%)
+  adding: lib/armeabi-v7a/libwebviewchromium.so (stored 0%)
+[ 22% 1035/4563] target Java: framework (out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/classes)
+FAILED: /bin/bash out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/classes-full-debug.jar.rsp
+frameworks/base/core/java/com/dji/DjiCoreHelper.java:120: error: cannot find symbol
+            appInfo.labelRes = com.android.internal.R.string.dji_browser_lable;
+                                                            ^
+  symbol:   variable dji_browser_lable
+  location: class string
+frameworks/base/core/java/com/dji/DjiCoreHelper.java:140: error: cannot find symbol
+                info.labelRes = com.android.internal.R.string.dji_browser_lable;
+                                                             ^
+  symbol:   variable dji_browser_lable
+  location: class string
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+2 errors
+ninja: build stopped: subcommand failed.
+分析：回退版本都不行，显然是缓存导致的
+模块编译时正常的呢
+
+主要是Jenkins脚本机制有问题吧，忽然不支持overlay
+但是此时copy到framework也不行啊。。删除dji_browser_lable，hdmi之类的新增文案也报fial
+就是Jenkins脚本改了东西！！！非常影响效率了现在
+
+3.编译失败原理
+ninja: build stopped: subcommand failed.
+make: *** [ninja_wrapper] Error 1
+
+#### make failed to build some targets (01:07 (mm:ss)) ####
+
+Build android failed!
+
+4.misc现在通过了，之前为何没有通过
+com.android.settings
