@@ -1,4 +1,4 @@
-1.LOCAL_DEX_PREOPT 原理
+﻿1.原理
 2.修改overlay为何都是，server.jar寻址不到资源，解压framework-res.apk其实是有的
 资源编译原理，怎么去排查问题，佳节资源编译原理，怎么去排查问题，佳节
 [ 22% 1035/4563] Building with Jack: out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/with-local/classes.dex
