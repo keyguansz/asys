@@ -1,4 +1,9 @@
-﻿如何单独生成编译：classes.jack
+﻿ NoSuchMethodException MessageBuffer.<clinit>
+
+
+
+------------------------------------------------------
+如何单独生成编译：classes.jack
 
 ninja: Entering directory `.'
 ninja: error: 'out/target/common/obj/JAVA_LIBRARIES/opt-dpad-msgpack_intermediates/classes.jack', 
