@@ -1,7 +1,7 @@
 git status
 pause
 git add --all
-git commit -m 'asdauto-bat'
+git commit -m 'auto-commit'
 git push
 pause
 exit
