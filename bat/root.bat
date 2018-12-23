@@ -1,2 +1,0 @@
-adb root
-adb remount
