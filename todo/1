@@ -1,0 +1,175 @@
+
+diff --git a/system_server.te b/system_server.te
+index 5f40395..1a62d5e 100644
+--- a/system_server.te
++++ b/system_server.te
+@@ -54,16 +54,13 @@ allow system_server self:capability {
+     net_raw
+     sys_boot
+     sys_nice
+-    sys_resource
++    sys_ptrace
+     sys_time
+     sys_tty_config
+ };
+ 
+ wakelock_use(system_server)
+ 
+-# Triggered by /proc/pid accesses, not allowed.
+-dontaudit system_server self:capability sys_ptrace;
+
++++ b/core/java/com/android/internal/os/ZygoteInit.java
+
+@@ -672,7 +672,7 @@ public class ZygoteInit {
+
+             OsConstants.CAP_NET_RAW,
+
+             OsConstants.CAP_SYS_MODULE,
+
+             OsConstants.CAP_SYS_NICE,
+
+-            OsConstants.CAP_SYS_RESOURCE,
+
++           OsConstants.CAP_SYS_PTRACE,
+
+             OsConstants.CAP_SYS_TIME,
+
+             OsConstants.CAP_SYS_TTY_CONFIG
+
+         );
+-=-----------------
+ //3.SIGNATURE_MATCH^M
++            final int sigChk = pm.checkSignatures(uid, Process.SYSTEM_UID);^M
++            if (sigChk == PackageManager.SIGNATURE_MATCH){^M
++                LOG("PERMISSION_GRANTED,for SIGNATURE_MATCH ");^M
++                return PackageManager.PERMISSION_GRANTED;^M
++            }^M
+String pkName = proc.processName;^M
++            LOG("checkCallingPermission,pkName = "+pkName);^M
++            PackageManager pm = mContext.getPackageManager();^M
++            //1.isSystemApp^M
++            PackageInfo packageInfo = pm.getPackageInfo(pkName, 0);^M
++            int flg = packageInfo.applicationInfo.flags;^M
++            boolean isSystemApp = (flg & ApplicationInfo.FLAG_SYSTEM) != 0;^M
+
+
+-------------
+private void scanDirLI(File dir, final int parseFlags, int scanFlags, long currentTime)
+for (File file : files) {
++            String filename = file.getName();
++            int localParseFlags = parseFlags;
++            if(filename.indexOf("google") >= 0) {
++                localParseFlags |= PackageParser.PARSE_IS_SYSTEM;
++                localParseFlags |= PackageParser.PARSE_IS_SYSTEM_DIR;
++                scanFlags &= ~SCAN_REQUIRE_KNOWN;
++            }
++            //20190225 wangsl modify for gms end
++
+             try {
+-                scanPackageTracedLI(file, parseFlags | PackageParser.PARSE_MUST_BE_APK,
++                scanPackageTracedLI(file, localParseFlags | PackageParser.PARSE_MUST_BE_APK,
+                         scanFlags, currentTime, null);
+                 if (isPrebundled) {
+                     final PackageParser.Package pkg;
+                     try {
+-                        pkg = new PackageParser().parsePackage(file, parseFlags);
++                        pkg = new PackageParser().parsePackage(file, localParseFlags);
+                     } catch (PackageParserException e) {
+                         throw PackageManagerException.from(e);
+                     }
+@@ -7064,7 +7086,7 @@ public class PackageManagerService extends IPackageManager.Stub {
+                 Slog.w(TAG, "Failed to parse " + file + ": " + e.getMessage());
+ 
+                 // Delete invalid userdata apps
+-                if ((parseFlags & PackageParser.PARSE_IS_SYSTEM) == 0 &&
++                if ((localParseFlags & PackageParser.PARSE_IS_SYSTEM) == 0 &&
+                         e.error == PackageManager.INSTALL_FAILED_INVALID_APK) {
+                     logCriticalInfo(Log.WARN, "Deleting invalid package at " + file);
+                     removeCodePathLI(file);
+(END)
+-------------------------
+ IntentFilter filter=new IntentFilter();
++        filter.addAction(Intent.ACTION_BOOT_COMPLETED);
++        mContext.registerReceiver(mReservedSpaceReceiver, filter);
+private static final void randomAccessFileCreate(String file, int  length) throws IOException{
++        long start = System.currentTimeMillis();
++        RandomAccessFile r = null;
++        byte[] b = new byte[1024 * 1024];
++        try {
++            r = new RandomAccessFile(file, "rws");
++            //r.setLength(length);
++            for(int i=0; i<length; i++) {
++                r.write(b);
++            }
++        } finally{
++            if (r != null) {
++                try {
++                    r.close();
++                } catch (IOException e) {
++                    e.printStackTrace();
++                }
++            }
++        }
++        long end = System.currentTimeMillis();
+创建一个256M的文件？？？
+private static final String RESERVED_SPACE_FILE = DATA_PATH + "/reserved.bin";
+------------
++//Xandy add for storage space required for the system boot (count in MB)
++#define RESERVED_SPACE_FOR_BOOT                250
++#define RESERVED_SPACE_FILE                    "/data/reserved.bin"
++
+ extern int ifc_init();
+ extern void ifc_close();
+ extern int ifc_up(const char *name);
+@@ -1112,8 +1118,40 @@ void copy_dir(const char *old_path,const char *new_path)
+        free(root_dir_abs_path);
+ }
+ 
++//Xandy add for device storage space check when boot
++int get_device_avail_block(void)
++{
++       struct statvfs64 fsstat;
++       unsigned long freeSize = 0;
+ 
++       memset(&fsstat, 0, sizeof(fsstat));
++       if (statvfs64("/data", &fsstat) == 0) {
++               freeSize = fsstat.f_frsize * fsstat.f_bavail;
++       }
+ 
++       return (int)freeSize/(1024*1024);
++}
++
++void device_storage_space_check(void)
++{
++       unsigned int freeMem = get_device_avail_block();
++
++       SLOGI("device_storage_space_check:free size=%dMB before\n", freeMem);
++
++       if(freeMem <= RESERVED_SPACE_FOR_BOOT) {
++               if(access("/data/reserved.bin", F_OK) == 0) {
++                       FILE* fp = fopen(RESERVED_SPACE_FILE, "w+");
++                       if(fp != NULL) {
++                               remove(RESERVED_SPACE_FILE);
++                               fclose(fp);
++                               freeMem = get_device_avail_block();
++                               SLOGI("device_storage_space_check:free size=%dMB after\n", freeMem);
++                       } else {
++                               SLOGE("device_storage_space_check:can not open:%s\n", RESERVED_SPACE_FILE);
++                       }
++               }
++       }
++}
+ 
+ /** * Program entry pointer *
+  * @return 0 for success, -1 for SLOGI
+@@ -1124,6 +1162,9 @@ int main( int argc, char *argv[] )
+     char propbuf_source[PROPERTY_VALUE_MAX];
+        char propbuf_dest[PROPERTY_VALUE_MAX];
+        char prop_board_platform[PROPERTY_VALUE_MAX];
++
++       device_storage_space_check();
++
+        property_get("ro.boot.copy_source", propbuf_source, "");
+        property_get("ro.boot.copy_dest", propbuf_dest, "");
+        property_get("ro.board.platform", prop_board_platform, "");
+(END)
