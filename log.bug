@@ -1,0 +1,387 @@
+2222
+UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+UsbDeviceManager : systemReady
+UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+UsbDeviceManager : boot completed
+UsbDeviceManager : skip broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v1:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v1:UsbDeviceManager : systemReady
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v1:UsbDeviceManager : boot completed
+v1:UsbDeviceManager : skip broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v1:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v1:UsbDeviceManager : setUsbConfig(none)
+v1:UsbDeviceManager : setUsbConfig(adb,acm)
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=false, unlocked=false, acm=true, adb=true, configured=false}]
+v1:UsbDeviceManager : got accessory start
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=false}]
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v1:UsbDeviceManager : got accessory start
+v1:UsbDeviceManager : got accessory start
+v1:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v1:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v1:UsbDeviceManager : setUsbConfig(none)
+v1:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v1:UsbDeviceManager : setUsbConfig(none)
+v1:UsbDeviceManager : setUsbConfig(adb,acm)
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=false, acm=true, adb=true, configured=false}]
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v1:UsbDeviceManager : got accessory start
+v1:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v1:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v1:UsbDeviceManager : setUsbConfig(none)
+v1:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v1:UsbDeviceManager : setUsbConfig(none)
+v1:UsbDeviceManager : setUsbConfig(adb,acm)
+v1:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=false, unlocked=false, acm=true, adb=true, configured=false}]
+v1:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v1:UsbDeviceManager : systemReady
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v1:UsbDeviceManager : boot completed
+v1:UsbDeviceManager : skip broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=false}]
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v1:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v1:UsbDeviceManager : systemReady
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v1:UsbDeviceManager : boot completed
+v1:UsbDeviceManager : skip broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v1:UsbDeviceManager : USB UEVENT: {USB_STATE=DISCONNECTED, SUBSYSTEM=android_usb, SEQNUM=2342, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v1:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v1:UsbDeviceManager : setUsbConfig(none)
+v1:UsbDeviceManager : setUsbConfig(adb,acm)
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=false, unlocked=false, acm=true, adb=true, configured=false}]
+v1:UsbDeviceManager : USB UEVENT: {USB_STATE=CONNECTED, SUBSYSTEM=android_usb, SEQNUM=2357, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v1:UsbDeviceManager : USB UEVENT: {USB_STATE=CONFIGURED, SUBSYSTEM=android_usb, SEQNUM=2358, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v1:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2359, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v1:UsbDeviceManager : got accessory start
+v1:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v1:UsbDeviceManager : startAccessoryMode: [DJI, HG210, Osmo Pocket, v0.0.0.1, www.dji.com, 000000000000000]
+v1:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=false}]
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v1:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2360, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v1:UsbDeviceManager : got accessory start
+v1:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v1:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v1:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2361, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v1:UsbDeviceManager : got accessory start
+v1:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v1:UsbDeviceManager : startAccessoryMode: [DJI, HG210, Osmo Pocket, v0.0.0.1, www.dji.com, 000000000000000]
+v1:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v1:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v1:UsbDeviceManager : setUsbConfig(none)
+v1:UsbDeviceManager : USB UEVENT: {USB_STATE=DISCONNECTED, SUBSYSTEM=android_usb, SEQNUM=2363, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v1:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v1:UsbDeviceManager : setUsbConfig(none)
+v1:UsbDeviceManager : setUsbConfig(adb,acm)
+v1:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=false, unlocked=false, acm=true, adb=true, configured=false}]
+v1:UsbDeviceManager : USB UEVENT: {USB_STATE=CONNECTED, SUBSYSTEM=android_usb, SEQNUM=2377, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v1:UsbDeviceManager : USB UEVENT: {USB_STATE=CONFIGURED, SUBSYSTEM=android_usb, SEQNUM=2378, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v1:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2379, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v1:UsbDeviceManager : got accessory start
+v1:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v1:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=false}]
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v1:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2380, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v1:UsbDeviceManager : got accessory start
+v1:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v1:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v1:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2381, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v1:UsbDeviceManager : got accessory start
+v1:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v1:UsbDeviceManager : startAccessoryMode: [DJI, HG210, Osmo Pocket, v0.0.0.1, www.dji.com, 000000000000000]
+v1:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v1:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v1:UsbDeviceManager : setUsbConfig(none)
+v1:UsbDeviceManager : USB UEVENT: {USB_STATE=DISCONNECTED, SUBSYSTEM=android_usb, SEQNUM=2383, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v1:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v1:UsbDeviceManager : setUsbConfig(none)
+v1:UsbDeviceManager : setUsbConfig(adb,acm)
+v1:UsbDeviceManager : USB UEVENT: {USB_STATE=CONNECTED, SUBSYSTEM=android_usb, SEQNUM=2386, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=false, acm=true, adb=true, configured=false}]
+v1:UsbDeviceManager : USB UEVENT: {USB_STATE=CONFIGURED, SUBSYSTEM=android_usb, SEQNUM=2387, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v1:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2388, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v1:UsbDeviceManager : got accessory start
+v1:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v1:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v1:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2389, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v1:UsbDeviceManager : got accessory start
+v1:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v1:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v1:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2390, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v1:UsbDeviceManager : got accessory start
+v1:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v1:UsbDeviceManager : startAccessoryMode: [DJI, HG210, Osmo Pocket, v0.0.0.1, www.dji.com, 000000000000000]
+v1:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v1:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v1:UsbDeviceManager : setUsbConfig(none)
+v1:UsbDeviceManager : USB UEVENT: {USB_STATE=DISCONNECTED, SUBSYSTEM=android_usb, SEQNUM=2392, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v1:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v1:UsbDeviceManager : setUsbConfig(none)
+v1:UsbDeviceManager : setUsbConfig(adb,acm)
+v1:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=false, unlocked=false, acm=true, adb=true, configured=false}]
+v1:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v1:UsbDeviceManager : systemReady
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v1:UsbDeviceManager : boot completed
+v1:UsbDeviceManager : skip broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v1:UsbDeviceManager : USB UEVENT: {USB_STATE=DISCONNECTED, SUBSYSTEM=android_usb, SEQNUM=1988, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v1:UsbDeviceManager : USB UEVENT: {USB_STATE=CONNECTED, SUBSYSTEM=android_usb, SEQNUM=1990, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=false}]
+v1:UsbDeviceManager : USB UEVENT: {USB_STATE=CONFIGURED, SUBSYSTEM=android_usb, SEQNUM=1991, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v1:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v2:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v2:UsbDeviceManager : systemReady
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v2:UsbDeviceManager : boot completed
+v2:UsbDeviceManager : skip broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v2:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v2:UsbDeviceManager : systemReady
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=false, unlocked=false, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : boot completed
+v2:UsbDeviceManager : skip broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=false, unlocked=false, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v2:UsbDeviceManager : skip broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=false, unlocked=false, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONNECTED, SUBSYSTEM=android_usb, SEQNUM=2212, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONFIGURED, SUBSYSTEM=android_usb, SEQNUM=2213, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2214, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [DJI, HG210, Osmo Pocket, v0.0.0.1, www.dji.com, 000000000000000]
+v2:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v2:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2215, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=DISCONNECTED, SUBSYSTEM=android_usb, SEQNUM=2217, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : setUsbConfig(adb,acm)
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONNECTED, SUBSYSTEM=android_usb, SEQNUM=2220, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONFIGURED, SUBSYSTEM=android_usb, SEQNUM=2221, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : skip broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2222, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [DJI, HG210, Osmo Pocket, v0.0.0.1, www.dji.com, 000000000000000]
+v2:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v2:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=DISCONNECTED, SUBSYSTEM=android_usb, SEQNUM=2224, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2225, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [DJI, HG210, Osmo Pocket, v0.0.0.1, www.dji.com, 000000000000000]
+v2:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v2:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : setUsbConfig(adb,acm)
+v2:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : setUsbConfig(adb,acm)
+v2:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=false, unlocked=false, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONNECTED, SUBSYSTEM=android_usb, SEQNUM=2229, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONFIGURED, SUBSYSTEM=android_usb, SEQNUM=2230, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2231, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2232, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2233, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [DJI, HG210, Osmo Pocket, v0.0.0.1, www.dji.com, 000000000000000]
+v2:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v2:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=DISCONNECTED, SUBSYSTEM=android_usb, SEQNUM=2235, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : setUsbConfig(adb,acm)
+v2:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=false, unlocked=false, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONNECTED, SUBSYSTEM=android_usb, SEQNUM=2250, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONFIGURED, SUBSYSTEM=android_usb, SEQNUM=2251, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2252, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2253, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2254, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [DJI, HG210, Osmo Pocket, v0.0.0.1, www.dji.com, 000000000000000]
+v2:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v2:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=DISCONNECTED, SUBSYSTEM=android_usb, SEQNUM=2256, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : setUsbConfig(adb,acm)
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONNECTED, SUBSYSTEM=android_usb, SEQNUM=2258, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=false, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONFIGURED, SUBSYSTEM=android_usb, SEQNUM=2259, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2260, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [DJI, HG210, Osmo Pocket, v0.0.0.1, www.dji.com, 000000000000000]
+v2:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v2:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=DISCONNECTED, SUBSYSTEM=android_usb, SEQNUM=2262, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2263, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [DJI, HG210, Osmo Pocket, v0.0.0.1, www.dji.com, 000000000000000]
+v2:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v2:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : setUsbConfig(adb,acm)
+v2:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : setUsbConfig(adb,acm)
+v2:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=false, unlocked=false, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONNECTED, SUBSYSTEM=android_usb, SEQNUM=2268, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONFIGURED, SUBSYSTEM=android_usb, SEQNUM=2269, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2270, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2271, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2272, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [DJI, HG210, Osmo Pocket, v0.0.0.1, www.dji.com, 000000000000000]
+v2:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v2:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=DISCONNECTED, SUBSYSTEM=android_usb, SEQNUM=2274, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : setUsbConfig(adb,acm)
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONNECTED, SUBSYSTEM=android_usb, SEQNUM=2277, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=false, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONFIGURED, SUBSYSTEM=android_usb, SEQNUM=2278, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2279, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2280, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2281, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [DJI, HG210, Osmo Pocket, v0.0.0.1, www.dji.com, 000000000000000]
+v2:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v2:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=DISCONNECTED, SUBSYSTEM=android_usb, SEQNUM=2283, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : setUsbConfig(adb,acm)
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONNECTED, SUBSYSTEM=android_usb, SEQNUM=2285, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=false, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONFIGURED, SUBSYSTEM=android_usb, SEQNUM=2286, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2287, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2288, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [DJI, HG210, Osmo Pocket, v0.0.0.1, null, null]
+v2:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v2:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=DISCONNECTED, SUBSYSTEM=android_usb, SEQNUM=2290, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2291, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [DJI, HG210, Osmo Pocket, v0.0.0.1, www.dji.com, 000000000000000]
+v2:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v2:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : setUsbConfig(adb,acm)
+v2:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : setUsbConfig(adb,acm)
+v2:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=false, unlocked=false, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONNECTED, SUBSYSTEM=android_usb, SEQNUM=2296, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONFIGURED, SUBSYSTEM=android_usb, SEQNUM=2297, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2298, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2299, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [null, null, null, null, null, null]
+v2:UsbDeviceManager : USB UEVENT: {DEVNAME=usb_accessory, SUBSYSTEM=misc, SEQNUM=2300, MAJOR=10, ACTION=change, DEVPATH=/devices/virtual/misc/usb_accessory, MINOR=42, ACCESSORY=START}
+v2:UsbDeviceManager : got accessory start
+v2:UsbDeviceManager : startAccessoryMode: mHasUsbAccessory: true
+v2:UsbDeviceManager : startAccessoryMode: [DJI, HG210, Osmo Pocket, v0.0.0.1, www.dji.com, 000000000000000]
+v2:UsbDeviceManager : setCurrentFunctions(accessory, false)
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v2:UsbDeviceManager : setEnabledFunctions functions=accessory, forceRestart=false
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=DISCONNECTED, SUBSYSTEM=android_usb, SEQNUM=2302, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : setUsbConfig(accessory,adb,acm)
+v2:UsbDeviceManager : setUsbConfig(none)
+v2:UsbDeviceManager : setUsbConfig(adb,acm)
+v2:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=false, unlocked=false, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v2:UsbDeviceManager : systemReady
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=false, unlocked=false, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : setEnabledFunctions functions=null, forceRestart=false
+v2:UsbDeviceManager : boot completed
+v2:UsbDeviceManager : skip broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=false, unlocked=false, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONNECTED, SUBSYSTEM=android_usb, SEQNUM=1994, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONFIGURED, SUBSYSTEM=android_usb, SEQNUM=1995, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=DISCONNECTED, SUBSYSTEM=android_usb, SEQNUM=2029, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONNECTED, SUBSYSTEM=android_usb, SEQNUM=2031, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=false}]
+v2:UsbDeviceManager : USB UEVENT: {USB_STATE=CONFIGURED, SUBSYSTEM=android_usb, SEQNUM=2032, ACTION=change, DEVPATH=/devices/virtual/android_usb/android0}
+v2:UsbDeviceManager : broadcasting Intent { act=android.hardware.usb.action.USB_STATE flg=0x30000000 (has extras) } extras: Bundle[{host_connected=false, connected=true, unlocked=true, acm=true, adb=true, configured=true}]
