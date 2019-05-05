@@ -1,0 +1,5 @@
+require board=marlin|sailfish
+
+require version-bootloader=8996-012001-1812132253
+
+require version-baseband=8996-130281-1902150337
