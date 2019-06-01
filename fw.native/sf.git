@@ -1,0 +1,243 @@
+输出屏幕为啥要裁剪调H部分，上下各1/8
++++ b/services/surfaceflinger/DisplayDevice.cpp
+@@ -612,6 +612,18 @@ void DisplayDevice::setProjection(int orientation,
+     Transform R;
+     DisplayDevice::orientationToTransfrom(orientation, w, h, &R);
+ 
++       //Xandy add for force scale HDMI out when lcd is 4/3 size
++       if (mType == DisplayDevice::DISPLAY_EXTERNAL) {
++               char property[PROPERTY_VALUE_MAX];
++               property_get("persist.sys.sf.enablecrop", property, "0");
++               int tmpW = viewport.getWidth();
++               int tmpH = viewport.getHeight();
++               if (atoi(property) > 0 && (tmpH/tmpW == 3/4)) {
++                                       frame = Rect(0,0,getWidth(),getHeight());
++                                       viewport = Rect(0,tmpH/8, tmpW, tmpH-tmpH/8);
++                       }
++               }
++
+     if (!frame.isValid()) {
+
+修复hdr的bug	 
+diff --git a/services/surfaceflinger/Layer.cpp b/services/surfaceflinger/Layer.cpp
+index 42b1a3e..db67633 100755
+--- a/services/surfaceflinger/Layer.cpp
++++ b/services/surfaceflinger/Layer.cpp
+@@ -75,6 +75,9 @@ typedef struct
+ 
+ #define TexBufferMax  2
+ #define TexKey 0x524f434b
++
++#define ALIGN(val, align) (((val) + ((align) - 1)) & ~((align) - 1))
++
+ static TexBufferImag yuvTeximg[TexBufferMax] = {{NULL,EGL_NO_IMAGE_KHR},{NULL,EGL_NO_IMAGE_KHR}};
+ #endif
+ 
+@@ -1319,7 +1322,14 @@ void Layer::onDraw(const sp<const DisplayDevice>& hw, const Region& clip,
+             dlclose(dso);
+             return;
+         }
+-        rockchipxxx((u8*)src_vaddr, (u8*)dst_vaddr, src_r - src_l, src_b - src_t, src_stride, (src_r - src_l)*2, 0);
++               /* align w to 64 */
++               w = ALIGN(w, 64);
++               if(w <= yuvTeximg[yuvIndex].yuvTexBuffer->getStride()/2)
++               {
++                       rockchipxxx((u8*)src_vaddr, (u8*)dst_vaddr, w, src_b - src_t, src_stride, yuvTeximg[yuvIndex].yuvTexBuffer->getStride(), 0);
++               }
++               else
++                       ALOGE("%s(%d):unsupport resolution for 4k", __FUNCTION__, __LINE__);
+ #elif RK_NV12_10_TO_NV12_BY_NENO
+         if(rockchipxxx3288 == NULL)
+-----------------------------------------------------------------------------
+平滑算法可以吧： timeInterval >  (period * 3 >> 1)这样判断太挫了
+		 图像平滑专利？？
+		
+		重复写时间函数和
+		
+		
+/services/surfaceflinger/Layer.cpp
+@@ -2390,16 +2390,60 @@ void Layer::useEmptyDamage() {
+ // ----------------------------------------------------------------------------
+ // pageflip handling...kji代码和原生代码耦合
+ period的获取方式？？、
+ // ----------------------------------------------------------------------------
++bool Layer::frameskip(nsecs_t period) const
++{
++    bool bskip = false;
++       int  framerate;
++    static nsecs_t preTimeStamp = 0;//用static代替全局变量
++       nsecs_t timeInterval;
++       int  iOnFpv;
++       char value[PROPERTY_VALUE_MAX];
++
++    property_get("prop.kji.fpv", value, "0");
++    iOnFpv = atoi(value);//
++    if(iOnFpv && strstr(mName.string(), "SurfaceView"))//交互逻辑差
++       {
++           //this is fpv preview
++           property_get("kji.camera.fps", value, "30");//，prop风格不统一
++               framerate = atoi(value);
++               if(framerate < 50)//==?
++               {
++                   //fpv framerate 30fps/25fps should match display fps
++                       nsecs_t now = systemTime(SYSTEM_TIME_MONOTONIC);
++                       timeInterval = now - preTimeStamp;
++                       bskip = true;
++                       if( timeInterval >  (period * 3 >> 1) )
++                       {
++                           preTimeStamp = now;
++                               bskip = false;
++                   }
++            }
++       }
++
++       return bskip;
++}
+
+ ///eeee，代码风格，算法一片混乱啊
+ bool Layer::shouldPresentNow(const DispSync& dispSync) const {
+     if (mSidebandStreamChanged || mAutoRefresh) {
+-        return true;
++        return !frameskip(dispSync.getPeriod());
+     }
+ 
+     Mutex::Autolock lock(mQueueItemLock);
+     if (mQueueItems.empty()) {
+-        return false;
+     }
++
+     auto timestamp = mQueueItems[0].mTimestamp;
+     nsecs_t expectedPresent =
+             mSurfaceFlingerConsumer->computeExpectedPresent(dispSync);
+@@ -2411,7 +2455,19 @@ bool Layer::shouldPresentNow(const DispSync& dispSync) const {
+             expectedPresent);
+ 
+     bool isDue = timestamp < expectedPresent;
+-    return isDue || !isPlausible;
++    return (isDue || !isPlausible) !frameskip(dispSync.getPeriod());
+ }
+ 
+ --------------------
+ 
+    libsurfaceflinger.so: M1129 1)fixbug:two layers named SurfaceView casue video smooth abnormal
+    
+    Change-Id: I0948f67e2796b0f220243440edc6b0abb365407a
+
+这个bug修得不对啊，应该用其他layer的属性值来判断，而不是简单的，用啥子呢
++++ b/services/surfaceflinger/Layer.cpp
+@@ -2398,10 +2398,13 @@ bool Layer::frameskip(nsecs_t period) constmName和CurCrop！
+        nsecs_t timeInterval;
+        int  iOnFpv;
+        char value[PROPERTY_VALUE_MAX];
+-
++    Rect CurCrop;
++       
++       CurCrop = getContentCrop();
++    
+     property_get("prop.kji.fpv", value, "0");
+     iOnFpv = atoi(value);
+-    if(iOnFpv && strstr(mName.string(), "SurfaceView"))
++    if(iOnFpv && strstr(mName.string(), "SurfaceView") && (CurCrop.right == 1080))
+        {
+
+		    surfaceflinger: M1204 1)mov set_diplay_fps from ACodec to here for monitor kji.camera.fps
+    
+    Change-Id: Ibcdf37bbccb171fe5dd941fe5ce7758ee5c38510
+
+diff --git a/services/surfaceflinger/Layer.cpp b/services/surfaceflinger/Layer.cpp
+index c549935..1995ff9 100755
+--- a/services/surfaceflinger/Layer.cpp
++++ b/services/surfaceflinger/Layer.cpp
+@@ -2387,6 +2387,43 @@ void Layer::useEmptyDamage() {
+     surfaceDamageRegion.clear();
+ }
+ 
+ //设定显示设备的帧率
+  M1204 1)mov set_diplay_fps from ACodec to here for monitor kji.camera.fps
++void Layer::set_display_fps() const
++{
++       char value[PROPERTY_VALUE_MAX];
++       int timeline;
++       int sc_width, sc_height;
++       int sc_fps, dest_fps;
++       int framerate;
++       static int preframe = 30;
++
++       property_get("kji.camera.fps", value, "30");
++       framerate = atoi(value);
++
++       if(framerate != preframe)
++       {
++           preframe = framerate;
++
++               property_get("persist.sys.resolution.main", value, "1080x1920p60");
++               sscanf(value, "%dx%dp%d", &sc_width, &sc_height, &sc_fps);
++
++               ALOGD("set_display_fps: sc_width %d, sc_height %d, sc_fps %d!", sc_width, sc_height, sc_fps);
++
++               dest_fps = framerate;
++               dest_fps = (dest_fps <= 30) ? (dest_fps << 1) : dest_fps;
++               if(dest_fps != sc_fps)
++               {
++                       sprintf(value, "%dx%dp%d", sc_width, sc_height, dest_fps);
++                       property_set("persist.sys.resolution.main", value);
++
++                       property_get("sys.display.timeline", value, "0");
++                       timeline = atoi(value) + 1;
++                       sprintf(value, "%d", timeline);
++                       property_set("sys.display.timeline", value);
++                       ALOGD("set_display_fps:display fps %d!", dest_fps);
++               }
++       }
++}
+
+影藏悬浮窗，通过layer一定可以找到包名和UI名字吧，
++++ b/services/surfaceflinger/SurfaceFlinger_hwc1.cpp
+@@ -1267,12 +1267,15 @@ void SurfaceFlinger::rebuildLayerStacks() {
+                         Region drawRegion(tr.transform(
+
+ #else
++
+                         if (!drawRegion.isEmpty()) {
++                            	if( (hw->getDisplayType() != DisplayDevice::DISPLAY_VIRTUAL) || !strstr(layer->getName().string(), "kji_recorder" ) )
+                             layersSortedByZ.add(layer);
+                         }
+绑定dahe，一行代码，开放出来吧，做成api多好
++++ b/services/surfaceflinger/main_surfaceflinger.cpp
+@@ -25,10 +25,14 @@
+ #include <binder/IServiceManager.h>
+ #include "GpuService.h"
+ #include "SurfaceFlinger.h"
++#include <sched.h>
+ 
+ using namespace android;
+ 
+ int main(int, char**) {
++       cpu_set_t mask;
++
++               
+     signal(SIGPIPE, SIG_IGN);
+     // When SF is launched in its own process, limit the number of
+     // binder threads to 4.
+@@ -54,6 +58,7 @@ int main(int, char**) {
+ 
+     // initialize before clients can connect
+     flinger->init();
+
+ 
+     // publish surface flinger
+     sp<IServiceManager> sm(defaultServiceManager());
+@@ -69,8 +74,16 @@ int main(int, char**) {
+         ALOGE("Couldn't set SCHED_FIFO");
+     }
+ 
++       CPU_ZERO(&mask);
++       CPU_SET(4, &mask);
++       CPU_SET(5, &mask);
++       if (sched_setaffinity(0, sizeof(mask), &mask) <0) {
++          ALOGD("sched_setaffinity faild!\n");
++       }
++
+     // run surface flinger in this thread
+     flinger->run();
+		
