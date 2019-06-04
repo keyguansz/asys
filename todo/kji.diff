@@ -1,0 +1,424 @@
+diff --git a/fw.native/fw.native.libs.gui.docx b/fw.native/fw.native.libs.gui.docx
+deleted file mode 100644
+index e69de29b..00000000
+diff --git a/fw.native/sf.git b/fw.native/sf.git
+deleted file mode 100644
+index eb32ceea..00000000
+--- a/fw.native/sf.git
++++ /dev/null
+@@ -1,243 +0,0 @@
+-输出屏幕为啥要裁剪调H部分，上下各1/8
+-+++ b/services/surfaceflinger/DisplayDevice.cpp
+-@@ -612,6 +612,18 @@ void DisplayDevice::setProjection(int orientation,
+-     Transform R;
+-     DisplayDevice::orientationToTransfrom(orientation, w, h, &R);
+- 
+-+       //Xandy add for force scale HDMI out when lcd is 4/3 size
+-+       if (mType == DisplayDevice::DISPLAY_EXTERNAL) {
+-+               char property[PROPERTY_VALUE_MAX];
+-+               property_get("persist.sys.sf.enablecrop", property, "0");
+-+               int tmpW = viewport.getWidth();
+-+               int tmpH = viewport.getHeight();
+-+               if (atoi(property) > 0 && (tmpH/tmpW == 3/4)) {
+-+                                       frame = Rect(0,0,getWidth(),getHeight());
+-+                                       viewport = Rect(0,tmpH/8, tmpW, tmpH-tmpH/8);
+-+                       }
+-+               }
+-+
+-     if (!frame.isValid()) {
+-
+-修复hdr的bug	 
+-diff --git a/services/surfaceflinger/Layer.cpp b/services/surfaceflinger/Layer.cpp
+-index 42b1a3e..db67633 100755
+---- a/services/surfaceflinger/Layer.cpp
+-+++ b/services/surfaceflinger/Layer.cpp
+-@@ -75,6 +75,9 @@ typedef struct
+- 
+- #define TexBufferMax  2
+- #define TexKey 0x524f434b
+-+
+-+#define ALIGN(val, align) (((val) + ((align) - 1)) & ~((align) - 1))
+-+
+- static TexBufferImag yuvTeximg[TexBufferMax] = {{NULL,EGL_NO_IMAGE_KHR},{NULL,EGL_NO_IMAGE_KHR}};
+- #endif
+- 
+-@@ -1319,7 +1322,14 @@ void Layer::onDraw(const sp<const DisplayDevice>& hw, const Region& clip,
+-             dlclose(dso);
+-             return;
+-         }
+--        rockchipxxx((u8*)src_vaddr, (u8*)dst_vaddr, src_r - src_l, src_b - src_t, src_stride, (src_r - src_l)*2, 0);
+-+               /* align w to 64 */
+-+               w = ALIGN(w, 64);
+-+               if(w <= yuvTeximg[yuvIndex].yuvTexBuffer->getStride()/2)
+-+               {
+-+                       rockchipxxx((u8*)src_vaddr, (u8*)dst_vaddr, w, src_b - src_t, src_stride, yuvTeximg[yuvIndex].yuvTexBuffer->getStride(), 0);
+-+               }
+-+               else
+-+                       ALOGE("%s(%d):unsupport resolution for 4k", __FUNCTION__, __LINE__);
+- #elif RK_NV12_10_TO_NV12_BY_NENO
+-         if(rockchipxxx3288 == NULL)
+------------------------------------------------------------------------------
+-平滑算法可以吧： timeInterval >  (period * 3 >> 1)这样判断太挫了
+-		 图像平滑专利？？
+-		
+-		重复写时间函数和
+-		
+-		
+-/services/surfaceflinger/Layer.cpp
+-@@ -2390,16 +2390,60 @@ void Layer::useEmptyDamage() {
+- // ----------------------------------------------------------------------------
+- // pageflip handling...kji代码和原生代码耦合
+- period的获取方式？？、
+- // ----------------------------------------------------------------------------
+-+bool Layer::frameskip(nsecs_t period) const
+-+{
+-+    bool bskip = false;
+-+       int  framerate;
+-+    static nsecs_t preTimeStamp = 0;//用static代替全局变量
+-+       nsecs_t timeInterval;
+-+       int  iOnFpv;
+-+       char value[PROPERTY_VALUE_MAX];
+-+
+-+    property_get("prop.kji.fpv", value, "0");
+-+    iOnFpv = atoi(value);//
+-+    if(iOnFpv && strstr(mName.string(), "SurfaceView"))//交互逻辑差
+-+       {
+-+           //this is fpv preview
+-+           property_get("kji.camera.fps", value, "30");//，prop风格不统一
+-+               framerate = atoi(value);
+-+               if(framerate < 50)//==?
+-+               {
+-+                   //fpv framerate 30fps/25fps should match display fps
+-+                       nsecs_t now = systemTime(SYSTEM_TIME_MONOTONIC);
+-+                       timeInterval = now - preTimeStamp;
+-+                       bskip = true;
+-+                       if( timeInterval >  (period * 3 >> 1) )
+-+                       {
+-+                           preTimeStamp = now;
+-+                               bskip = false;
+-+                   }
+-+            }
+-+       }
+-+
+-+       return bskip;
+-+}
+-
+- ///eeee，代码风格，算法一片混乱啊
+- bool Layer::shouldPresentNow(const DispSync& dispSync) const {
+-     if (mSidebandStreamChanged || mAutoRefresh) {
+--        return true;
+-+        return !frameskip(dispSync.getPeriod());
+-     }
+- 
+-     Mutex::Autolock lock(mQueueItemLock);
+-     if (mQueueItems.empty()) {
+--        return false;
+-     }
+-+
+-     auto timestamp = mQueueItems[0].mTimestamp;
+-     nsecs_t expectedPresent =
+-             mSurfaceFlingerConsumer->computeExpectedPresent(dispSync);
+-@@ -2411,7 +2455,19 @@ bool Layer::shouldPresentNow(const DispSync& dispSync) const {
+-             expectedPresent);
+- 
+-     bool isDue = timestamp < expectedPresent;
+--    return isDue || !isPlausible;
+-+    return (isDue || !isPlausible) !frameskip(dispSync.getPeriod());
+- }
+- 
+- --------------------
+- 
+-    libsurfaceflinger.so: M1129 1)fixbug:two layers named SurfaceView casue video smooth abnormal
+-    
+-    Change-Id: I0948f67e2796b0f220243440edc6b0abb365407a
+-
+-这个bug修得不对啊，应该用其他layer的属性值来判断，而不是简单的，用啥子呢
+-+++ b/services/surfaceflinger/Layer.cpp
+-@@ -2398,10 +2398,13 @@ bool Layer::frameskip(nsecs_t period) constmName和CurCrop！
+-        nsecs_t timeInterval;
+-        int  iOnFpv;
+-        char value[PROPERTY_VALUE_MAX];
+--
+-+    Rect CurCrop;
+-+       
+-+       CurCrop = getContentCrop();
+-+    
+-     property_get("prop.kji.fpv", value, "0");
+-     iOnFpv = atoi(value);
+--    if(iOnFpv && strstr(mName.string(), "SurfaceView"))
+-+    if(iOnFpv && strstr(mName.string(), "SurfaceView") && (CurCrop.right == 1080))
+-        {
+-
+-		    surfaceflinger: M1204 1)mov set_diplay_fps from ACodec to here for monitor kji.camera.fps
+-    
+-    Change-Id: Ibcdf37bbccb171fe5dd941fe5ce7758ee5c38510
+-
+-diff --git a/services/surfaceflinger/Layer.cpp b/services/surfaceflinger/Layer.cpp
+-index c549935..1995ff9 100755
+---- a/services/surfaceflinger/Layer.cpp
+-+++ b/services/surfaceflinger/Layer.cpp
+-@@ -2387,6 +2387,43 @@ void Layer::useEmptyDamage() {
+-     surfaceDamageRegion.clear();
+- }
+- 
+- //设定显示设备的帧率
+-  M1204 1)mov set_diplay_fps from ACodec to here for monitor kji.camera.fps
+-+void Layer::set_display_fps() const
+-+{
+-+       char value[PROPERTY_VALUE_MAX];
+-+       int timeline;
+-+       int sc_width, sc_height;
+-+       int sc_fps, dest_fps;
+-+       int framerate;
+-+       static int preframe = 30;
+-+
+-+       property_get("kji.camera.fps", value, "30");
+-+       framerate = atoi(value);
+-+
+-+       if(framerate != preframe)
+-+       {
+-+           preframe = framerate;
+-+
+-+               property_get("persist.sys.resolution.main", value, "1080x1920p60");
+-+               sscanf(value, "%dx%dp%d", &sc_width, &sc_height, &sc_fps);
+-+
+-+               ALOGD("set_display_fps: sc_width %d, sc_height %d, sc_fps %d!", sc_width, sc_height, sc_fps);
+-+
+-+               dest_fps = framerate;
+-+               dest_fps = (dest_fps <= 30) ? (dest_fps << 1) : dest_fps;
+-+               if(dest_fps != sc_fps)
+-+               {
+-+                       sprintf(value, "%dx%dp%d", sc_width, sc_height, dest_fps);
+-+                       property_set("persist.sys.resolution.main", value);
+-+
+-+                       property_get("sys.display.timeline", value, "0");
+-+                       timeline = atoi(value) + 1;
+-+                       sprintf(value, "%d", timeline);
+-+                       property_set("sys.display.timeline", value);
+-+                       ALOGD("set_display_fps:display fps %d!", dest_fps);
+-+               }
+-+       }
+-+}
+-
+-影藏悬浮窗，通过layer一定可以找到包名和UI名字吧，
+-+++ b/services/surfaceflinger/SurfaceFlinger_hwc1.cpp
+-@@ -1267,12 +1267,15 @@ void SurfaceFlinger::rebuildLayerStacks() {
+-                         Region drawRegion(tr.transform(
+-
+- #else
+-+
+-                         if (!drawRegion.isEmpty()) {
+-+                            	if( (hw->getDisplayType() != DisplayDevice::DISPLAY_VIRTUAL) || !strstr(layer->getName().string(), "kji_recorder" ) )
+-                             layersSortedByZ.add(layer);
+-                         }
+-绑定dahe，一行代码，开放出来吧，做成api多好
+-+++ b/services/surfaceflinger/main_surfaceflinger.cpp
+-@@ -25,10 +25,14 @@
+- #include <binder/IServiceManager.h>
+- #include "GpuService.h"
+- #include "SurfaceFlinger.h"
+-+#include <sched.h>
+- 
+- using namespace android;
+- 
+- int main(int, char**) {
+-+       cpu_set_t mask;
+-+
+-+               
+-     signal(SIGPIPE, SIG_IGN);
+-     // When SF is launched in its own process, limit the number of
+-     // binder threads to 4.
+-@@ -54,6 +58,7 @@ int main(int, char**) {
+- 
+-     // initialize before clients can connect
+-     flinger->init();
+-
+- 
+-     // publish surface flinger
+-     sp<IServiceManager> sm(defaultServiceManager());
+-@@ -69,8 +74,16 @@ int main(int, char**) {
+-         ALOGE("Couldn't set SCHED_FIFO");
+-     }
+- 
+-+       CPU_ZERO(&mask);
+-+       CPU_SET(4, &mask);
+-+       CPU_SET(5, &mask);
+-+       if (sched_setaffinity(0, sizeof(mask), &mask) <0) {
+-+          ALOGD("sched_setaffinity faild!\n");
+-+       }
+-+
+-     // run surface flinger in this thread
+-     flinger->run();
+-		
+\ No newline at end of file
+diff --git a/fw.native/fw.native.cmds.docx b/fw/frameworks.native.cmds.docx
+similarity index 100%
+rename from fw.native/fw.native.cmds.docx
+rename to fw/frameworks.native.cmds.docx
+diff --git a/fw.native/fw.native.docx b/fw/frameworks.native.docx
+similarity index 100%
+rename from fw.native/fw.native.docx
+rename to fw/frameworks.native.docx
+diff --git "a/note/\345\215\227\345\244\226\345\210\235\344\270\200\347\247\221\346\231\256190603.docx" "b/note/\345\215\227\345\244\226\345\210\235\344\270\200\347\247\221\346\231\256190603.docx"
+deleted file mode 100644
+index 668fac6f..00000000
+--- "a/note/\345\215\227\345\244\226\345\210\235\344\270\200\347\247\221\346\231\256190603.docx"
++++ /dev/null
+@@ -1,135 +0,0 @@
+-流程
+-主题：无人机科普活动
+-活动时间：19.6.3
+-参访人员：南外大冲分校初一学生（40人）
+-活动讲解人：XX
+-飞手：徐节文，关健，XX，XX
+-学生管理：学校
+-全场跟拍：学校
+-流程
+-15:00 讲解人到达威新
+-16:00 抵达威新科技软件园8栋1楼。分好组，4*10
+-16:10 开始参观展厅，发宣传册，总共4套，大家可以传阅，讲解人负责讲解，老师维持秩序（可以先看公司的视频mavic的）
+-16:30 旁边飞坪试飞，4个飞手各自负责一个小组，教会小朋友简单飞，能拍一些合影照片和录像，确保飞行安全
+-17:30 结束，用飞机航拍集体合影
+-周末 key整理航拍录像和拍照，共享出来
+-
+-试飞机型：3台mavic 2，3台mavic 2企业版，12个电池
+-
+-注：天气不好就取消活动
+-选择机型，mavic pro，mavic air，spark，tello，wm245
+-
+-回头学习
+-
+-https://e-learning.djicorp.com/ELearning/Online/Document?uploadId=457708b6-202a-4b93-86ed-21c61edd9be2&courseId=116
+-
+-
+-
+-飞行注意事项 [HYPERLINK: https://confluence.djicorp.com/pages/viewpage.action?pageId=38016167]
+-
+-1、出发前请提前安装好指定版本的App，请确认飞机和遥控器是否能对上频，如果有提示升级，请在出发前先完成升级
+-2、检查遥控器电量，飞机电池电量，如果电量不足，请提前充好电。检查飞机的桨叶、连接手机的数据线是否准备好
+-3、上述准备工作做好之后，检查飞机是否有SD卡，最好去23楼测试一下飞机是否可以正常起飞
+-4、起飞前一定要先检查飞机是否启用视觉避障，如果没有，请先启动视觉避障系统
+-5、在测试避障过程中，请不要将飞机直接往障碍物上怼，请保持飞机与离障碍物1-2米左右的安全距离
+-6、体验兴趣点环绕等相关功能时，需要确认周围物体的高度，以免飞行过程中遇到不可知的障碍物
+-7、当遥控报飞机低电量警告时，请保持飞机在你的视野范围内，避免因为飞机严重低电量之后自动降落，找不到降落后的飞机
+-
+-
+-
+- 基础性功能体验 [HYPERLINK: https://confluence.djicorp.com/pages/viewpage.action?pageId=38016178]
+-
+-序号
+-任务
+-目标
+-1
+-完成连接、对频、注册等初始化功能
+-App显示飞行器连接可用状态，遥控器可以正常控制飞机，完成起飞
+-2
+-使用相机的基础功能，如各种拍照模式、曝光参数等
+-拍摄不同分辨率和格式的视频及照片／使用相机的不同档位（A/S/M/P）
+-3
+-使用相机的其他模式，完成连拍，全景等照片
+-输出全景，连拍等相机功能的作品，分享到微信群
+-4
+-通过不同档位及飞行参数的设置调节，完成上述几种的视频拍摄工作
+-熟悉T/P/S 3中飞行档位及飞行相关参数设置
+-5
+-tracking 功能使用
+-输出几种tracing功能使用视频
+-
+-一、连接&对频&注册
+-步骤一：连接
+-1、开启遥控器，开启飞机，将手机与遥控器连接
+-步骤二：遥控器与飞机进行对频
+-对频方式有两种：
+-方式一：使用遥控器快捷键进行对频
+-1、同时按住遥控器背后的C1、C2键以及左边的录像键
+-2、当遥控器发出"滴滴"的声音后，保持按住遥控器C1、C2键以及左边的录像键的同时按下右边的拍照键
+-3、此时遥控器界面显示"Binding"，最后按下飞机右侧的对频按钮
+-4、等待遥控器和飞机完成连接
+-方式二：通过App完成遥控器对频
+-1、手机连接遥控器，首页点击"进入设备"
+-2、在FPV界面点击遥控器设置，在遥控器设置界面最底下有一个"遥控器对频"，点击
+-3、遥控器发出"滴滴滴"的声音后，此时遥控器界面显示"Binding"，最后按下飞机右侧的对频按钮
+-4、等待遥控器和飞机完成连接
+-步骤三：新用户注册
+-用户注册分为中国用户和外国用户
+-1、中国用户首次进入App之后点击注册，注册页面要求输入手机号，点击获取验证码，之后输入手机收到的验证码进行验证即可注册成功
+-2、国外用户首次进入App之后点击注册，注册页面要求输入邮箱注册，注册成功之后还会要求绑定手机号，绑定完手机号注册完成
+-二、激活&升级
+-步骤一：激活设备
+-1、打开飞机和遥控器，查看遥控器和飞机是否对上频，如果没有对上，则进行对频操作完成对频
+-2、将手机和遥控器连接，打开App，选择登录或者注册新账号登录
+-3、登录之后首页会提示用户激活和升级
+-4、点击首页激活设备，进行设备激活，激活过程中需要进行一些授权操作，点击下一步完成激活
+-步骤二：固件升级
+-1、App首页顶部提示"有新的固件更新！"，点击提示进入更新界面
+-2、升级过程中需要连接网络，整个升级过程分为三个阶段
+-3、首先下载升级所需要的固件，然后升级飞机，最后升级遥控器
+-4、升级完成之后，即可进入设备进行飞行了
+-三、基础飞拍体验
+-1、App与飞机连接后，进入FPV界面点击左上角自检栏，查看是否需要手动矫正的功能，若有，则手动进行矫正
+-2、打开飞控设置界面，设置限飞高度、限飞距离等
+-3、尝试通过遥控器触发拍照和录像，尝试通过FPV界面触发拍照和录像
+-4、确保避障功能已开启，尝试避障功能，目前支持前、后、左、右、上五个方位避障（注意：不要离障碍物太近，一般离障碍物2米左右就会收到避障警告的）
+-5、开启自动返航，尝试返航功能
+-6、尝试不同的拍照模式，输出成片
+-7、使用智能飞行一键短片，体验tracking功能
+-
+-
+-02.主题二：智能飞行体验之跟随&POI 2.0&一键短片&指点&影像 [HYPERLINK: https://confluence.djicorp.com/pages/viewpage.action?pageId=38016147]
+-
+-序号
+-任务
+-目标
+-1
+-使用智能飞行模式中的跟随模式
+-输出跟随模式各个子模式的短片
+-2
+-使用智能飞行模式中的一键短片
+-输出跟随模式各个子模式的短片
+-3
+-使用智能飞行模式中指点模式
+-输出跟随模式各个子模式的短片
+-4
+-使用智能飞行模式中影像模式
+-输出跟随模式各个子模式的短片
+-5
+-使用智能飞行模式中的兴趣点环绕
+-输出使用兴趣点环绕拍摄的创意视频
+-6
+-完成上述任务之后可以尝试使用延时摄影和航点飞行等功能
+-输出各个飞行模式下的创意视频
+-7
+-需要将改进意见填写到conference上对应的位置
+-主题二体验反馈建议汇总 [HYPERLINK: https://confluence.djicorp.com/pages/viewpage.action?pageId=39299053]
+-
+-
+-
+-03.主题三：智能飞行体验之延时摄影&航点规划 2.0 [HYPERLINK: https://confluence.djicorp.com/pages/viewpage.action?pageId=38016159]
+-
+-
+-
+-主题四：自由创意体验 [HYPERLINK: https://confluence.djicorp.com/pages/viewpage.action?pageId=38016152]
+-
+diff --git a/todo/todo.docx b/todo/todo.docx
+index 491c6a67..1564ffea 100644
+--- a/todo/todo.docx
++++ b/todo/todo.docx
+@@ -1,17 +1,5 @@
+ KJI2Home
+ 
+-  wm.freezeRotation(Surface.ROTATION_90);
+-	 User --  -- ROTATION_LOCKED
+-	 
+-	 --------------
+-	 updateOrientationFromAppTokensLocked
+-	   int getOrientationLocked() {
+-
+-jni_internal.cc
+-CameraFakeAdapter
+-winMS.getOrientationLOcked
+-
+-
+ 
+ 
+ data-center-windows-x86_64-v6.73.zip\data-center-windows-x86_64-v6.73
