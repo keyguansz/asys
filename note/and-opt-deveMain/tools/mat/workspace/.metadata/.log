@@ -1,0 +1,12 @@
+!SESSION 2017-10-18 16:07:30.675 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_141
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=zh_CN
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.mat.ui 1 0 2017-10-18 16:07:52.380
+!MESSAGE Heap C:\Users\key.guan\new.hprof contains 933,798 objects
+
+!ENTRY org.eclipse.mat.ui 1 0 2017-10-18 16:07:53.866
+!MESSAGE Removed 185,651 unreachable objects using 9,744,672 bytes

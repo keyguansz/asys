@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="k.opt">
+
+    <!--
+        <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="Android.permission.MOUNT_UNMOUNT_FIFESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="Android.permission.MOUNT_UNMOUNT_FIFESYSTEMS" />
+
+    <package
+        name="com.android.provision"
+        codePath="/system/app/Provision.apk"
+        flags="1"
+        ft="11b7e237e00"
+        it="11b7e237e00"
+        nativeLibraryPath="/data/data/com.android.provision/lib"
+        userId="10005"
+        ut="11b7e237e00"
+        version="15">
+        <sigs count="1">
+            <cert index="1" />
+        </sigs>
+
+        <disabled-components>
+            <item name="com.android.provision.DefaultActivity" />
+        </disabled-components>
+    </package>
+
+    <application
+        android:name=".KApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="opt"
+        android:supportsRtl="true"
+        android:theme="@style/KTheme">
+        <service android:name=".monitor.memory.LeakCanaryService" />
+
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".ch2Draw.LayoutPerActivity" />
+        <activity android:name=".ch2Draw.OverDrawActivity" />
+        <activity android:name=".ch2Draw.Ch2StubActivity" />
+        <activity android:name=".ch5Anr.Ch5AnrActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="k.core.activity.AbsActivity"></activity>
+    </application>
+
+</manifest>

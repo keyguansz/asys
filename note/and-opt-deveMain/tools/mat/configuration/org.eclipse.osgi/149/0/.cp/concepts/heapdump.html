@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Heap Dump"/>
+<meta name="DC.Relation" scheme="URI" content="../tasks/acquiringheapdump.html"/>
+<meta name="copyright" content="Copyright (c) 2008, 2010 SAP AG and others. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html " type="primary"/>
+<meta name="DC.Rights.Owner" content="Copyright (c) 2008, 2010 SAP AG and others. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html " type="primary"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_heapdump"/>
+<meta name="DC.Language" content="en-us"/>
+<link rel="stylesheet" type="text/css" href="../styles/commonltr.css"/>
+<title>Heap Dump</title>
+</head>
+<body id="concept_heapdump">
+
+
+	<h1 class="title topictitle1">Heap Dump</h1>
+
+	
+	
+	<div class="body conbody">
+		<p class="p">A heap dump is a snapshot of the memory of a Java process at a certain point of time. 
+		   There are different formats for persisting this data, and depending on the format it may
+		   contain different pieces of information, but in general the snapshot contains information
+		   about the java objects and classes in the heap at the moment the snapshot was triggered.
+		   Usually a full GC is triggered before the heap dump is written so it contains
+		   information about the remaining objects.</p>
+
+		<p class="p">The Memory Analyzer is able to work with HPROF binary heap dumps, 
+		   IBM system dumps (after preprocessing them), and IBM portable heap dumps (PHD) 
+		   from a variety of platforms.
+		</p>
+		   
+
+		<p class="p">
+			Typical information which can be found in heap dumps (once more - depending on the heap dump type) is:
+		</p>
+
+		
+		<ul class="ul">
+			<li class="li">
+				All Objects
+				<p class="p">Class, fields, primitive values and references</p>
+
+			</li>
+
+			<li class="li">
+				All Classes
+				<p class="p">Classloader, name, super class, static fields</p>
+
+			</li>
+
+			<li class="li">
+				Garbage Collection Roots
+				<p class="p">Objects defined to be reachable by the JVM</p>
+
+			</li>
+
+			<li class="li">
+				Thread Stacks and Local Variables
+				<p class="p">The call-stacks of threads at the moment of the snapshot, and per-frame information about local objects</p>
+
+			</li>
+			
+		</ul>
+
+		<p class="p">A heap dump does not contain allocation information so it cannot
+			resolve questions like who had created the objects and where they
+			have been created.</p>
+
+	</div>
+
+	<div class="related-links"><div class="relinfo reltasks"><strong>Related tasks</strong><br/>
+<div><a class="link" href="../tasks/acquiringheapdump.html">Acquiring Heap Dumps</a></div>
+</div>
+</div>
+
+</body>
+</html>

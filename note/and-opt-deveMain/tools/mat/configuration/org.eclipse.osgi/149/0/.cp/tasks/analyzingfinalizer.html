@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="task"/>
+<meta name="DC.Title" content="Analyzing Finalizer"/>
+<meta name="copyright" content="Copyright (c) 2008, 2010 SAP AG and others. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html " type="primary"/>
+<meta name="DC.Rights.Owner" content="Copyright (c) 2008, 2010 SAP AG and others. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html " type="primary"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="task_analyzingfinalizer"/>
+<meta name="DC.Language" content="en-us"/>
+<link rel="stylesheet" type="text/css" href="../styles/commonltr.css"/>
+<title>Analyzing Finalizer</title>
+</head>
+<body id="task_analyzingfinalizer">
+
+
+	<h1 class="title topictitle1">Analyzing Finalizer</h1>
+
+	
+
+	<div class="body taskbody">
+		<div class="section context">
+			<p class="p"> Finalizers are executed when the internal garbage collection
+				cleans up the objects. Since you have no control over the finalizer
+				execution, it is recommended not to use them. Because the memory can
+				only be released when the finalize method finished, long running
+				tasks in the finalizer can block the garbage collection. To get the
+				finalizers overview select Finalizer Overview Query from the query
+				list:</p>
+
+			<img class="image" src="../mimes/finalizers.png" alt="Finalizer overview menu option and report"/>
+			<p class="p">This query includes the following subqueries:</p>
+
+			
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+					<tbody class="tbody">
+						<tr class="row">
+							<td class="entry" valign="top">
+								<strong class="ph b">Finalizer in Processing</strong>
+							</td>
+
+							<td class="entry" valign="top">
+								<p class="p"> Extract object currently processed by Finalizer Thread. This
+									query return the currently processed object by the Finalizer
+									Thread if any. The returned object can be processed for one of
+									the following reasons:</p>
+
+								<ul class="ul">
+									<li class="li">it is blocking</li>
+
+									<li class="li">it is long running</li>
+
+									<li class="li"> it the finalizer queue was or is still full.</li>
+
+								</ul>
+
+								<p class="p"> Use the finalizer queue query to check the queue.</p>
+
+							</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top">
+								<strong class="ph b">Ready for Finalizer Thread</strong>
+							</td>
+
+							<td class="entry" valign="top">
+								<p class="p"> This query shows the objects ready for finalization in their
+									processing order. Following reasons can cause a full finalizer
+									queue:</p>
+
+								<ul class="ul">
+									<li class="li"> The currently processed object is blocking or long running
+										(please use our finalizer in processing query to check).</li>
+
+									<li class="li"> The application made use of too many objects with
+										finalize() which are queued up in memory.</li>
+
+								</ul>
+
+								<p class="p"> Additionally a class-level summary of the objects is provided</p>
+
+							</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top">
+								<strong class="ph b">Finalizer Thread</strong>
+							</td>
+
+							<td class="entry" valign="top"> This query shows the daemon thread which performs the
+								object finalizations.</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top">
+								<strong class="ph b">Finalizer Thread Locals</strong>
+							</td>
+
+							<td class="entry" valign="top">
+								<p class="p">
+									This query shows the thread locals of the daemon thread that
+									performs the object finalizations. If there are any, this
+									indicates miss-use in at least one of the processed finalizers
+									(
+									<span class="keyword cmdname">finalize()</span>
+									implemented wrong) and might cause severe problems (e.g.
+									unreclaimed memory permanently hold by the finalizer thread or
+									finalizer processed under useless thread locals harming
+									application logic)
+								</p>
+
+							</td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+</div>
+
+		</div>
+
+	</div>
+
+
+</body>
+</html>

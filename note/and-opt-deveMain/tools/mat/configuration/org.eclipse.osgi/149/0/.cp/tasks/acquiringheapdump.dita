@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (c) 2008, 2014 SAP AG and IBM Corporation.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+   
+    Contributors:
+        SAP AG - initial documentation
+        IBM Corporation - documentation on IBM specific dumps
+ -->
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd" >
+<task id="task_acquiringheapdump" xml:lang="en-us">
+	<title>Acquiring Heap Dumps</title>
+	<prolog>
+		<copyright>
+			<copyryear year=""></copyryear>
+			<copyrholder>
+				Copyright (c) 2008, 2014 SAP AG and IBM Corporation.
+			    All rights reserved. This program and the accompanying materials
+			    are made available under the terms of the Eclipse Public License v1.0
+			    which accompanies this distribution, and is available at
+			    http://www.eclipse.org/legal/epl-v10.html
+			</copyrholder>
+		</copyright>
+	</prolog>
+
+	<taskbody>
+		<context>
+		
+			<!-- ***************************************************************
+			* HPROF dumps
+			****************************************************************** -->
+		    <p><b>HPROF Binary Heap Dumps</b></p>
+		    <p><i>Get Heap Dump on an OutOfMemoryError</i></p>
+			<p> One can get a HPROF binary heap dump on an OutOfMemoryError for Sun JVM
+				(1.4.2_12 or higher and 1.5.0_07 or higher), HP-UX JVM (1.4.2_11 or
+				higher) and SAP JVM (since 1.5.0) by setting the following JVM
+				parameter:</p>
+			<p>
+				<codeblock>-XX:+HeapDumpOnOutOfMemoryError</codeblock>
+			</p>
+			<p>The heap dump is written to the work directory.</p>
+			
+			<p><i>Interactively Trigger a Heap Dump</i></p>
+			<p> To get heap dump on demand one can add the following parameter to the JVM
+				and press CTRL + BREAK in the preferred moment:</p>
+			<p>
+				<codeblock>-XX:+HeapDumpOnCtrlBreak</codeblock>
+			</p>
+			<p><i>HPROF agent</i></p>
+			<p>To use the HPROF agent to generate a dump on the end of execution, or on SIGQUIT signal use the following
+			JVM parameter:</p>
+			<p>
+				<codeblock>-agentlib:hprof=heap=dump,format=b</codeblock>
+			</p>
+			<p> Alternatively, other tools can be used to acquire a heap dump:
+			</p>
+			<ul>
+				<li>
+					<cmdname>jmap -dump:format=b,file=&lt;filename.hprof&gt; &lt;pid&gt;</cmdname>
+				</li>
+				<li>JConsole (see sample usage in <xref href="../gettingstarted/basictutorial.dita">Basic Tutorial</xref>)</li>
+				<li>Memory Analyzer (see bottom of page)</li>
+			</ul>
+				
+			<!-- ***************************************************************
+			* IBM dumps
+			****************************************************************** -->
+			<p><b>System Dumps and Heap Dumps from IBM Virtual Machines </b></p>
+			<p>
+			Memory Analyzer can also read memory-related information from IBM system
+			dumps and from Portable Heap Dump (PHD) files. For this purpose one just 
+			has to install the IBM DTFJ feature into Memory Analyzer. 
+			Follow the <xref format="html" href="http://www.ibm.com/developerworks/java/jdk/tools/dtfj.html">IBM DTFJ feature installation instructions</xref>. Once the DTFJ
+			feature is successfully installed, then
+				<menucascade>
+					<uicontrol>File</uicontrol>
+					<uicontrol>Open Heap Dump</uicontrol>
+				</menucascade> 
+			menu should also offer the following options for the file types: 
+
+			<ul>
+				<li>All known formats</li>
+				<li>HPROF binary heap dumps</li>
+				<li>IBM 1.4.2 SDFF</li>
+				<li>IBM Javadumps</li>
+				<li>IBM SDK for Java (J9) system dumps</li>
+				<li>IBM SDK for Java Portable Heap Dumps</li>
+			</ul>
+			</p>
+			
+			<p>
+			For a comparison of dump types, see <xref format="html" href="http://www.ibm.com/developerworks/library/j-memoryanalyzer/#table1">Debugging from dumps</xref>. 
+			System dumps are simply operating system core dumps; therefore, they are a superset of portable heap dumps.
+			System dumps are far superior than PHDs, particularly for more accurate GC roots, thread-based analysis, and unlike PHDs, 
+			system dumps contain memory contents like HPROFs.
+			</p>
+			
+			<p>
+			Older versions of IBM Java (e.g. &lt; 5.0SR12, &lt; 6.0SR9) require running jextract on the operating system core dump
+			which produced a zip file that contained the core dump, XML or SDFF file, and shared libraries. The IBM DTFJ feature
+			still supports reading these jextracted zips; however, newer versions of IBM Java do not require jextract for use in
+			MAT since DTFJ is able to directly read each supported operating system's core dump format. 
+			Simply ensure that the operating system core dump file ends with the <b>.dmp</b> suffix for visibility in the MAT Open Heap Dump selection.
+			It is also common to zip core dumps because they are so large and compress very well. If a core dump is compressed with <b>.zip</b>,
+			the IBM DTFJ feature in MAT is able to decompress the ZIP file and read the core from inside (just like a jextracted zip).
+			The only significant downsides to system dumps over PHDs is that they are much larger, they usually take longer to produce,
+			they may be useless if they are manually taken in the middle of an exclusive event that manipulates the underlying Java heap
+			such as a garbage collection, and they sometimes require operating system configuration (
+			<xref format="html" href="http://www.ibm.com/support/knowledgecenter/SSYKE2_7.1.0/com.ibm.java.lnx.71.doc/diag/problem_determination/linux_setup.html">Linux</xref>,
+			<xref format="html" href="http://www.ibm.com/support/knowledgecenter/SSYKE2_7.1.0/com.ibm.java.aix.71.doc/diag/problem_determination/aix_setup_full_core.html">AIX</xref>) 
+			to ensure non-truncation.
+			</p>
+			
+			<p>
+			In recent versions of IBM Java (&gt; 6.0.1), by default, when an OutOfMemoryError is thrown, IBM Java produces a system dump, PHD,
+			javacore, and Snap file on the first occurrence for that process (although often the core dump is suppressed by the default 0
+			core ulimit on operating systems such as Linux). For the next three occurrences, it produces only a PHD, javacore, and Snap.
+			If you only plan to use system dumps, and you've configured your operating system correctly as per the links above (particularly 
+			core and file ulimits), then you may disable PHD generation with -Xdump:heap:none. For versions of IBM Java older than 6.0.1, 
+			you may switch from PHDs to system dumps using
+			<codeblock>-Xdump:system:events=systhrow,filter=java/lang/OutOfMemoryError,request=exclusive+prepwalk -Xdump:heap:none</codeblock>
+			</p>
+
+			<p>
+			In addition to an OutOfMemoryError, system dumps may be produced using operating system tools (e.g. gcore in gdb for Linux, 
+			gencore for AIX, Task Manager for Windows, SVCDUMP for z/OS, etc.), using the 
+			<xref format="html" href="http://www.ibm.com/support/knowledgecenter/SSYKE2_8.0.0/com.ibm.java.lnx.80.doc/diag/tools/diagnostics_summary.html">IBM Java APIs</xref>, 
+			using the various options of <xref format="html" href="http://www.ibm.com/support/knowledgecenter/SSYKE2_8.0.0/com.ibm.java.lnx.80.doc/diag/tools/dump_agents.html">-Xdump</xref>, 
+			using <xref format="html" href="https://www.ibm.com/developerworks/community/groups/service/html/communityview?communityUuid=7d3dc078-131f-404c-8b4d-68b3b9ddd07a">Java Surgery</xref>,
+			and more.
+			</p>
+
+			<p>
+			Versions of IBM Java older than IBM JDK 1.4.2 SR12, 5.0 SR8a and 6.0 SR2 are known to produce inaccurate GC root information. 
+			</p>
+			
+			
+			<!-- ***************************************************************
+			* Acquire from Memory Analyzer
+			****************************************************************** -->
+			<p><b>Acquire Heap Dump from Memory Analyzer</b></p>
+			<p>
+			If the Java process from which the heap dump is to be acquired is on the 
+			same machine as the Memory Analyzer, it is possible to acquire a heap dump
+			directly from the Memory Analyzer. Dumps acquired this way are directly
+			parsed and opened in tool.
+			</p>
+			
+			<p>Acquiring the heap dump is a VM specific. Memory Analyzer comes with 
+			several so called heap dump providers - for Sun based VMs (needs a Sun JDK
+			with jmap) and for IBM VMs (needs an IBM JDK). Also extension points 
+			are provided for adopters to plug-in their own heap dump providers.
+			</p>
+			
+			<p>
+			To trigger a heap dump from Memory Analyzer open the 
+				<menucascade>
+					<uicontrol>File</uicontrol>
+					<uicontrol>Acquire Heap Dump...</uicontrol>
+				</menucascade>
+			menu item.
+			</p>
+			
+			<p>Depending on the concrete execution environment the pre-installed heap dump
+			providers may work with their default settings and in this case a list of
+			running Java processes should appear: 
+			</p>
+			<image href="../mimes/acquire.png">
+				<alt>Select a process to be dumped</alt>
+			</image>
+			<p>
+			One can now from which process a heap dump should be acquired, provide a preferred
+			location for the heap dump and press <uicontrol>Finish</uicontrol> to acquire the dump. Some of the heap
+			dump providers may allow (or require) additional parameters (e.g. type of 
+			the heap dump) to be set. This can be done by going to the <menucascade><uicontrol>Next</uicontrol></menucascade> page of the 
+			wizard.  
+			</p>
+			<p><i>Configuring the Heap Dump Providers</i></p>
+			<p>
+			If the process list is empty try to configure the available heap dump providers. To do this
+			press <uicontrol>Configure...</uicontrol>, select a matching provider from the list and click on it. 
+			You can see then what are the required settings and specify them.
+			</p>
+			
+			<p><b>Multiple snapshots in one heap dump</b></p>
+			<p>
+			Occasionally heap dumps files can be generated which contain multiple heap dumps snapshots.
+			If an HPROF dump is generated using 
+			<codeblock>-agentlib:hprof=heap=dump,format=b</codeblock>
+			then if a heap dump is triggered multiple times all the heap dumps will be written to one file.
+			An IBM z/OS system dump can contain data from multiple address spaces and processes.
+			It is therefore possible that the dump file contains heap dump snapshots from multiple Java runtimes.
+			</p>
+			<p>
+			Memory Analyzer 1.2 and earlier handled this situation by choosing the first heap dump snapshot found unless another
+			was selected via an environment variable or MAT DTFJ configuration option.
+			</p>
+			<p>
+			Memory Analyzer 1.3 handles this situation by detecting the multiple dumps, then presenting a dialog
+			for the user to select the required snapshot.
+			</p>
+			<image href="../mimes/multiple_snapshots.png">
+			<alt>Choose a snapshot to be analyzed</alt>
+			</image>
+			<p>
+			The index files generated have a component in the file name from the snapshot identifier, so the index
+			files from each snapshot can be distinguished.
+			This means that multiple snapshots from one heap dump file can be examined in Memory Analyzer
+			simultaneously. 
+			The heap dump history for the file remembers the last snapshot selected for that file, though when
+			the snapshot is reopened via the history the index file is also shown in the history.
+			To open another snapshot in the dump, close the first snapshot, then reopen the heap dump file using the File menu and
+			another snapshot can be chosen to be parsed.
+			The first snapshot can then be reopened using the index file in the history, and both snapshots can
+			be viewed at once.
+			</p>
+			
+			<p><b>Summary</b></p>
+			<p>The following table shows the availability of VM options and tools on the various platforms:</p>
+			<table>
+				<tgroup cols="7">
+					<colspec colname="COLSPEC1" colwidth="2*"/>
+					<colspec colname="COLSPEC2" colwidth="4*"/>
+					<colspec colname="COLSPEC3" colwidth="4*"/>
+					<colspec colname="COLSPEC4" colwidth="4*"/>
+					<colspec colname="COLSPEC5" colwidth="2*"/>
+					<colspec colname="COLSPEC6" colwidth="4*"/>
+					<colspec colname="COLSPEC7" colwidth="2*"/>
+					<colspec colname="COLSPEC8" colwidth="2*"/>
+					<colspec colname="COLSPEC9" colwidth="4*"/>
+					<thead>
+						<row>
+							<entry colname="COLSPEC1" valign="top">Vendor</entry>
+							<entry colname="COLSPEC2" valign="top">Release</entry>
+							<entry namest="COLSPEC3" nameend="COLSPEC5" valign="top">VM Parameter</entry>
+							<entry namest="COLSPEC6" nameend="COLSPEC7" valign="top">Sun Tools</entry>
+							<entry colname="COLSPEC8" valign="top">SAP Tool</entry>
+							<entry colname="COLSPEC9" valign="top">MAT</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry/>
+							<entry/>
+							<entry colname="COLSPEC3">On out of memory</entry>
+							<entry colname="COLSPEC4">On Ctrl+Break</entry>
+							<entry>Agent</entry>
+							<entry>JMap</entry>
+							<entry>JConsole</entry>
+							<entry>JVMMon</entry>
+							<entry>acquire heap dump</entry>
+						</row>
+						<row>
+							<entry morerows="4">Sun, HP</entry>
+							<entry>1.4.2_12</entry>
+							<entry>Yes</entry>
+							<entry>Yes</entry>
+							<entry>Yes</entry>
+							<entry/>
+							<entry/>
+							<entry/>
+							<entry>No</entry>
+						</row>
+						<row>
+							<entry>1.5.0_07</entry>
+							<entry>Yes</entry>
+							<entry>Yes (Since 1.5.0_15)</entry>
+							<entry>Yes</entry>
+							<entry>Yes (Only Solaris and Linux)</entry>
+							<entry/>
+							<entry/>
+							<entry>Yes (Only Solaris and Linux)</entry>
+						</row>
+						<row>
+							<entry>1.6.0_00</entry>
+							<entry>Yes</entry>
+							<entry>No</entry>
+							<entry>Yes</entry>
+							<entry>Yes</entry>
+							<entry>Yes</entry>
+							<entry></entry>
+							<entry>Yes</entry>
+						</row>
+						<row>
+							<entry>1.7.0</entry>
+							<entry>Yes</entry>
+							<entry>No</entry>
+							<entry>Yes</entry>
+							<entry>Yes</entry>
+							<entry>Yes</entry>
+							<entry></entry>
+							<entry>Yes</entry>
+						</row>
+						<row>
+							<entry>1.8.0</entry>
+							<entry>Yes</entry>
+							<entry>No</entry>
+							<entry>Yes</entry>
+							<entry>Yes</entry>
+							<entry>Yes</entry>
+							<entry></entry>
+							<entry>Yes</entry>
+						</row>
+						<row>
+							<entry>SAP</entry>
+							<entry>Any 1.5.0</entry>
+							<entry>Yes</entry>
+							<entry>Yes</entry>
+							<entry>Yes</entry>
+							<entry>Yes (Only Solaris and Linux)</entry>
+							<entry/>
+							<entry>Yes</entry>
+							<entry/>
+						</row>
+						<row>
+							<entry morerows="5">IBM</entry>
+							<entry>1.4.2 SR12</entry>
+							<entry>Yes</entry>
+							<entry>Yes</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+						</row>
+						<row>
+							<entry>1.5.0 SR8a</entry>
+							<entry>Yes</entry>
+							<entry>Yes</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+						</row>
+						<row>
+							<entry>1.6.0 SR2</entry>
+							<entry>Yes</entry>
+							<entry>Yes</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+						</row>
+						<row>
+							<entry>1.6.0 SR6</entry>
+							<entry>Yes</entry>
+							<entry>Yes</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>Yes</entry>
+						</row>
+						<row>
+							<entry>1.7.0</entry>
+							<entry>Yes</entry>
+							<entry>Yes</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>Yes</entry>
+						</row>
+						<row>
+							<entry>1.8.0 Beta</entry>
+							<entry>Yes</entry>
+							<entry>Yes</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>No</entry>
+							<entry>Yes</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+		</context>
+	</taskbody>
+</task>

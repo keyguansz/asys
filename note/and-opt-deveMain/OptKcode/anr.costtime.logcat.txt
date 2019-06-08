@@ -1,0 +1,78 @@
+06-23 09:33:13.446 486-539/system_process I/InputDispatcher: Application is not responding: Window{1d80e3a2 u0 k.opt/k.opt.activity.MainActivity}.  It has been 5005.8ms since event, 5005.7ms since wait started.  Reason: Waiting to send non-key event because the touched window has not finished processing certain input events that were delivered to it over 500.0ms ago.  Wait queue length: 28.  Wait queue head age: 5557.9ms.
+
+                                                             --------- beginning of system
+06-23 09:33:13.455 486-539/system_process I/WindowManagerService: Input event dispatching timed out sending to k.opt/k.opt.activity.MainActivity.  Reason: Waiting to send non-key event because the touched window has not finished processing certain input events that were delivered to it over 500.0ms ago.  Wait queue length: 28.  Wait queue head age: 5557.9ms.
+06-23 09:33:13.459 486-513/system_process I/Process: Sending signal. PID: 32400 SIG: 3
+06-23 09:33:13.459 32400-32407/k.opt I/art: Thread[5,tid=32407,WaitingInMainSignalCatcherLoop,Thread*=0xb70caec0,peer=0x12c000a0,"Signal Catcher"]: reacting to signal 3
+06-23 09:33:13.556 32400-32407/k.opt I/art: Wrote stack traces to '/data/anr/traces.txt'
+06-23 09:33:13.556 486-513/system_process I/Process: Sending signal. PID: 486 SIG: 3
+06-23 09:33:13.557 486-495/system_process I/art: Thread[5,tid=495,WaitingInMainSignalCatcherLoop,Thread*=0xb70e1790,peer=0x12c020a0,"Signal Catcher"]: reacting to signal 3
+06-23 09:33:13.673 486-508/system_process E/SensorsHal: poll() failed (Interrupted system call)
+06-23 09:33:14.239 486-513/system_process I/Process: Sending signal. PID: 657 SIG: 3
+06-23 09:33:14.239 657-666/com.android.systemui I/art: Thread[5,tid=666,WaitingInMainSignalCatcherLoop,Thread*=0xb70caec0,peer=0x12c000a0,"Signal Catcher"]: reacting to signal 3
+06-23 09:33:14.244 486-495/system_process I/art: Wrote stack traces to '/data/anr/traces.txt'
+06-23 09:33:14.244 486-513/system_process I/Process: Sending signal. PID: 639 SIG: 3
+06-23 09:33:14.245 639-647/com.android.phone I/art: Thread[5,tid=647,WaitingInMainSignalCatcherLoop,Thread*=0xb70caec0,peer=0x12c000a0,"Signal Catcher"]: reacting to signal 3
+06-23 09:33:14.385 657-666/com.android.systemui I/art: Wrote stack traces to '/data/anr/traces.txt'
+06-23 09:33:14.385 486-513/system_process I/Process: Sending signal. PID: 621 SIG: 3
+06-23 09:33:14.385 621-629/com.cghs.stresstest I/art: Thread[5,tid=629,WaitingInMainSignalCatcherLoop,Thread*=0xb70caec0,peer=0x12c000a0,"Signal Catcher"]: reacting to signal 3
+06-23 09:33:14.397 639-647/com.android.phone I/art: Wrote stack traces to '/data/anr/traces.txt'
+06-23 09:33:14.397 486-513/system_process I/Process: Sending signal. PID: 1748 SIG: 3
+06-23 09:33:14.398 1748-1756/com.android.inputmethod.latin I/art: Thread[5,tid=1756,WaitingInMainSignalCatcherLoop,Thread*=0xb70caec0,peer=0x12c000a0,"Signal Catcher"]: reacting to signal 3
+06-23 09:33:14.450 621-629/com.cghs.stresstest I/art: Wrote stack traces to '/data/anr/traces.txt'
+06-23 09:33:14.450 486-513/system_process I/Process: Sending signal. PID: 585 SIG: 3
+06-23 09:33:14.450 585-594/android.process.media I/art: Thread[5,tid=594,WaitingInMainSignalCatcherLoop,Thread*=0xb70c93e0,peer=0x12c000a0,"Signal Catcher"]: reacting to signal 3
+06-23 09:33:14.502 1748-1756/com.android.inputmethod.latin I/art: Wrote stack traces to '/data/anr/traces.txt'
+06-23 09:33:14.548 585-594/android.process.media I/art: Wrote stack traces to '/data/anr/traces.txt'
+06-23 09:33:16.523 486-513/system_process I/art: Explicit concurrent mark sweep GC freed 6845(289KB) AllocSpace objects, 3(7MB) LOS objects, 33% free, 8MB/13MB, paused 578us total 30.701ms
+06-23 09:33:17.048 486-513/system_process I/Process: Sending signal. PID: 676 SIG: 3
+06-23 09:33:17.048 676-683/yck.system.launcher I/art: Thread[5,tid=683,WaitingInMainSignalCatcherLoop,Thread*=0xb70caec0,peer=0x12c070a0,"Signal Catcher"]: reacting to signal 3
+06-23 09:33:17.142 676-683/yck.system.launcher I/art: Wrote stack traces to '/data/anr/traces.txt'
+06-23 09:33:17.142 486-513/system_process I/Process: Sending signal. PID: 1240 SIG: 3
+06-23 09:33:17.142 1240-1248/yck.kdapp.v4 I/art: Thread[5,tid=1248,WaitingInMainSignalCatcherLoop,Thread*=0xb70caec0,peer=0x32c070a0,"Signal Catcher"]: reacting to signal 3
+06-23 09:33:17.349 486-513/system_process E/ActivityManagerService: ANR in k.opt (k.opt/.activity.MainActivity)
+                                                                    PID: 32400
+                                                                    Reason: Input dispatching timed out (Waiting to send non-key event because the touched window has not finished processing certain input events that were delivered to it over 500.0ms ago.  Wait queue length: 28.  Wait queue head age: 5557.9ms.)
+                                                                    Load: 0.65 / 0.6 / 0.68
+                                                                    CPU usage from 2969ms to -3884ms ago:
+                                                                      98% 32400/k.opt: 97% user + 0.7% kernel / faults: 1446 minor
+                                                                      12% 486/system_server: 7.4% user + 5.2% kernel / faults: 5046 minor
+                                                                      4.8% 1240/yck.kdapp.v4: 2.3% user + 2.4% kernel / faults: 3059 minor
+                                                                      0% 161/debuggerd: 0% user + 0% kernel / faults: 3529 minor
+                                                                      2.6% 676/yck.system.launcher: 1.3% user + 1.3% kernel / faults: 1819 minor
+                                                                      2% 639/com.android.phone: 1.1% user + 0.8% kernel / faults: 1617 minor
+                                                                      1% 657/com.android.systemui: 0.6% user + 0.3% kernel / faults: 1552 minor
+                                                                      0.7% 1748/com.android.inputmethod.latin: 0.4% user + 0.3% kernel / faults: 1150 minor
+                                                                      0% 585/android.process.media: 0% user + 0% kernel / faults: 1277 minor
+                                                                      1% 1833/adbd: 0% user + 1% kernel / faults: 765 minor
+                                                                      0% 621/com.cghs.stresstest: 0% user + 0% kernel / faults: 973 minor
+                                                                      0.7% 151/logd: 0.7% user + 0% kernel
+                                                                      0.2% 164/assistant: 0.2% user + 0% kernel
+                                                                      0% 8/rcu_preempt: 0% user + 0% kernel
+                                                                      0.1% 73/cfinteractive: 0% user + 0.1% kernel
+                                                                      0% 119/kworker/0:1H: 0% user + 0% kernel
+                                                                      0% 157/surfaceflinger: 0% user + 0% kernel / faults: 30 minor
+                                                                      0% 2443/com.android.defcontainer: 0% user + 0% kernel / faults: 471 minor
+                                                                      0.1% 26016/kworker/0:0: 0% user + 0.1% kernel
+                                                                    34% TOTAL: 29% user + 4.8% kernel + 0% iowait + 0% softirq
+                                                                    CPU usage from 3065ms to 3576ms later:
+                                                                      98% 32400/k.opt: 98% user + 0% kernel
+                                                                        98% 32400/k.opt: 98% user + 0% kernel
+                                                                        1.9% 32409/JDWP: 1.9% user + 0% kernel
+                                                                      3.3% 676/yck.system.launcher: 1.6% user + 1.6% kernel / faults: 96 minor
+                                                                        3.3% 892/Timer-0: 0% user + 3.3% kernel
+                                                                      1.6% 164/assistant: 1.6% user + 0% kernel
+                                                                      1.9% 486/system_server: 0% user + 1.9% kernel / faults: 8 minor
+                                                                        1.9% 513/ActivityManager: 0% user + 1.9% kernel
+                                                                      1.7% 1240/yck.kdapp.v4: 0% user + 1.7% kernel / faults: 1 minor
+                                                                        1.7% 1398/yck.kdapp.v4: 0% user + 1.7% kernel
+                                                                      1.7% 1833/adbd: 0% user + 1.7% kernel / faults: 68 minor
+                                                                    27% TOTAL: 26% user + 1.5% kernel
+06-23 09:33:17.362 486-513/system_process D/WindowManagerService: Window{7acfb4c u0 Application Not Responding: k.opt}  ==========setInputFocusLw ==========  =======
+06-23 09:33:17.368 486-513/system_process D/ViewRootImpl: onAttachToWindow register content observer attrs=WM.LayoutParams{(0,0)(wrapxwrap)mPosX=0mPosY=0mHScale=1.0mVScale=1.0 align=UNDEFINE taskId=-1 gr=#ffffffff sim=#120 ty=2003 fl=#1860002 pfl=0x110 fmt=-3 wanim=0x103046a or=0 surfaceInsets=Rect(80, 80 - 80, 80) needsMenuKey=2packageName=androidtoken=null}
+06-23 09:33:17.388 486-513/system_process D/ViewRootImpl: 1248<<<<<< BACK FROM relayoutWM.LayoutParams{(0,0)(wrapxwrap)mPosX=0mPosY=0mHScale=1.0mVScale=1.0 align=UNDEFINE taskId=-1 gr=#ffffffff sim=#120 ty=2003 fl=#1860002 pfl=0x110 fmt=-3 wanim=0x103046a or=0 surfaceInsets=Rect(80, 80 - 80, 80) needsMenuKey=2packageName=androidtoken=null}
+06-23 09:33:17.388 486-2576/system_process I/OpenGLRenderer: Initialized EGL, version 1.4
+06-23 09:33:17.697 1240-1248/yck.kdapp.v4 I/art: Wrote stack traces to '/data/anr/traces.txt'
+06-23 09:34:00.016 657-657/com.android.systemui D/ViewRootImpl: 1920<<<<<< BACK FROM relayoutnull
+06-23 09:35:00.008 657-657/com.android.systemui D/ViewRootImpl: 1920<<<<<< BACK FROM relayoutnull
+结论：/k.opt的CPU占有量98%，Reason: Input dispatching timed out ，主线程执行了耗时操作，无法响应触屏事件。

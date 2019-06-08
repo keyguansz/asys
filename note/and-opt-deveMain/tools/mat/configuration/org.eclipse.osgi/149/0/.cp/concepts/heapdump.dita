@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (c) 2008, 2012 SAP AG and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+   
+    Contributors:
+        SAP AG - initial API and implementation
+ -->
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd" >
+<concept id="concept_heapdump" xml:lang="en-us">
+	<title>Heap Dump</title>
+	<prolog>
+		<copyright>
+			<copyryear year=""></copyryear>
+			<copyrholder>
+				Copyright (c) 2008, 2010 SAP AG and others.
+			    All rights reserved. This program and the accompanying materials
+			    are made available under the terms of the Eclipse Public License v1.0
+			    which accompanies this distribution, and is available at
+			    http://www.eclipse.org/legal/epl-v10.html
+			</copyrholder>
+		</copyright>
+	</prolog>
+	
+	<conbody>
+		<p>A heap dump is a snapshot of the memory of a Java process at a certain point of time. 
+		   There are different formats for persisting this data, and depending on the format it may
+		   contain different pieces of information, but in general the snapshot contains information
+		   about the java objects and classes in the heap at the moment the snapshot was triggered.
+		   Usually a full GC is triggered before the heap dump is written so it contains
+		   information about the remaining objects.</p>
+		<p>The Memory Analyzer is able to work with HPROF binary heap dumps, 
+		   IBM system dumps (after preprocessing them), and IBM portable heap dumps (PHD) 
+		   from a variety of platforms.
+		</p>		   
+
+		<p>
+			Typical information which can be found in heap dumps (once more - depending on the heap dump type) is:
+		</p>
+		
+		<ul>
+			<li>
+				All Objects
+				<p>Class, fields, primitive values and references</p>
+			</li>
+			<li>
+				All Classes
+				<p>Classloader, name, super class, static fields</p>
+			</li>
+			<li>
+				Garbage Collection Roots
+				<p>Objects defined to be reachable by the JVM</p>
+			</li>
+			<li>
+				Thread Stacks and Local Variables
+				<p>The call-stacks of threads at the moment of the snapshot, and per-frame information about local objects</p>
+			</li>			
+		</ul>
+		<p>A heap dump does not contain allocation information so it cannot
+			resolve questions like who had created the objects and where they
+			have been created.</p>
+	</conbody>
+	<related-links>
+		<link href="../tasks/acquiringheapdump.dita" type="task">
+			<linktext>Acquiring Heap Dumps</linktext>
+		</link>
+	</related-links>
+</concept>

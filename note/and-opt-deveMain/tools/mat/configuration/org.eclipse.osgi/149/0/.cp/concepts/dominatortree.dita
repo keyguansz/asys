@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (c) 2008, 2012 SAP AG and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+   
+    Contributors:
+        SAP AG - initial API and implementation
+ -->
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd" >
+<concept id="concept_dominatortree" xml:lang="en-us">
+	<title>Dominator Tree</title>
+	<prolog>
+		<copyright>
+			<copyryear year=""></copyryear>
+			<copyrholder>
+				Copyright (c) 2008, 2010 SAP AG and others.
+			    All rights reserved. This program and the accompanying materials
+			    are made available under the terms of the Eclipse Public License v1.0
+			    which accompanies this distribution, and is available at
+			    http://www.eclipse.org/legal/epl-v10.html
+			</copyrholder>
+		</copyright>
+	</prolog>
+	
+	<conbody>
+		<p>Memory Analyzer provides a dominator tree of the object graph. 
+		    The transformation of the object reference graph into a
+			dominator tree allows you to easily identify the biggest chunks of
+			retained memory and the keep-alive dependencies among objects. 
+			Bellow is an informal definition of the terms.</p>
+		<p>
+			An object x
+			<b>dominates</b>
+			an object y if every path in the object graph from the start (or the
+			root) node to y must go through x.
+		</p>
+		<p>
+			The
+			<b>immediate dominator</b>
+			x of some object y is the dominator closest to the object y.
+		</p>
+		<p>
+			A
+			<b>dominator tree</b>
+			is built out of the object graph. In the dominator tree each object
+			is the immediate dominator of its children, so dependencies between
+			the objects are easily identified.
+		</p>
+		<p>The dominator tree has the following important properties:</p>
+		<ul>
+			<li>
+				The objects belonging to the sub-tree of
+				<keyword>x</keyword>
+				(i.e. the objects dominated by
+				<keyword>x</keyword>
+				) represent the <xref href="shallowretainedheap.dita">retained set</xref> of
+				<keyword>x</keyword>
+				.
+			</li>
+			<li>
+				If
+				<keyword>x</keyword>
+				is the immediate dominator of
+				<keyword>y</keyword>
+				, then the immediate dominator of
+				<keyword>x</keyword>
+				also dominates
+				<keyword>y</keyword>
+				, and so on.
+			</li>
+			<li>The edges in the dominator tree do not directly correspond to
+				object references from the object graph.</li>
+		</ul>
+		<image href="../mimes/m2268b281.png">
+			<alt>Object graph transformed to dominator tree</alt>
+		</image>
+
+	</conbody>
+	<related-links>
+		<link href="shallowretainedheap.dita" type="concept">
+			<linktext>Shallow vs. Retained Size</linktext>
+		</link>
+	</related-links>
+</concept>

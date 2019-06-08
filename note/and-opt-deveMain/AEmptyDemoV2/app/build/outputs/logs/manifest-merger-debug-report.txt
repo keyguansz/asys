@@ -1,0 +1,53 @@
+-- Merging decision tree log ---
+manifest
+ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:2:1-22:12
+	package
+		ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:2:11-34
+		INJECTED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml
+		INJECTED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml
+		INJECTED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:3:11-69
+	android:versionCode
+		INJECTED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml
+		INJECTED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml
+application
+ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:5:5-20:19
+	android:label
+		ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:8:9-29
+	android:supportsRtl
+		ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:9:9-35
+	android:allowBackup
+		ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:6:9-35
+	android:icon
+		ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:7:9-45
+	android:theme
+		ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:10:9-67
+activity#k.demo.gradle.activity.DemoActivity
+ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:11:9-17:20
+	android:name
+		ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:11:19-56
+intent-filter#android.intent.action.MAIN+android.intent.category.DEFAULT+android.intent.category.LAUNCHER
+ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:12:13-16:29
+action#android.intent.action.MAIN
+ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:13:17-68
+	android:name
+		ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:13:25-66
+category#android.intent.category.LAUNCHER
+ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:14:17-76
+	android:name
+		ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:14:27-74
+category#android.intent.category.DEFAULT
+ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:15:17-75
+	android:name
+		ADDED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml:15:27-73
+uses-sdk
+INJECTED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+	android:targetSdkVersion
+		INJECTED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml
+		INJECTED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml
+		INJECTED from F:\key.guan\kgszgt\and-opt\AEmptyDemoV2\app\src\main\AndroidManifest.xml

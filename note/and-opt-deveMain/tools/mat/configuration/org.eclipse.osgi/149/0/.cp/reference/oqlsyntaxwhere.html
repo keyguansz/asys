@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="reference"/>
+<meta name="DC.Title" content="WHERE Clause"/>
+<meta name="abstract" content=""/>
+<meta name="description" content=""/>
+<meta name="DC.Relation" scheme="URI" content="../reference/oqlsyntax.html"/>
+<meta name="copyright" content="Copyright (c) 2008, 2010 SAP AG and others. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html " type="primary"/>
+<meta name="DC.Rights.Owner" content="Copyright (c) 2008, 2010 SAP AG and others. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html " type="primary"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="ref_oqlsyntaxwhere"/>
+<meta name="DC.Language" content="en-us"/>
+<link rel="stylesheet" type="text/css" href="../styles/commonltr.css"/>
+<title>WHERE Clause</title>
+</head>
+<body id="ref_oqlsyntaxwhere">
+
+
+	<h1 class="title topictitle1">WHERE Clause</h1>
+
+	
+
+	
+
+	<div class="body refbody"><p class="shortdesc"/>
+
+		<div class="section"><h2 class="title sectiontitle">
+				&gt;=, &lt;=, &gt;, &lt;, [ NOT ] LIKE, [ NOT ] IN, IMPLEMENTS
+				(relational operations)
+			</h2>
+			<p class="p">
+				The WHERE clause specifies search conditions, that
+				remove unwanted data from the query result. The
+				following operators, are in order of precedence. The
+				operators are evaluated in the specified order:
+
+			</p>
+
+			
+			<pre class="pre codeblock">SELECT * FROM java.lang.String s WHERE s.count &gt;= 100</pre>
+
+			<pre class="pre codeblock">SELECT * FROM java.lang.String s WHERE toString(s) LIKE ".*day"</pre>
+
+			<pre class="pre codeblock">SELECT * FROM java.lang.String s WHERE s.value NOT IN dominators(s)</pre>
+
+			<pre class="pre codeblock">SELECT * FROM java.lang.Class c WHERE c IMPLEMENTS org.eclipse.mat.snapshot.model.IClass</pre>
+
+		</div>
+
+		<div class="section"><h2 class="title sectiontitle">=, != (equality operations)</h2>
+			
+			<pre class="pre codeblock">SELECT * FROM java.lang.String s WHERE toString(s) = "monday"</pre>
+
+		</div>
+
+		<div class="section"><h2 class="title sectiontitle">AND (conditional AND operation)</h2>
+			
+			<pre class="pre codeblock">SELECT * FROM java.lang.String s WHERE s.count &gt; 100 AND s.@retainedHeapSize &gt; s.@usedHeapSize</pre>
+
+		</div>
+
+		<div class="section"><h2 class="title sectiontitle">OR (conditional OR operation)</h2>
+			
+			<pre class="pre codeblock">SELECT * FROM java.lang.String s WHERE s.count &gt; 1000 OR s.value.@length &gt; 1000</pre>
+
+			<p class="p">
+				Operators can be applied to expressions, constant
+				literals and sub queries. Valid expressions are
+				explained in the next sections.
+			</p>
+
+		</div>
+
+		<div class="section"><h2 class="title sectiontitle">Literal Expression</h2>
+			
+			<p class="p">Boolean, String, Integer, Long, Character and null literals:</p>
+
+			<pre class="pre codeblock">SELECT * FROM java.lang.String s
+         WHERE ( s.count &gt; 1000 ) = true
+         WHERE toString(s) = "monday"
+         WHERE dominators(s).size() = 0
+         WHERE s.@retainedHeapSize &gt; 1024L
+         WHERE s.value != null AND s.value.@valueArray.@length &gt;= 1 AND s.value.@valueArray.get(0) = 'j'
+         WHERE s.@GCRootInfo != null
+            </pre>
+
+		</div>
+
+	</div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../reference/oqlsyntax.html">OQL Syntax</a></div>
+</div>
+</div>
+
+</body>
+</html>

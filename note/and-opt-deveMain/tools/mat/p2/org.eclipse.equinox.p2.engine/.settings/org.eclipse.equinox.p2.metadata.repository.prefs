@@ -1,0 +1,16 @@
+eclipse.preferences.version=1
+repositories/http\:__download.eclipse.org_mat_1.7_update-site/count=1
+repositories/http\:__download.eclipse.org_mat_1.7_update-site/enabled=true
+repositories/http\:__download.eclipse.org_mat_1.7_update-site/isSystem=false
+repositories/http\:__download.eclipse.org_mat_1.7_update-site/nickname=Memory Analyzer
+repositories/http\:__download.eclipse.org_mat_1.7_update-site/uri=http\://download.eclipse.org/mat/1.7/update-site/
+repositories/http\:__download.eclipse.org_releases_oxygen/count=1
+repositories/http\:__download.eclipse.org_releases_oxygen/enabled=true
+repositories/http\:__download.eclipse.org_releases_oxygen/isSystem=false
+repositories/http\:__download.eclipse.org_releases_oxygen/nickname=Eclipse Oxygen
+repositories/http\:__download.eclipse.org_releases_oxygen/uri=http\://download.eclipse.org/releases/oxygen/
+repositories/http\:__public.dhe.ibm.com_ibmdl_export_pub_software_websphere_runtimes_tools_dtfj/count=1
+repositories/http\:__public.dhe.ibm.com_ibmdl_export_pub_software_websphere_runtimes_tools_dtfj/enabled=true
+repositories/http\:__public.dhe.ibm.com_ibmdl_export_pub_software_websphere_runtimes_tools_dtfj/isSystem=false
+repositories/http\:__public.dhe.ibm.com_ibmdl_export_pub_software_websphere_runtimes_tools_dtfj/nickname=IBM Diagnostic Tool Framework for Java
+repositories/http\:__public.dhe.ibm.com_ibmdl_export_pub_software_websphere_runtimes_tools_dtfj/uri=http\://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/runtimes/tools/dtfj/
