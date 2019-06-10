@@ -35,6 +35,7 @@ import android.media.ImageWriter;
 import android.media.MediaActionSound;
 import android.opengl.GLES11Ext;
 import android.opengl.GLES20;
+import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.SystemClock;
@@ -746,10 +747,10 @@ public class Api2Camera implements CameraInterface, SurfaceTexture.OnFrameAvaila
         }
 
         // Normalized lens and exposure coordinates.
-        double rm = Math.log10(result.get(CaptureResult.SENSOR_EXPOSURE_TIME));
+        double rm = 0; /*Math.log10(result.get(CaptureResult.SENSOR_EXPOSURE_TIME))*/;
         float normExposure = (float) ((rm - SHORT_LOG_EXPOSURE) / (LONG_LOG_EXPOSURE - SHORT_LOG_EXPOSURE));
-        float normLensPos = (mCameraInfoCache.getDiopterHi() - result.get(CaptureResult.LENS_FOCUS_DISTANCE)) / (mCameraInfoCache.getDiopterHi() - mCameraInfoCache.getDiopterLow());
-        mLastIso = result.get(CaptureResult.SENSOR_SENSITIVITY);
+        float normLensPos = 0;//(mCameraInfoCache.getDiopterHi() - result.get(CaptureResult.LENS_FOCUS_DISTANCE)) / (mCameraInfoCache.getDiopterHi() - mCameraInfoCache.getDiopterLow());
+       // mLastIso = result.get(CaptureResult.SENSOR_SENSITIVITY);
 
         // Update frame arrival history.
         mFrameTimes.add(result.get(CaptureResult.SENSOR_TIMESTAMP));
@@ -758,7 +759,7 @@ public class Api2Camera implements CameraInterface, SurfaceTexture.OnFrameAvaila
         }
 
         // Frame drop detector
-        {
+   /*     {
             float frameDuration = result.get(CaptureResult.SENSOR_FRAME_DURATION);
             if (mFrameTimes.size() > 1) {
                 long dt = result.get(CaptureResult.SENSOR_TIMESTAMP) - mFrameTimes.get(mFrameTimes.size()-2);
@@ -768,7 +769,7 @@ public class Api2Camera implements CameraInterface, SurfaceTexture.OnFrameAvaila
                     mMyCameraCallback.performanceDataAvailable(null, null, drops);
                 }
             }
-        }
+        }*/
 
         // FPS calc.
         float fps = 0;
@@ -781,7 +782,7 @@ public class Api2Camera implements CameraInterface, SurfaceTexture.OnFrameAvaila
         // Do callback.
         if (mMyCameraCallback != null) {
             mMyCameraCallback.frameDataAvailable(newFaces, normExposure, normLensPos, fps,
-                    (int) mLastIso, result.get(CaptureResult.CONTROL_AF_STATE), result.get(CaptureResult.CONTROL_AE_STATE), result.get(CaptureResult.CONTROL_AWB_STATE));
+                    (int) mLastIso, 0, 0, 0);
         } else {
             Log.v(TAG, "mMyCameraCallbacks is null!!.");
         }
@@ -847,5 +848,8 @@ public class Api2Camera implements CameraInterface, SurfaceTexture.OnFrameAvaila
                 return "ZSL";
         }
         return Integer.toString(mode);
+    }
+    public static boolean isDpad(){
+       return Build.PRODUCT.equalsIgnoreCase("rm500");
     }
 }

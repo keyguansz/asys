@@ -52,7 +52,7 @@ public class DevCameraActivity extends Activity implements CameraInterface.MyCam
 
     private static final boolean LOG_FRAME_DATA = false;
     private static final int AF_TRIGGER_HOLD_MILLIS = 4000;
-    private static final boolean STARTUP_FULL_YUV_ON = true;
+    private static final boolean STARTUP_FULL_YUV_ON = false;
     private static final boolean START_WITH_FRONT_CAMERA = false;
 
     private static final int PERMISSIONS_REQUEST_CAMERA = 1;
@@ -245,9 +245,9 @@ public class DevCameraActivity extends Activity implements CameraInterface.MyCam
     private void startCamera() {
         // --- SET UP USER INTERFACE ---
         mToggleYuvFull.setChecked(STARTUP_FULL_YUV_ON);
-        mToggleFace.setChecked(true);
+        mToggleFace.setChecked(false);
         mToggleRaw.setVisibility(mCamera.isRawAvailable() ? View.VISIBLE : View.GONE);
-        mToggleShow3A.setChecked(true);
+        mToggleShow3A.setChecked(false);
         mTransferUiStateToCameraState.onClick(null);
 
         // --- SET UP PREVIEW AND OPEN CAMERA ---

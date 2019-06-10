@@ -130,13 +130,13 @@ public class CameraInfoCache {
         return isHardwareLevelAtLeast(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_FULL);
     }
 
-    public boolean isHardwareLevelAtLeast(int level) {
+    public boolean isHardwareLevelAtLeast(int level) {//level==3
         // Special-case LEGACY since it has numerical value 2
         if (level == CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY) {
             // All devices are at least LEGACY
             return true;
         }
-        if (mHardwareLevel == CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY) {
+        if (mHardwareLevel == CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY) {//
             // Since level isn't LEGACY
             return false;
         }
