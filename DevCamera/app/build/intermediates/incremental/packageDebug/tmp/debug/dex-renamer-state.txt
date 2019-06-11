@@ -1,4 +1,0 @@
-#Mon Jun 10 14:55:35 CST 2019
-base.0=F\:\\K\\z-kgszgt\\asys\\DevCamera\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
-path.0=classes.dex
-renamed.0=classes.dex
