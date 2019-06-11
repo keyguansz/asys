@@ -12,3 +12,4 @@
 .externalNativeBuild
 /.idea/modules.xml
 /app/build
+app/build/

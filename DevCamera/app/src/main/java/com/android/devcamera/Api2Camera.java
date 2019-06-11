@@ -18,6 +18,7 @@ package com.android.devcamera;
 import android.content.Context;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
+import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
@@ -69,8 +70,8 @@ public class Api2Camera implements CameraInterface, SurfaceTexture.OnFrameAvaila
     private static boolean LOG_DROPPED_FRAMES = true;
 
     // IMPORTANT: Only one of these can be true:
-    private static boolean SECOND_YUV_IMAGEREADER_STREAM = true;
-    private static boolean SECOND_SURFACE_TEXTURE_STREAM = false;
+    private static boolean SECOND_YUV_IMAGEREADER_STREAM = false;
+    private static boolean SECOND_SURFACE_TEXTURE_STREAM = true;
 
     // Enable raw stream if available.
     private static boolean RAW_STREAM_ENABLE = true;
@@ -258,6 +259,9 @@ public class Api2Camera implements CameraInterface, SurfaceTexture.OnFrameAvaila
     public void triggerAFScan() {
         Log.v(TAG, "AF trigger");
         issuePreviewCaptureRequest(true);
+
+        Camera mCamera = Camera.open(0);
+        Camera.Parameters p = mCamera.getParameters();
     }
 
     public void setCAF() {
