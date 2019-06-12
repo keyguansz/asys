@@ -70,8 +70,8 @@ public class Api2Camera implements CameraInterface, SurfaceTexture.OnFrameAvaila
     private static boolean LOG_DROPPED_FRAMES = true;
 
     // IMPORTANT: Only one of these can be true:
-    private static boolean SECOND_YUV_IMAGEREADER_STREAM = false;
-    private static boolean SECOND_SURFACE_TEXTURE_STREAM = true;
+    private static boolean SECOND_YUV_IMAGEREADER_STREAM = true;
+    private static boolean SECOND_SURFACE_TEXTURE_STREAM = false;
 
     // Enable raw stream if available.
     private static boolean RAW_STREAM_ENABLE = true;
@@ -751,19 +751,20 @@ public class Api2Camera implements CameraInterface, SurfaceTexture.OnFrameAvaila
         }
 
         // Normalized lens and exposure coordinates.
-        double rm = 0; /*Math.log10(result.get(CaptureResult.SENSOR_EXPOSURE_TIME))*/;
+        double rm = isDpad() ? 0 : Math.log10(result.get(CaptureResult.SENSOR_EXPOSURE_TIME));
         float normExposure = (float) ((rm - SHORT_LOG_EXPOSURE) / (LONG_LOG_EXPOSURE - SHORT_LOG_EXPOSURE));
-        float normLensPos = 0;//(mCameraInfoCache.getDiopterHi() - result.get(CaptureResult.LENS_FOCUS_DISTANCE)) / (mCameraInfoCache.getDiopterHi() - mCameraInfoCache.getDiopterLow());
-       // mLastIso = result.get(CaptureResult.SENSOR_SENSITIVITY);
-
+        float normLensPos = isDpad() ? 0 :(mCameraInfoCache.getDiopterHi() - result.get(CaptureResult.LENS_FOCUS_DISTANCE)) / (mCameraInfoCache.getDiopterHi() - mCameraInfoCache.getDiopterLow());
+        if ( !isDpad() ){
+            mLastIso = result.get(CaptureResult.SENSOR_SENSITIVITY);
+        }
         // Update frame arrival history.
         mFrameTimes.add(result.get(CaptureResult.SENSOR_TIMESTAMP));
         if (mFrameTimes.size() > FPS_CALC_LOOKBACK) {
             mFrameTimes.removeFirst();
         }
-
-        // Frame drop detector
-   /*     {
+        if ( !isDpad() ){
+            // Frame drop detector
+        {
             float frameDuration = result.get(CaptureResult.SENSOR_FRAME_DURATION);
             if (mFrameTimes.size() > 1) {
                 long dt = result.get(CaptureResult.SENSOR_TIMESTAMP) - mFrameTimes.get(mFrameTimes.size()-2);
@@ -773,7 +774,9 @@ public class Api2Camera implements CameraInterface, SurfaceTexture.OnFrameAvaila
                     mMyCameraCallback.performanceDataAvailable(null, null, drops);
                 }
             }
-        }*/
+        }
+        }
+
 
         // FPS calc.
         float fps = 0;
