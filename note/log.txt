@@ -1,0 +1,64 @@
+K@RDCMP33-in:/usr/lib/jvm$ ls -al
+total 32
+drwxr-xr-x  6 root root 4096 May  3 15:04 .
+drwxr-xr-x 75 root root 4096 Oct 26 15:48 ..
+lrwxrwxrwx  1 root root   24 Mar 23  2014 default-java -> java-1.7.0-openjdk-amd64
+lrwxrwxrwx  1 root root   20 Aug 12  2016 java-1.7.0-openjdk-amd64 -> java-7-openjdk-amd64
+-rw-r--r--  1 root root 2439 Nov 16  2016 .java-1.7.0-openjdk-amd64.jinfo
+lrwxrwxrwx  1 root root   20 Apr 22  2016 java-1.8.0-openjdk-amd64 -> java-8-openjdk-amd64
+-rw-r--r--  1 root root 2600 Apr 22  2016 .java-1.8.0-openjdk-amd64.jinfo
+drwxr-xr-x  7 root root 4096 Feb 20  2017 java-7-openjdk-amd64
+drwxr-xr-x  7 root root 4096 May  3 15:04 java-8-openjdk-amd64
+drwxr-xr-x  8 uucp  143 4096 Apr 11  2015 jdk1.7.0_79
+drwxr-xr-x  8 root root 4096 May  3 14:37 jdk1.8.0_11
+
+
+key@RDCMP33-in:/home/K$ sudo cd ./usr/local/tomcat9/startup.sh
+[sudo] password for key: 
+key is not in the sudoers file.  This incident will be reported.
+K@RDCMP33-in:~$ sudo ./usr/local/tomcat9/startup.sh
+sudo: ./usr/local/tomcat9/startup.sh: command not found
+È¨ÏÞ²»×ã
+
+
+# User privilege specification
+root    ALL=(ALL:ALL) ALL
+rockchip  ALL=(ALL:ALL) ALL
+xandy   ALL=(ALL:ALL) ALL
+tiger   ALL=(ALL:ALL) ALL
+tom     ALL=(ALL:ALL) ALL
+todd    ALL=(ALL:ALL) ALL
+Kadmin ALL=(ALL:ALL) ALL
+
+K@RDCMP33-in:~/jenkins$ ./tomcat9/bin/startup.sh 
+Using CATALINA_BASE:   /home/K/jenkins/tomcat9
+Using CATALINA_HOME:   /home/K/jenkins/tomcat9
+Using CATALINA_TMPDIR: /home/K/jenkins/tomcat9/temp
+Using JRE_HOME:        /usr/lib/jvm/java-1.8.0-openjdk-amd64
+Using CLASSPATH:       /home/K/jenkins/tomcat9/bin/bootstrap.jar:/home/K/jenkins/tomcat9/bin/tomcat-juli.jar
+Tomcat started.
+K@RDCMP33-in:~/jenkins$ wget http://kd-jenkins.Kcorp.com:18080/
+--2017-10-30 13:18:31--  http://kd-jenkins.Kcorp.com:18080/
+Resolving kd-jenkins.Kcorp.com (kd-jenkins.Kcorp.com)... 10.8.0.136
+Connecting to kd-jenkins.Kcorp.com (kd-jenkins.Kcorp.com)|10.8.0.136|:18080... connected.
+HTTP request sent, awaiting response... 403 
+2017-10-30 13:18:31 ERROR 403: (no description).
+K@RDCMP33-in:~/jenkins/tomcat9/webapps$ wget http://10.8.0.136:18080/examples
+--2017-10-30 13:21:27--  http://10.8.0.136:18080/examples
+Connecting to 10.8.0.136:18080... connected.
+HTTP request sent, awaiting response... 302 
+Location: /examples/ [following]
+--2017-10-30 13:21:27--  http://10.8.0.136:18080/examples/
+Reusing existing connection to 10.8.0.136:18080.
+HTTP request sent, awaiting response... 200 
+Length: 1126 (1.1K) [text/html]
+------------------------------
+drwxr-xr-x  9 root root 4096 Oct 30 11:21 tomcat9
+ÕËºÅ12345678
+Error
+
+Jenkins detected that you appear to be running more than one instance of Jenkins that share the same home directory '/var/lib/jenkins¡¯. This greatly confuses Jenkins and you will likely experience strange behaviors, so please correct the situation.
+
+This Jenkins:	135125595 contextPath="" at 32425@RDCMP33-in
+Other Jenkins:	272096900 contextPath="/jenkins" at 32425@RDCMP33-in
+Ignore this problem and keep using Jenkins anyway
