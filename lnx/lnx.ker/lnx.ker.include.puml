@@ -1,0 +1,82 @@
+@startuml
+
+
+class bus_type {
+   const char    *name;
+   const char    *dev_name;
+   struct device     *dev_root;
+   struct device_attribute    *dev_attrs;
+   const struct attribute_group **bus_groups;
+   const struct attribute_group **dev_groups;
+   const struct attribute_group **drv_groups;
+   int (*match)(struct device *dev, struct device_driver *drv);
+   int (*uevent)(struct device *dev, struct kobj_uevent_env *env);
+   int (*probe)(struct device *dev);
+   int (*remove)(struct device *dev);
+   void (*shutdown)(struct device *dev);
+   int (*online)(struct device *dev);
+   int (*offline)(struct device *dev);
+   int (*suspend)(struct device *dev, pm_message_t state);
+   int (*resume)(struct device *dev);
+   const struct dev_pm_ops *pm;
+   const struct iommu_ops *iommu_ops;
+   struct subsys_private *p;
+   struct lock_class_key lock_key;
+}
+
+class device_driver{
+   const char    *name;
+   class bus_type       *bus;/*这个驱动属于哪个总线*/
+   struct module     *owner;
+   const char    *mod_name; /* used for built-in modules */
+   bool suppress_bind_attrs;  /* disables bind/unbind via sysfs */
+   const struct of_device_id  *of_match_table;
+   const struct acpi_device_id    *acpi_match_table;
+   int (*probe) (struct device *dev);
+   int (*remove) (struct device *dev);
+   void (*shutdown) (struct device *dev);
+   int (*suspend) (struct device *dev, pm_message_t state);
+   int (*resume) (struct device *dev);
+   const struct attribute_group **groups;
+   const struct dev_pm_ops *pm;
+   struct driver_private *p;
+}
+
+class device {
+   struct device     *parent;
+   struct device_private  *p;
+   struct kobject kobj;
+   const char    *init_name; /* initial name of the device */
+   const struct device_type *type;
+   struct mutex      mutex; /* mutex to synchronize calls to its driver.*/
+   class bus_type *bus;/*这个设备连到哪个总线上*/
+   class device_driver *driver;  /* 这个设备的驱动是什么*/
+   void      *platform_data;    /* Platform specific data, device core doesn't touch it */
+   void      *driver_data;  /* Driver data, set and get with dev_set/get_drvdata */
+   struct dev_pm_info power;
+   struct dev_pm_domain   *pm_domain;
+}
+
+class usb_interface{
+	struct usb_interface_descriptor	desc;
+	int extralen;
+	unsigned char *extra;   /* Extra descriptors */
+	/* array of desc.bNumEndpoints endpoints associated with this
+	 * interface setting.  these will be in no particular order.
+	 */
+	struct usb_host_endpoint *endpoint;
+	char *string;		/* iInterface string, if present */
+}
+class usb_host_interface{
+    接口设置
+}
+
+class usb_interface_descriptor{
+    设备描述符，//@noEEPROM
+    配置描述符，
+    接口描述符
+    端点描述符
+}
+
+
+@enduml

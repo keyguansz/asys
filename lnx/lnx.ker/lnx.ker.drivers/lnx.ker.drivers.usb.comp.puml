@@ -1,0 +1,24 @@
+@startuml
+
+package "USB 连接" {
+[Another Component]
+}
+
+package "USB 主机控制器" {
+USB总线 - [xc]
+}
+
+package "USB 设备" {
+[Hub]
+[Composite Device]
+[Compound Device]
+[Interface]
+Pipe->[Endpoint]
+
+}
+package "主机CPU" {
+USB总线 - [USB 连接]
+Pipe->[通信]
+}
+
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+
+
+class usb_hub {
+    struct device *intfdev
+    struct device		*intfdev;
+	struct usb_device	*hdev;
+	struct kref		kref;
+	struct urb		*urb;
+}
+
+class usb_device {
+    struct device *intfdev
+
+}
+class usb_hcd {
+     struct device *intfdev
+
+ }
+enum usb_device_speed {
+     struct device *intfdev
+
+ }
+ enum Endpoint {
+    控制传输
+    中断传输
+    批量传输
+    等时传输
+  }
+
+
+
+@enduml
