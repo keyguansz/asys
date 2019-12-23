@@ -27,7 +27,28 @@ enum usb_device_speed {
     批量传输
     等时传输
   }
+ class usb_interface_descriptor {
+    //描述符的字节长度。协议里规定，每个描述符必须以一个字节打头来 表明描述符的长度
+  	__u8  bLength;//==USB_DT_INTERFACE_SIZE=9
+  	__u8  bDescriptorType;//描述符的类型。,对于接口描述符来说，值为 USB_DT_INTERFACE，也就是 0x04
+  	__u8  bInterfaceNumber;//接口号。每个配置可以包含多个接口，这个值就是它们的 索引值
+  	__u8  bAlternateSetting;//接口使用的是哪个可选设置。协议里规定，接口默认使用的 设置总为 0 号设置
+  	__u8  bNumEndpoints;//接口拥有的端点数量。这里并不重复包括端点 0，因为端点 0 是所有 的设备都必须提供
+  	__u8  bInterfaceClass;
+  	__u8  bInterfaceSubClass;
+  	__u8  bInterfaceProtocol;
+  	__u8  iInterface;
+  	 // __attribute__ ((packed));
+  }
 
-
-
+enum Descriptor_types{
+#define USB_DT_DEVICE			0x01
+#define USB_DT_CONFIG			0x02
+#define USB_DT_STRING			0x03
+#define USB_DT_INTERFACE		0x04
+#define USB_DT_ENDPOINT			0x05
+#define USB_DT_DEVICE_QUALIFIER		0x06
+#define USB_DT_OTHER_SPEED_CONFIG	0x07
+#define USB_DT_INTERFACE_POWER		0x08
+}
 @enduml
