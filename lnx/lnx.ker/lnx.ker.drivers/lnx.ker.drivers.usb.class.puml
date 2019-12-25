@@ -10,9 +10,170 @@ class usb_hub {
 }
 
 class usb_device {
-    struct device *intfdev
+    int     devnum;     /* Address on USB bus */
+        //设备地址，只是USB设备在一条USB总线上的编号
+        //总线为了记录树上的每个叶子节点，设有一个地址映射表，即struct usb_bus结构体内的成员struct usb_devmap devmap
+        /*
+        struct usb_devmap {
+            unsigned long devicemap[128 / (8*sizeof(unsigned long))];
+        };
+        数组大小依赖于unsigned long的大小，但是总共肯定是128位
+        这里用sizeof就是为了跨平台应用，也就是说每条总线最多可以连接128个设备
+        */
+        //这里提出了usb_bus，前面注册的usb_bus_type，让系统知道有这么一个类型的总线
+        //一个总线要有一个struct usb_bus结构体变量
+        char        devpath [16];   /* Use in messages: /port/port/... */
+        //顶级设备的devpath就是其连在Root Hub上的端口号，例如4-0:1.0中的0，次级的设备就是其父Hub的devpath后面加上其端口号，例如4-0.1:1.0中的01
+        enum usb_device_state   state;  /* configured, not attached, etc */
+        //设备状态详见下文
+        enum usb_device_speed   speed;  /* high/full/low (or error) */
 
+        struct usb_tt   *tt;        /* low/full speed dev, highspeed hub */
+        int     ttport;     /* device port on that tt hub */
+        //transaction translator，负责高速和低速/全速的数据转换，如果高速设备中有TT就可以连接低速/全速设备
+        unsigned int toggle[2];     /* one bit for each endpoint
+                         * ([0] = IN, [1] = OUT) */
+        //分别对应IN端点和OUT端点，表示每个端点当前发送或接收的数据包是DATA0还是DATA1
+        struct usb_device *parent;  /* our hub, unless we're the root */
+        //父节点，hub
+        struct usb_bus *bus;        /* Bus we're part of */
+        //设备所在总线
+        struct usb_host_endpoint ep0;
+        //端点0，在usb_device对象产生时就要初始化
+
+        struct device dev;      /* Generic device interface */
+        //嵌入的struct device结构
+
+        struct usb_device_descriptor descriptor;/* Descriptor */
+        //设备描述符，见下文
+        struct usb_host_config *config; /* All of the configs */
+        //设备拥有的所有配置
+        struct usb_host_config *actconfig;/* the active configuration */
+        //当前激活的配置
+        struct usb_host_endpoint *ep_in[16];
+        struct usb_host_endpoint *ep_out[16];
+        //除了端点0，一个设备即使在高速模式下最多也只能有15个IN端点和15个OUT端点
+        char **rawdescriptors;      /* Raw descriptors for each config */
+        //字符指针数组，每一项都指向一个使用GET_DESCRIPTOR请求去获得配置描述符时所得结果
+        //返回的不是配置描述符，而是包含的接口及接口内端点的描述符一起返回
+        unsigned short bus_mA;      /* Current available from the bus */
+        //在主机控制器驱动程序中设置，通常USB端口可提供500mA电流
+        u8 portnum;         /* Parent port number (origin 1) */
+        //不管是Root Hub还是一般Hub，USB设备必要要插在Hub端口上，该值表示端口号
+        u8 level;           /* Number of USB hub ancestors */
+        //层次，也可以说级别，表示USB设备树的级联关系，Root Hub是level0，下面一层就是level1
+        unsigned can_submit:1;      /* URBs may be submitted */
+        unsigned discon_suspended:1;    /* Disconnected while suspended */
+        unsigned have_langid:1;     /* whether string_langid is valid */
+        //说明string_langid是否有效
+        unsigned authorized:1;      /* Policy has determined we can use it */
+        unsigned wusb:1;        /* Device is Wireless USB */
+        int string_langid;      /* language ID for strings */
+        //USB设备中的字符串描述符使用的是UNICODE，支持多语言，该值用来指定使用哪种语言
+        /* static strings from the device */
+        char *product;          /* iProduct string, if present */
+        char *manufacturer;     /* iManufacturer string, if present */
+        char *serial;           /* iSerialNumber string, if present */
+        //分别用来保存产品、厂商和序列号对应的字符串描述符信息
+
+        struct list_head filelist;
+    #ifdef CONFIG_USB_DEVICE_CLASS
+        struct device *usb_classdev;
+    #endif
+    #ifdef CONFIG_USB_DEVICEFS
+        struct dentry *usbfs_dentry;    /* usbfs dentry entry for the device */
+    #endif
+        //usbfs相关
+
+        /*
+         * Child devices - these can be either new devices
+         * (if this is a hub device), or different instances
+         * of this same device.
+         *
+         * Each instance needs its own set of data structures.
+         */
+
+        int maxchild;           /* Number of ports if hub */
+        //Hub的端口数，不包含上行端口
+        struct usb_device *children[USB_MAXCHILDREN];
+        //USB_MAXCHILDREN 31，端口对应的设备对象，一个Hub可以接255个端口，不过实际上遇到的Hub最多可以支持10个端口，所以31端口基本上够用了
+        int pm_usage_cnt;       /* usage counter for autosuspend */
+        //pm表示电源管理，usage_cnt就是使用计数
+        //当计数为0时，设备允许autosuspend，休眠
+        u32 quirks;         /* quirks of the whole device */
+        atomic_t urbnum;        /* number of URBs submitted for the whole device */
+
+    //电源管理相关
+    #ifdef CONFIG_PM
+        struct delayed_work autosuspend; /* for delayed autosuspends */
+        struct mutex pm_mutex;      /* protects PM operations */
+
+        unsigned long last_busy;    /* time of last use */
+        int autosuspend_delay;      /* in jiffies */
+
+        unsigned auto_pm:1;     /* autosuspend/resume in progress */
+        unsigned do_remote_wakeup:1;    /* remote wakeup should be enabled */
+        unsigned reset_resume:1;    /* needs reset instead of resume */
+        unsigned persist_enabled:1; /* USB_PERSIST enabled for this dev */
+        unsigned autosuspend_disabled:1; /* autosuspend and autoresume */
+        unsigned autoresume_disabled:1;  /*  disabled by the user */
+        unsigned skip_sys_resume:1; /* skip the next system resume */
+    #endif
 }
+class usb_device_descriptor {
+    __u8  bLength;//描述符长度
+    //USB_DT_DEVICE_SIZE 18
+    __u8  bDescriptorType;
+    //bDescriptorType，USB_DT_DEVICE 0x01
+    __le16 bcdUSB;
+    //USB spec版本号，如果一个设备能够告诉传输，这一项就应该是0200H
+    __u8  bDeviceClass;
+    __u8  bDeviceSubClass;
+    __u8  bDeviceProtocol;
+    //设备类、子类、子类下不同协议
+    __u8  bMaxPacketSize0;
+    //端点0一次可以处理的最大字节数，端点0的属性放在设备描述符中，不需要自己专门的端点描述符
+    __le16 idVendor;
+    __le16 idProduct;
+    //厂商、产品ID
+    __le16 bcdDevice;
+    //设备版本号
+    __u8  iManufacturer;
+    __u8  iProduct;
+    __u8  iSerialNumber;
+    //厂商、产品和序列号对应的字符串描述符索引值
+    __u8  bNumConfigurations;
+    //当前速度模式下支持的配置数量
+}
+
+enum usb_device_state {
+        USB_STATE_NOTATTACHED = 0,
+        //NOTATTACHED isn't in the USB spec,
+        //and this state acts the same as ATTACHED ... but it's clearer this way
+        //表示设备没有Attached
+        //chapter 9 and authentication (wireless) device states
+        USB_STATE_ATTACHED,  //规范中的6个状态之一
+        //表示设备已经连接到USB接口上，Hub检测到设备时的初始化状态
+        USB_STATE_POWERED,          //wired  //规范中的6个状态之一
+        //加电状态，USB设备电源可以来自外部电源，self-powered，也可以来自Hub，bus-powered
+        USB_STATE_UNAUTHENTICATED,      //auth
+        USB_STATE_RECONNECTING,         //auth
+        USB_STATE_DEFAULT,          //limited function  //规范中的6个状态之一
+        //默认状态，Powered之后，设备必须收到一个复位（reset）信号并成功复位后
+        //才能使用默认地址回应主机发过来的设备和配置描述符的请求
+        USB_STATE_ADDRESS,  //规范中的6个状态之一
+        //主机分配一个唯一的地址给设备，此时设备可以使用默认管道响应主机请求
+        USB_STATE_CONFIGURED,           //most functions  //规范中的6个状态之一
+        //表示设备已经被主机配置过，就是协议中说的处理一个带非0值的SetConfiguration请求
+        //此时主机可以使用设备提供的所有功能
+        USB_STATE_SUSPENDED  //规范中的6个状态之一
+        //挂起状态，为了省电，设备在指定时间内（约3ms）没有发生总线传输则进入挂起状态
+        //此时设备要自己维护包括地址、配置在内的信息
+        /* NOTE:  there are actually four different SUSPENDED
+         * states, returning to POWERED, DEFAULT, ADDRESS, or
+         * CONFIGURED respectively when SOF tokens flow again.
+         *
+    }
 class usb_hcd {
      struct device *intfdev
 
@@ -27,18 +188,76 @@ enum usb_device_speed {
     批量传输
     等时传输
   }
+  class usb_host_config {
+      struct usb_config_descriptor    desc;
+      //配置描述符，见下文
+
+      char *string;
+      //保存了配置描述符iConfiguration字段对应的字符串描述符信息
+
+      /* List of any Interface Association Descriptors in this
+       * configuration. */
+      struct usb_interface_assoc_descriptor *intf_assoc[USB_MAXIADS];
+
+      /* the interfaces associated with this configuration,
+       * stored in no particular order */
+      struct usb_interface *interface[USB_MAXINTERFACES];
+      //配置包含的接口，该数组顺序未必是按配置里接口号的顺序
+      //想要某个接口号对应的struct usb_interface结构对象
+      //必须使用drivers/usb/usb.c中定义的usb_ifnum_to_if函数
+
+      /* Interface information available even when this is not the
+       * active configuration */
+      struct usb_interface_cache *intf_cache[USB_MAXINTERFACES];
+      //USB接口缓存，缓存是为了配置被取代后仍然能够获取它的一些信息
+      //就把日后可以能会需要的一些东西放在intf_cache数组的struct usb_interface_cache对象里。
+      //sysfs中显示的只是当前的配置信息，usbfs里显示的系统中所有USB设备的可选配置和端口信息，就是利用intf_cache这个数组里的缓存实现的
+
+      unsigned char *extra;   /* Extra descriptors */
+      int extralen;
+      //额外扩展的描述符，使用GET_DESCRIPTOR请求后，会在标准配置描述符后面返回给你
+  }
+  class usb_config_descriptor {
+      __u8  bLength;
+      //长度，9
+      __u8  bDescriptorType;
+      //描述符类型，USB_DT_CONFIG 0x02
+      //还可以为USB_DT_OTHER_SPEED_CONFIG 0x07，描述的是告诉设备操作在低速或全速模式时的配置
+      __le16 wTotalLength;
+      //使用GET_DESCRIPTOR请求返回的数据长度，对配置、接口、端点、class-或vendor-specific描述符在内的所有描述符的统计
+      __u8  bNumInterfaces;
+      //配置包含的接口数目
+      __u8  bConfigurationValue;
+      //指明了将要激活哪个配置（SET_CONFIGURATION）
+      __u8  iConfiguration;
+      //配置信息的字符串描述符的索引值
+      __u8  bmAttributes;
+      //配置的一些特点,bit6 self-powered、bit5 支持远程唤醒、bit7必须为1、bit4 battery powered
+      __u8  bMaxPower;
+      //设备正常运转时，从总线那里分得的最大电流值，以2mA为单位
+  }
+
  class usb_interface_descriptor {
-    //描述符的字节长度。协议里规定，每个描述符必须以一个字节打头来 表明描述符的长度
-  	__u8  bLength;//==USB_DT_INTERFACE_SIZE=9
-  	__u8  bDescriptorType;//描述符的类型。,对于接口描述符来说，值为 USB_DT_INTERFACE，也就是 0x04
-  	__u8  bInterfaceNumber;//接口号。每个配置可以包含多个接口，这个值就是它们的 索引值
-  	__u8  bAlternateSetting;//接口使用的是哪个可选设置。协议里规定，接口默认使用的 设置总为 0 号设置
-  	__u8  bNumEndpoints;//接口拥有的端点数量。这里并不重复包括端点 0，因为端点 0 是所有 的设备都必须提供
-  	__u8  bInterfaceClass;
-  	__u8  bInterfaceSubClass;
-  	__u8  bInterfaceProtocol;
-  	__u8  iInterface;
-  	 // __attribute__ ((packed));
+ __u8  bLength;
+        //描述符的字节长度。协议中规定，每个描述符必须以一个字节打头来标明描述符的长度。接口描述符的bLength是9。
+        __u8  bDescriptorType;
+        //描述符的类型，对于接口描述符来说，值为USB_DT_INTERFACE
+        __u8  bInterfaceNumber;
+        //接口号，每个配置可以包含多个接口，这个值是他们的索引
+        __u8  bAlternateSetting;
+        //接口使用的是哪个可选设置，协议中规定，接口默认使用的设置总为0号设置
+        __u8  bNumEndpoints;
+        //接口拥有的端点数量，这里并不包含端点0，端点0是所有设备必须提供的
+        __u8  bInterfaceClass;
+        //USB设备类
+        __u8  bInterfaceSubClass;
+        //USB设备子类
+        __u8  bInterfaceProtocol;
+        //所遵循的不同通信协议
+        //USB设备分为很多类、类下面又分了子类、每个子类又按各种设备所遵循的不同的通信协议继续细分
+        __u8  iInterface;
+        //接口对应的字符串描述符的索引值，字符串描述符不是必须的，是可选的
+        //字符串描述符可以有多个，这里就是它们的索引
   }
 
 enum Descriptor_types{
@@ -50,5 +269,146 @@ enum Descriptor_types{
 #define USB_DT_DEVICE_QUALIFIER		0x06
 #define USB_DT_OTHER_SPEED_CONFIG	0x07
 #define USB_DT_INTERFACE_POWER		0x08
+/* these are from a minor usb 2.0 revision (ECN) */
+#define USB_DT_OTG			0x09
+#define USB_DT_DEBUG			0x0a
+#define USB_DT_INTERFACE_ASSOCIATION	0x0b
+/* these are from the Wireless USB spec */
+#define USB_DT_SECURITY			0x0c
+#define USB_DT_KEY			0x0d
+#define USB_DT_ENCRYPTION_TYPE		0x0e
+#define USB_DT_BOS			0x0f
+#define USB_DT_DEVICE_CAPABILITY	0x10
+#define USB_DT_WIRELESS_ENDPOINT_COMP	0x11
+#define USB_DT_WIRE_ADAPTER		0x21
+#define USB_DT_RPIPE			0x22
+#define USB_DT_CS_RADIO_CONTROL		0x23
+/* From the T10 UAS specification */
+#define USB_DT_PIPE_USAGE		0x24
+/* From the USB 3.0 spec */
+#define	USB_DT_SS_ENDPOINT_COMP		0x30
+}
+class usb_bus_type   {
+     struct device *intfdev
+
+}
+class usb_interface{
+      class usb_host_interface *altsetting;
+     //可选设置
+     class usb_host_interface *cur_altsetting;
+     //当前正在使用的设置
+     unsigned num_altsetting;
+     //可选设置的数量
+     class usb_interface_assoc_descriptor *intf_assoc;
+     /*接口关联描述符 USB_DT_INTERFACE_ASSOCIATION: groups interfaces
+     int minor;
+     //分配给接口的次设备号
+     //Linux下所有硬件设备都是用文件来表示，/dev目录下每个设备文件都会有主设备号和次设备号
+     //一般来说主设备号表明设备种类，表明设备对应哪个驱动程序
+     //次设备号是为了让驱动程序区分自己支持的多个设备
+     enum usb_interface_condition condition;     /* statE of binding */
+     /*接口和驱动的绑定状态    */
+        unsigned is_active:1;       /* the interfacE is not suspended */
+        //表示接口是否处于挂起状态
+        //协议规定所有USB设备必须支持挂起状态，为了达到节电的目的
+        //当设备在指定时间（约3ms）内没有发生总线传输，就要进入挂起状态
+        //当它收到一个non-idle信号时就会被唤醒
+        unsigned sysfs_files_created:1; /* the sysfs attributes exist */
+        unsigned needs_remote_wakeup:1; /* driver requires remote wakeup */
+        //是否需要打开远程唤醒功能。
+        //远程唤醒功能允许挂起的设备给主机发信号，通知主机它将从挂起状态恢复。
+        //如果主机处于挂起状态，就会唤醒主机，不然主机仍然在休眠
+        //协议中并没有要求USB设备一定要实现远程唤醒功能，即使实现了，主机也可以打开或关闭它
+        struct device dev;      /* interfacE specific device info */
+        //Linux通用的设备模型
+        struct device *usb_dev;     /* pointer to the usb clasS's device, if any */
+        //当接口使用USB_MAJOR作为主设备号时，usb_dev才会用到
+        //而且只在usb_register_dev和usb_deregister_dev两个函数中用到
+        //usb_dev指向的就是usb_register_dev函数创建的USB clasS device
+        int pm_usage_cnt;       /* usage counter for autosuspend */
+        //pm表示电源管理，usage_cnt就是使用计数
+        //当计数为0时，接口允许autosuspend，休眠
+ }
+ enum usb_interface_condition {
+          USB_INTERFACE_UNBOUND = 0,
+          USB_INTERFACE_BINDING,
+          USB_INTERFACE_BOUND,
+          USB_INTERFACE_UNBINDING,
+      }
+       class usb_interface_assoc_descriptor {
+               __u8  bLength;
+               __u8  bDescriptorType;
+
+               __u8  bFirstInterface;
+               __u8  bInterfaceCount;
+               __u8  bFunctionClass;
+               __u8  bFunctionSubClass;
+               __u8  bFunctionProtocol;
+               __u8  iFunction;
+           }
+
+class usb_host_interface {
+    struct usb_interface_descriptor desc;
+    //接口描述符，不同的设置会有不同的接口描述符，所以该结构体放在设置中
+    struct usb_host_endpoint *endpoint;
+    //表示这个设置所用到的端点
+    char *string;
+    //保存从设备中取出来的字符串描述符信息，字符串描述符可有可无，该指针可能为空
+    unsigned char *extra;
+    int extralen;
+    //有关额外的描述符（其他描述符或者厂商为设备特别定义的描述符）
+}
+class usb_host_endpoint {
+    struct usb_endpoint_descriptor  desc;
+    //端点描述符
+    struct list_head        urb_list;
+    //端点要处理的urb队列，urb包含了执行USB传输所需的全部信息
+    //如果你想要和USB通信，就得创建一个urb，并且为它赋值，交给USB core
+    //然后USB core会找到合适的主机控制器，从而进行具体的数据传输
+    void                *hcpriv;
+    //提供给HCD（Host Control Driver）用的，比如等时端点会在里边放一个ehci_iso_stream
+    struct ep_device        *ep_dev;    /* For sysfs info */
+    //共sysfs用的，可以到/sys下看一下
+    // ls /sys/bus/usb/devices/usb1/ep_00/
+    //    bEndpointAddress bmAtributes direction subsystem wMaxpacketSize
+    //    bInterval    dev    intervaltype
+    //    bLength      device   power   uevent
+    // ep_00端点目录下的文件就是在usb_create_ep_files函数中使用ep_dev创建的
+
+    unsigned char *extra;   /* Extra descriptors */
+    int extralen;
+    //额外扩展的描述符
+    int enabled;
+    //URBs may be submitted to this endpoint
+}
+class ep_device {
+        struct usb_endpoint_descriptor *desc;
+        struct usb_device *udev;
+        struct device dev;
+        int minor;
+    }
+class usb_endpoint_descriptor {
+    __u8  bLength;
+    //描述符字节长度，7或者9，多出的两个字节针对音频设备扩展的
+    __u8  bDescriptorType;
+    //描述符类型，USB_DT_ENDPOINT 0x05
+    __u8  bEndpointAddress;
+    //bits0-bits3 表示的就是端点号，&0x0f可以得到端点号
+    //bit8表示方向，&0x80可以得到
+        //#define USB_DIR_OUT 0
+        //#define USB_DIR_IN 0x80
+    __u8  bmAttributes;
+    //属性：bit1和bit0共同称为TransferType，传输类型
+        //00表示控制传输、01表示等时传输、10表示批量传输、11表示中断传输
+    __le16 wMaxPacketSize;
+    //端点一次可处理的最大字节数
+    __u8  bInterval;
+    //USB是轮询式总线，该值表示希望主机轮询自己的时间间隔
+
+    /* NOTE:  these two are _only_ in audio endpoints. */
+    /* use USB_DT_ENDPOINT*_SIZE in bLength, not sizeof. */
+    __u8  bRefresh;
+    __u8  bSynchAddress;
+    //音频端点特有
 }
 @enduml
