@@ -10,12 +10,12 @@ pause
 set /a tryCnt=%tryCnt%+1
 ECHO try # %tryCnt%
 git push
-IF ERRORLEVEL == 0 (
-    ECHO "git push success!!!"
-) ELSE (
+IF ERRORLEVEL 1 (
 	IF %tryCnt% LEQ %MaxTryCnt% (
 		GOTO PUSH_LOOP
 	)
+) ELSE IF ERRORLEVEL 0(
+	ECHO "git push success!!!"
 )
 ECHO git status
 git status
