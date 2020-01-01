@@ -14,7 +14,8 @@ IF ERRORLEVEL 1 (
 	IF %tryCnt% LEQ %MaxTryCnt% (
 		GOTO PUSH_LOOP
 	)
-) ELSE IF ERRORLEVEL 0(
+)
+IF ERRORLEVEL 0(
 	ECHO "git push success!!!"
 )
 ECHO git status
