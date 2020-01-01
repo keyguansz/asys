@@ -16,7 +16,7 @@ IF ERRORLEVEL 1 (
 		GOTO PUSH_LOOP
 	)
 ) ELSE (
-	ECHO "git push success!!!"
+	ECHO "*********push success***********"
 )
 ECHO git status
 git status
