@@ -6,6 +6,7 @@ pause
 set /a tryCnt=%tryCnt%+1
 ECHO try # %tryCnt%
 git pull
+@REM ==0
 IF ERRORLEVEL == 0 (
     ECHO "git pull success!!!"
 ) ELSE (
