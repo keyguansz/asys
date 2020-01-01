@@ -8,7 +8,7 @@ ECHO try # %tryCnt%
 git pull
 @REM ==0
 IF ERRORLEVEL == 0 (
-    ECHO "git pull success!!!"
+    ECHO "*********pull success*********"
 ) ELSE (
 	IF %tryCnt% LEQ %MaxTryCnt% (
 		GOTO PULL_LOOP
