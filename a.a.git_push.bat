@@ -17,6 +17,8 @@ IF ERRORLEVEL == 0 (
 		GOTO PUSH_LOOP
 	)
 )
+ECHO git status
+git status
 pause
 exit
 
