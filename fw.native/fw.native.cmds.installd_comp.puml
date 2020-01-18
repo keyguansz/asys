@@ -1,0 +1,51 @@
+@startuml
+package "libinstalld" {
+[commands]
+[globals]
+[utils]
+}
+package "installd"{
+[installd.cpp] - [commands]
+[installd.cpp] - [globals]
+[installd.cpp] - [utils]
+[installd.rc]
+}
+
+package "otapreopt" {
+[otapreopt.cpp] - [commands]
+[otapreopt.cpp] - [globals]
+[otapreopt.cpp] - [utils]
+}
+package "otapreopt_chroot" {
+[otapreopt_chroot.cpp]
+}
+
+package "otapreopt_slot" {
+[otapreopt_slot.sh]
+[otapreopt.rc]
+}
+package "otapreopt_script" {
+[otapreopt_script.sh]
+}
+
+package "installd_utils_test" {
+[otapreopt.cpp]
+
+}
+
+@enduml
+
+--------------------------------------------
+@startuml
+
+== Initialization ==
+
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+
+== Repetition ==
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Response
+
+@enduml

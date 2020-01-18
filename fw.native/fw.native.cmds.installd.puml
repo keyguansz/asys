@@ -1,0 +1,13 @@
+@startuml
+
+Test <|- testing
+testing <|-- UtilsTest
+
+class UtilsTest {
+SetUp
+TearDown
+TEST_F(UtilsTest, IsValidApkPath_BadPrefix)
+}
+
+
+@enduml
